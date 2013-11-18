@@ -1,3 +1,5 @@
+#include "Asset.hh"
+
 class AGameObject
 {
 public:
