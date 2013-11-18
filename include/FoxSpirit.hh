@@ -1,13 +1,17 @@
 #ifndef HERO_HH
 #define HERO_HH
 
+#include "AssetDescriptor.hh"
 #include "GameObject.hh"
 
-class Hero : public GameObject
+class FoxSpirit : public GameObject
 {
 public:
-	Hero(sf::Vector2f &pos);
-	virtual ~Hero(){}
+	FoxSpirit(sf::Vector2f &pos);
+	virtual ~FoxSpirit(){}
+
+
+
 
 private:
 	const static AssetDescriptor s_assetDesc;

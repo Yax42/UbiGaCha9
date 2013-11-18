@@ -4,11 +4,11 @@
 #include "Asset.hh"
 #include <SFML/Graphics.hpp>
 
-class AGameObject
+class GameObject
 {
 public:
-	AGameObject(const Asset & asset, sf::Vector2f &pos, float size);
-	~AGameObject(){}
+	GameObject(const Asset & asset, sf::Vector2f &pos, float size);
+	~GameObject(){}
 	virtual void	setPos(const sf::Vector2f &pos);
 	virtual void	incPos(const sf::Vector2f &pos);
 	virtual void	setSpeed(const sf::Vector2f &speed);

@@ -30,6 +30,15 @@
     <ClCompile Include="src\AController.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="src\AssetDescriptor.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Hero.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\FoxSpirit.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\sf_tile_engine.h">
@@ -47,6 +56,15 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </None>
     <None Include="include\Controller.hh">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </None>
+    <None Include="include\AssetDescriptor.hh">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </None>
+    <None Include="include\Hero.hh">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </None>
+    <None Include="include\FoxSpirit.hh">
       <Filter>Fichiers d%27en-tête</Filter>
     </None>
   </ItemGroup>
