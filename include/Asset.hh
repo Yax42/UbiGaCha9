@@ -1,5 +1,6 @@
 #include <string>
 #include <vector>
+#include <SFML/Graphics.hpp>
 
 class Asset
 {
@@ -22,7 +23,7 @@ public:
 	void	setCurrentLine(int cur);
 	void	resetSprite();
 	void	update();
-	void	draw(const sf::Vector2f &_pos, float _angle);
+	void	draw(const sf::Vector2f &pos, float angle);
 
 private:
 	int				_curLine;

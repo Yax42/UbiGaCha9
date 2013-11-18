@@ -1,17 +1,17 @@
 #include "GameObject.hh"
 
-AGameObject::AGameObject(sf::Vector2f &pos, float size) : 
+AGameObject::AGameObject(const Asset & asset, sf::Vector2f &pos, float size) : 
 	_asset(asset), _speed(0, 0), _pos(pos), _hitBoxSize(size)
 {
 }
 
-virtual void	AGameObject::update(float ft)
+void	AGameObject::update(float ft)
 {
-	asset.update();
-	_pos += _speed * ft;
+  _asset.update();
+  _pos += _speed * ft;
 }
 
 void		AGameObject::draw()
 {
-	asset.draw(_pos, _angle);
+  _asset.draw(_pos, _angle);
 }

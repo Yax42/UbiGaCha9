@@ -1,5 +1,5 @@
 #include <SFML/Window.hpp>
-#include "include/sf_tile_engine.h"
+#include "sf_tile_engine.h"
 #include "Controller.hh"
 
 int main()
@@ -29,7 +29,6 @@ int main()
 	    window.close();
 	  // Handle any events passed into the engine.
 	  world.HandleEvents(event);
-	  control.handleEvent(event);
 	}
       // Update the engine.
       world.Update();

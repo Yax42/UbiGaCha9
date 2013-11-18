@@ -1,4 +1,6 @@
 #include <iostream>
+#include <SFML/Window.hpp>
+#include <SFML/Graphics.hpp>
 #include "Asset.hh"
 
 Asset::Asset(const std::string &name) : _curLine(0), _curFrame(0)
@@ -32,7 +34,7 @@ void	Asset::resetSprite()
 		_lines[_curLine].totalHeight,
 		_lines[_curLine].width,
 		_lines[_curLine].height));
-	sprite.setOrigin(_lines[_curLine].width, _lines[_curLine].height);
+	_sprite.setOrigin(_lines[_curLine].width, _lines[_curLine].height);
 }
 
 void	Asset::update()
@@ -42,8 +44,8 @@ void	Asset::update()
 	resetSprite();
 }
 
-void	Asset::draw(const sf::Vector2f &_pos, float _angle)
+void	Asset::draw(const sf::Vector2f &pos, float angle)
 {
-	sprite.setRotation(_angle);
-	sprite.setPosition(_pos);
+  _sprite.setRotation(angle);
+  _sprite.setPosition(pos);
 }

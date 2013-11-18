@@ -1,4 +1,5 @@
 #include "Asset.hh"
+#include <SFML/Graphics.hpp>
 
 class AGameObject
 {
@@ -10,7 +11,7 @@ public:
 private:
 	sf::Vector2f	_speed;
 	sf::Vector2f	_pos;
-	float			_angle;
-	float			_hitBoxSize;
-	Asset			_asset;
+	float		_angle;
+	float		_hitBoxSize;
+	Asset		_asset;
 };
