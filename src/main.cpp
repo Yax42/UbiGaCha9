@@ -4,9 +4,9 @@
 
 int main()
 {
-  sf::RenderWindow	window(sf::VideoMode(256, 240), "My window");
+  sf::RenderWindow	window(sf::VideoMode(800, 600), "My window");
   sftile::SfWorld	world;
-  sftile::SfSmartCamera	camera(256, 240);
+  sftile::SfSmartCamera	camera(800, 600);
 
   // Load a tilemap and save it in the world.
   // This also saves a pointer to that tilemap.

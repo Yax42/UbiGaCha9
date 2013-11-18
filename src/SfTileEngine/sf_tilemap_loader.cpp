@@ -1,3 +1,4 @@
+#include <algorithm>
 #include "SfTileEngine/sf_tilemap_loader.h"
 
 #include "TinyXML/tinyxml2.h"
@@ -29,6 +30,11 @@ bool CheckPointer(const void* _ptr, string _error)
   return true;
 }
 
+bool pairTilesetImagesCompare(const std::pair<int, sf::Texture> &firstElem,
+			      const std::pair<int, sf::Texture> &secondElem)
+{
+  return (firstElem.first < secondElem.first);
+}
 
 ////////////////////////////////////////////////////////////
 bool SfTilemapLoader::LoadTilemap(const string _path, SfTilemap& _tilemap)
@@ -84,6 +90,9 @@ bool SfTilemapLoader::LoadTilemap(const string _path, SfTilemap& _tilemap)
   }
   // Don't let your pointer dangle... That's gross.
   tileset_element = nullptr;
+
+  std::sort(temp_map.tileset.tileset_images.begin(), temp_map.tileset.tileset_images.end(),
+	    pairTilesetImagesCompare);
 
   // Parse the tile layers
   const XMLElement* tile_layer_element = map_element->FirstChildElement("layer");
@@ -145,14 +154,15 @@ bool SfTilemapLoader::ParseTileset(const XMLElement* _element, SfTileset& _tiles
     return false;
 
   // Load the tileset image
-  string source("./ressource/image/");
+  string source("./ressource/map/");
   source += image_element->Attribute("source");
-  if (!_tileset.tileset_image.loadFromFile(source))
+  sf::Texture texture;
+  if (!texture.loadFromFile(source))
   {
     cout << "Failed to load tileset image" << endl;
     return false;
   }
-
+  _tileset.tileset_images.push_back(std::pair<int, sf::Texture>(first_gid, texture));
   int width = 0; image_element->QueryIntAttribute("width", &width);
   int height = 0; image_element->QueryIntAttribute("height", &height);
   image_element = nullptr;

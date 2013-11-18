@@ -20,6 +20,9 @@
  #define SF_TILESET_H
 
  #include <iostream>
+ #include <vector>
+ #include <utility>
+
   using std::cout;
   using std::endl;
  #include <vector>
@@ -128,7 +131,7 @@ public:
 
 private:
   /// Dimensions of the tiles in pixels
-  sf::Vector2i tile_dimensions;;
+  sf::Vector2i tile_dimensions;
 
 
   /// Vector of tiles
@@ -136,7 +139,7 @@ private:
 
 
   /// Texture of the entire tileset in full
-  sf::Texture tileset_image;
+  std::vector<std::pair<int, sf::Texture> > tileset_images;
 
 
   /// Properties of the tileset
