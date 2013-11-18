@@ -1,9 +1,9 @@
-#include <iostring>
-#include "Asset.h"
+#include <iostream>
+#include "Asset.hh"
 
-Asset::Asset(const &sf::string name) : _curLine(0), _curFrame(0)
+Asset::Asset(const std::string &name) : _curLine(0), _curFrame(0)
 {
-	if (_textures.loadFromFile(name) == false)
+	if (_texture.loadFromFile(name) == false)
 	{
 		std::cerr << "Error cannot load " << name << std::endl;
 	}
@@ -11,8 +11,8 @@ Asset::Asset(const &sf::string name) : _curLine(0), _curFrame(0)
 
 void	Asset::setLine(Line &line)
 {
-	if (lines.size() > 1)
-		lines.totalHeight = lines.end().totalHeight + lines.end().height;
+	if (_lines.size() > 1)
+		line.totalHeight = _lines[_lines.size() - 1].totalHeight + _lines[_lines.size() - 1].height;
 	_lines.push_back(line);
 }
 
@@ -44,6 +44,6 @@ void	Asset::update()
 
 void	Asset::draw(const sf::Vector2f &_pos, float _angle)
 {
-	sprite.setRotation(angle);
+	sprite.setRotation(_angle);
 	sprite.setPosition(_pos);
 }

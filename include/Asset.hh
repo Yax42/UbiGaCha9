@@ -1,3 +1,6 @@
+#include <string>
+#include <vector>
+
 class Asset
 {
 public:
@@ -13,18 +16,18 @@ public:
 		{}
 	};
 public:
-	Asset(const &sf::string name);
 	~Asset(){}
+	Asset(const std::string &name);
 	void	setLine(Line &line);
 	void	setCurrentLine(int cur);
-	void	getFrame(&sf::Sprite sprite);
+	void	resetSprite();
 	void	update();
 	void	draw(const sf::Vector2f &_pos, float _angle);
 
 private:
 	int				_curLine;
 	int				_curFrame;
-	vector<Line>	_lines;
+	std::vector<Line>	_lines;
 	sf::Texture		_texture;
 	sf::Sprite		_sprite;
 };
