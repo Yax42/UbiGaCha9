@@ -1,5 +1,6 @@
 #include <SFML/Window.hpp>
 #include "sf_tile_engine.h"
+#include "Controller.hh"
 
 int main()
 {
@@ -10,6 +11,7 @@ int main()
   // Load a tilemap and save it in the world.
   // This also saves a pointer to that tilemap.
   sftile::SfTilemap* tilemap = world.LoadTilemap("testmap", "ressource/map/example.tmx");
+
   if (!tilemap)
     {
       cout << "Failed to load tilemap" << endl;
@@ -17,6 +19,7 @@ int main()
     }
   camera.SetTrackMode(sftile::SF_TRACK_KEYS_PRESS);
   tilemap->RegisterCamera(&camera);
+  window.setJoystickThreshold(15);
   while (window.isOpen())
     {
       sf::Event event;
@@ -26,6 +29,7 @@ int main()
 	    window.close();
 	  // Handle any events passed into the engine.
 	  world.HandleEvents(event);
+	  control.handleEvent(event);
 	}
       // Update the engine.
       world.Update();
