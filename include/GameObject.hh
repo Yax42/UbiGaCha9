@@ -1,27 +1,30 @@
-#ifndef GAME_OBJECT_HH
-#define GAME_OBJECT_HH
+#ifndef		__GAMEOBJECT_HH__
+#define		__GAMEOBJECT_HH__
 
-#include "Asset.hh"
+#include <vector>
 #include <SFML/Graphics.hpp>
+#include "Asset.hh"
+#include "Box.hh"
 
 class GameObject
 {
 public:
-	GameObject(const Asset & asset, sf::Vector2f &pos, float size);
-	~GameObject(){}
-	virtual void	setPos(const sf::Vector2f &pos);
-	virtual void	incPos(const sf::Vector2f &pos);
-	virtual void	setSpeed(const sf::Vector2f &speed);
-	virtual void	incSpeed(const sf::Vector2f &speed);
+	AGameObject(const Asset & asset, sf::Vector2f &pos, float size, bool collide = true);
+	~AGameObject(){}
+	const Box	&getBox() const {return (_box);};
 	virtual void	update(float dt);
-	void	draw();
-
+	void		draw();
+	void		toBackPosition();
 private:
-	sf::Vector2f	_speed;
-	sf::Vector2f	_pos;
-	float			_angle;
-	float			_hitBoxSize;
-	Asset			_asset;
+	Asset		_asset;
+	Box		_box;
+	sf::Vector2f	_direction;
+	sf::Vector2f	_backPos;
+	float		_angle;
+	bool		_collide;
 };
 
-#endif
+typedef std::vector<AGameObject*> AGameObjectVector;
+
+#endif	//	__GAMEOBJECT_HH__
+>>>>>>> add quadtree and box for GameObject

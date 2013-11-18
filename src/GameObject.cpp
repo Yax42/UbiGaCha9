@@ -1,19 +1,31 @@
 #include "GameObject.hh"
 
-GameObject::GameObject(const Asset & asset, sf::Vector2f &pos, float size) : 
-	_asset(asset), _speed(0, 0), _pos(pos), _hitBoxSize(size)
+AGameObject::AGameObject(const Asset &asset, sf::Vector2f &pos, float size, bool collide)
+  : _asset(asset),
+    _box(pos, sf::Vector2f(size / 2.f, size / 2.f)),
+    _angle(0.f),
+    _collide(collide)
 {
 }
 
 void	GameObject::update(float ft)
 {
+  sf::Vector2f pos = _backPos = _box.getCenter();
+
+  pos.x += _direction.x * ft;
+  pos.y += _direction.y * ft;
+  _box.setCenter(pos);
   _asset.update();
-  _pos += _speed * ft;
+}
+
+void	AGameObject::toBackPosition()
+{
+	_box.setCenter(_backPos);
 }
 
 void		GameObject::draw()
 {
-  _asset.draw(_pos, _angle);
+	_asset.draw(_box.getCenter(), _angle);
 }
 
 void		GameObject::setPos(const sf::Vector2f &pos)

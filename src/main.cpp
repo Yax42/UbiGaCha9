@@ -10,7 +10,7 @@ int main()
 
   // Load a tilemap and save it in the world.
   // This also saves a pointer to that tilemap.
-  sftile::SfTilemap* tilemap = world.LoadTilemap("testmap", "ressource/map/example.tmx");
+  sftile::SfTilemap* tilemap = world.LoadTilemap("TileMap", "ressource/map/TileMap.tmx");
 
   if (!tilemap)
     {
