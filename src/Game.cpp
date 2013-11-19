@@ -38,7 +38,7 @@ Game::~Game()
 
 void	Game::update()
 {
-  _world.update();
+  _world.update(_elapsedTime);
 }
 
 bool	Game::progressiveLight(float ratio)
