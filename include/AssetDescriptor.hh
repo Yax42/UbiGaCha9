@@ -18,10 +18,12 @@ struct AssetLine
 };
 struct AssetDescriptor
 {
+public:
 	AssetDescriptor(const std::string &name);
 	~AssetDescriptor(){}
 
 	void   addLine(AssetLine &line);
+	void   addLine(int h, int w, int c);
 	std::vector<AssetLine>	lines;
 	sf::Texture				texture;
 };
