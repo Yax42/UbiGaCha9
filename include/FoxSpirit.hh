@@ -1,5 +1,5 @@
-#ifndef HERO_HH
-#define HERO_HH
+#ifndef FOXSPIRIT_HH
+#define FOXSPIRIT_HH
 
 #include "AssetDescriptor.hh"
 #include "GameObject.hh"
@@ -7,7 +7,7 @@
 class FoxSpirit : public GameObject
 {
 public:
-	FoxSpirit(sf::Vector2f &pos);
+	FoxSpirit(const sf::Vector2f &pos);
 	virtual ~FoxSpirit(){}
 
 

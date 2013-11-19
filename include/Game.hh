@@ -7,6 +7,8 @@
 #include "World.hh"
 #include "Light.hh"
 #include "sf_tile_engine.h"
+#include "GameObject.hh"
+#include "Controller.hh"
 
 class	Game
 {
@@ -17,7 +19,6 @@ public:
   void	drawLights();
   void	modifLightPlayer(sf::Vector2f, float);
   void	draw();
-  void	centerOrigin(sf::Sprite & sprite);
   void	handleEvent(sf::Event &);
   void	run();
   float	getElapsedTime() const {return _elapsedTime;}
@@ -38,6 +39,9 @@ private:
   bool			_lightDia;
   float			_elapsedTime;
   float			_time;
+  GameObject		*_hero;
+  GameObject		*_fox;
+  Controller		*_control;
 };
 
 #endif // _GAME_HH_

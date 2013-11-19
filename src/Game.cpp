@@ -1,5 +1,8 @@
 #include "Game.hh"
 #include "UbiException.hh"
+#include "Hero.hh"
+#include "FoxSpirit.hh"
+#include "Utils.hh"
 #include <iostream>
 
 Game::Game(sf::RenderWindow &window)
@@ -24,6 +27,9 @@ Game::Game(sf::RenderWindow &window)
       throw UbiException("Failed to load tilemap");
   _camera.SetTrackMode(sftile::SF_TRACK_KEYS_PRESS);
   _tilemap->RegisterCamera(&_camera);
+  _hero = new Hero(sf::Vector2f(_window.getSize().x / 2.f, _window.getSize().y / 2.f));
+  _fox = new FoxSpirit(sf::Vector2f(_window.getSize().x / 2.f, _window.getSize().y / 2.f));
+  _control = new Controller(*_hero, *_fox);
 }
 
 Game::~Game()
@@ -88,13 +94,8 @@ void Game::modifLightPlayer(sf::Vector2f position, float radiusRatio)
 
 void	Game::handleEvent(sf::Event & event)
 {
+  _control->handleEvent(event);
   _world.handleEvents(event);
-}
-
-void	Game::centerOrigin(sf::Sprite & sprite)
-{
-  sf::FloatRect bounds = sprite.getLocalBounds();
-  sprite.setOrigin(bounds.width / 2.f, bounds.height / 2.f);
 }
 
 void Game::draw()

@@ -6,8 +6,8 @@
 class Hero : public GameObject
 {
 public:
-	Hero(sf::Vector2f &pos);
-	virtual ~Hero(){}
+  Hero(const sf::Vector2f &pos);
+  virtual ~Hero(){}
 
 private:
 	const static AssetDescriptor s_assetDesc;
