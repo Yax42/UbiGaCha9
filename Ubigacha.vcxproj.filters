@@ -13,6 +13,12 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Fichiers sources\SfTileEngine">
+      <UniqueIdentifier>{2b556138-4c7d-40b2-898c-e64442608e6b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Fichiers d%27en-tête\SfTileEngine">
+      <UniqueIdentifier>{5c4327c5-268d-43f8-95b1-9ab5752ec519}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\Asset.cpp">
@@ -39,9 +45,87 @@
     <ClCompile Include="src\FoxSpirit.cpp">
       <Filter>Fichiers sources</Filter>
     </ClCompile>
+    <ClCompile Include="src\QuadTree.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SfTileEngine\sf_camera.cpp">
+      <Filter>Fichiers sources\SfTileEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SfTileEngine\sf_world.cpp">
+      <Filter>Fichiers sources\SfTileEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SfTileEngine\sf_entity.cpp">
+      <Filter>Fichiers sources\SfTileEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SfTileEngine\sf_object.cpp">
+      <Filter>Fichiers sources\SfTileEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SfTileEngine\sf_object_layer.cpp">
+      <Filter>Fichiers sources\SfTileEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SfTileEngine\sf_smart_camera.cpp">
+      <Filter>Fichiers sources\SfTileEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SfTileEngine\sf_tile.cpp">
+      <Filter>Fichiers sources\SfTileEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SfTileEngine\sf_tile_layer.cpp">
+      <Filter>Fichiers sources\SfTileEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SfTileEngine\sf_tilemap.cpp">
+      <Filter>Fichiers sources\SfTileEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SfTileEngine\sf_tilemap_loader.cpp">
+      <Filter>Fichiers sources\SfTileEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\SfTileEngine\sf_tileset.cpp">
+      <Filter>Fichiers sources\SfTileEngine</Filter>
+    </ClCompile>
+    <ClCompile Include="src\TinyXML\tinyxml2.cpp">
+      <Filter>Fichiers sources</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="include\sf_tile_engine.h">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SfTileEngine\sf_camera.h">
+      <Filter>Fichiers d%27en-tête\SfTileEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SfTileEngine\sf_dll_macro.h">
+      <Filter>Fichiers d%27en-tête\SfTileEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SfTileEngine\sf_entity.h">
+      <Filter>Fichiers d%27en-tête\SfTileEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SfTileEngine\sf_object.h">
+      <Filter>Fichiers d%27en-tête\SfTileEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SfTileEngine\sf_object_layer.h">
+      <Filter>Fichiers d%27en-tête\SfTileEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SfTileEngine\sf_smart_camera.h">
+      <Filter>Fichiers d%27en-tête\SfTileEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SfTileEngine\sf_tile.h">
+      <Filter>Fichiers d%27en-tête\SfTileEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SfTileEngine\sf_tile_layer.h">
+      <Filter>Fichiers d%27en-tête\SfTileEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SfTileEngine\sf_tilemap.h">
+      <Filter>Fichiers d%27en-tête\SfTileEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SfTileEngine\sf_tilemap_loader.h">
+      <Filter>Fichiers d%27en-tête\SfTileEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SfTileEngine\sf_tileset.h">
+      <Filter>Fichiers d%27en-tête\SfTileEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\SfTileEngine\sf_world.h">
+      <Filter>Fichiers d%27en-tête\SfTileEngine</Filter>
+    </ClInclude>
+    <ClInclude Include="include\TinyXML\tinyxml2.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
   </ItemGroup>
@@ -65,6 +149,9 @@
       <Filter>Fichiers d%27en-tête</Filter>
     </None>
     <None Include="include\FoxSpirit.hh">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </None>
+    <None Include="include\QuadTree.hh">
       <Filter>Fichiers d%27en-tête</Filter>
     </None>
   </ItemGroup>
