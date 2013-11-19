@@ -1,24 +1,66 @@
-﻿La génération a démarré 18/11/2013 17:13:46.
-     1>Projet "C:\Users\jean-_000\Desktop\UbiGaCha9\UbiGaCha9\UbiGaCha9.vcxproj" sur le nœud 2 (build cible(s)).
+﻿Build started 19/11/2013 15:17:20.
+     1>Project "C:\Users\DANEEL\Documents\UbiGaCha9\UbiGaCha9\UbiGaCha9.vcxproj" on node 2 (Build target(s)).
      1>InitializeBuildStatus:
-         Création de "Release\UbiGaCha9.unsuccessfulbuild", car "AlwaysCreate" a été spécifié.
+         Touching "Release\UbiGaCha9.tlog\unsuccessfulbuild".
        ClCompile:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\jean-_000\Documents\sfml\SFML-2.1\include" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp Scoring.cpp
+         F:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"../SFML-2.1/include" /I../include /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\Asset.cpp ..\src\AssetDescriptor.cpp ..\src\Box.cpp ..\src\Controller.cpp ..\src\EventPlayer.cpp ..\src\FoxSpirit.cpp ..\src\Game.cpp ..\src\GameObject.cpp ..\src\Hero.cpp ..\src\main.cpp ..\src\MainMenuLayer.cpp ..\src\QuadTree.cpp ..\src\SfTileEngine\sf_camera.cpp ..\src\SfTileEngine\sf_object.cpp ..\src\SfTileEngine\sf_object_layer.cpp ..\src\SfTileEngine\sf_smart_camera.cpp ..\src\SfTileEngine\sf_tile.cpp ..\src\SfTileEngine\sf_tilemap.cpp ..\src\SfTileEngine\sf_tilemap_loader.cpp ..\src\SfTileEngine\sf_tileset.cpp ..\src\SfTileEngine\sf_tile_layer.cpp ..\src\TinyXML\tinyxml2.cpp ..\src\UbiException.cpp ..\src\Utils.cpp ..\src\World.cpp
+         Asset.cpp
+     1>..\src\Asset.cpp(31): warning C4244: 'argument' : conversion from 'const int' to 'float', possible loss of data
+         AssetDescriptor.cpp
+         Box.cpp
+         Controller.cpp
+     1>..\src\Controller.cpp(101): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
+         EventPlayer.cpp
+     1>..\src\EventPlayer.cpp(11): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>..\src\EventPlayer.cpp(16): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>..\src\EventPlayer.cpp(21): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+     1>..\src\EventPlayer.cpp(26): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
+         FoxSpirit.cpp
+     1>..\src\FoxSpirit.cpp(12): error C2663: 'AssetDescriptor::addLine' : 2 overloads have no legal conversion for 'this' pointer
+     1>..\src\FoxSpirit.cpp(13): error C2663: 'AssetDescriptor::addLine' : 2 overloads have no legal conversion for 'this' pointer
+     1>..\src\FoxSpirit.cpp(14): error C2663: 'AssetDescriptor::addLine' : 2 overloads have no legal conversion for 'this' pointer
+     1>..\src\FoxSpirit.cpp(15): error C2663: 'AssetDescriptor::addLine' : 2 overloads have no legal conversion for 'this' pointer
+         Game.cpp
+     1>..\src\Game.cpp(19): error C2661: 'World::World' : no overloaded function takes 2 arguments
+     1>..\src\Game.cpp(24): warning C4244: 'argument' : conversion from 'const float' to 'unsigned int', possible loss of data
+     1>..\src\Game.cpp(25): warning C4244: 'argument' : conversion from 'const float' to 'unsigned int', possible loss of data
+     1>..\src\Game.cpp(41): error C2660: 'World::update' : function does not take 1 arguments
+     1>..\src\Game.cpp(55): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+     1>..\src\Game.cpp(63): warning C4244: '-=' : conversion from 'double' to 'float', possible loss of data
+     1>..\src\Game.cpp(84): warning C4305: 'argument' : truncation from 'double' to 'float'
+         GameObject.cpp
+     1>..\src\GameObject.cpp(38): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+     1>..\src\GameObject.cpp(39): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
+         Hero.cpp
+     1>..\src\Hero.cpp(7): error C2663: 'AssetDescriptor::addLine' : 2 overloads have no legal conversion for 'this' pointer
+     1>..\src\Hero.cpp(8): error C2663: 'AssetDescriptor::addLine' : 2 overloads have no legal conversion for 'this' pointer
+     1>..\src\Hero.cpp(9): error C2663: 'AssetDescriptor::addLine' : 2 overloads have no legal conversion for 'this' pointer
+     1>..\src\Hero.cpp(10): error C2663: 'AssetDescriptor::addLine' : 2 overloads have no legal conversion for 'this' pointer
          main.cpp
-         Scoring.cpp
-       Link:
-         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\jean-_000\Desktop\UbiGaCha9\Release\UbiGaCha9.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\Users\jean-_000\Documents\sfml\SFML-2.1\lib" "sfml-graphics.lib" "sfml-window.lib" "sfml-system.lib" "sfml-audio.lib" "sfml-network.lib" "sfml-main.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\UbiGaCha9.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\jean-_000\Desktop\UbiGaCha9\Release\UbiGaCha9.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\jean-_000\Desktop\UbiGaCha9\Release\UbiGaCha9.lib" /MACHINE:X86 Release\main.obj
-         Release\Scoring.obj
-         Génération de code en cours
-         Fin de la génération du code
-         UbiGaCha9.vcxproj -> C:\Users\jean-_000\Desktop\UbiGaCha9\Release\UbiGaCha9.exe
-       Manifest:
-         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\jean-_000\Desktop\UbiGaCha9\Release\UbiGaCha9.exe;#1" /manifest Release\UbiGaCha9.exe.intermediate.manifest
-       FinalizeBuildStatus:
-         Suppression du fichier "Release\UbiGaCha9.unsuccessfulbuild".
-         Mise à jour de l'horodatage "Release\UbiGaCha9.lastbuildstate".
-     1>Génération du projet "C:\Users\jean-_000\Desktop\UbiGaCha9\UbiGaCha9\UbiGaCha9.vcxproj" terminée (build cible(s)).
+         MainMenuLayer.cpp
+     1>..\src\MainMenuLayer.cpp(41): warning C4244: 'argument' : conversion from 'unsigned int' to 'float', possible loss of data
+         QuadTree.cpp
+         sf_camera.cpp
+         sf_object.cpp
+         sf_object_layer.cpp
+         sf_smart_camera.cpp
+         sf_tile.cpp
+         sf_tilemap.cpp
+         sf_tilemap_loader.cpp
+     1>..\src\SfTileEngine\sf_tilemap_loader.cpp(205): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+     1>..\src\SfTileEngine\sf_tilemap_loader.cpp(280): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+     1>..\src\SfTileEngine\sf_tilemap_loader.cpp(328): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
+         sf_tileset.cpp
+     1>..\src\SfTileEngine\sf_tileset.cpp(73): warning C4018: '>=' : signed/unsigned mismatch
+     1>..\src\SfTileEngine\sf_tileset.cpp(73): warning C4018: '<' : signed/unsigned mismatch
+         Compiling...
+         sf_tile_layer.cpp
+         tinyxml2.cpp
+         UbiException.cpp
+         Utils.cpp
+         World.cpp
+     1>Done Building Project "C:\Users\DANEEL\Documents\UbiGaCha9\UbiGaCha9\UbiGaCha9.vcxproj" (Build target(s)) -- FAILED.
 
-La génération a réussi.
+Build FAILED.
 
-Temps écoulé 00:00:01.69
+Time Elapsed 00:00:12.41

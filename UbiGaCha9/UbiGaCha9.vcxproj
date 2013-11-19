@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project DefaultTargets="Build" ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project DefaultTargets="Build" ToolsVersion="12.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
     <ProjectConfiguration Include="Debug|Win32">
       <Configuration>Debug</Configuration>
@@ -9,6 +9,63 @@
       <Configuration>Release</Configuration>
       <Platform>Win32</Platform>
     </ProjectConfiguration>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src\Asset.cpp" />
+    <ClCompile Include="..\src\AssetDescriptor.cpp" />
+    <ClCompile Include="..\src\Box.cpp" />
+    <ClCompile Include="..\src\Controller.cpp" />
+    <ClCompile Include="..\src\EventPlayer.cpp" />
+    <ClCompile Include="..\src\FoxSpirit.cpp" />
+    <ClCompile Include="..\src\Game.cpp" />
+    <ClCompile Include="..\src\GameObject.cpp" />
+    <ClCompile Include="..\src\Hero.cpp" />
+    <ClCompile Include="..\src\main.cpp" />
+    <ClCompile Include="..\src\MainMenuLayer.cpp" />
+    <ClCompile Include="..\src\QuadTree.cpp" />
+    <ClCompile Include="..\src\SfTileEngine\sf_camera.cpp" />
+    <ClCompile Include="..\src\SfTileEngine\sf_object.cpp" />
+    <ClCompile Include="..\src\SfTileEngine\sf_object_layer.cpp" />
+    <ClCompile Include="..\src\SfTileEngine\sf_smart_camera.cpp" />
+    <ClCompile Include="..\src\SfTileEngine\sf_tile.cpp" />
+    <ClCompile Include="..\src\SfTileEngine\sf_tilemap.cpp" />
+    <ClCompile Include="..\src\SfTileEngine\sf_tilemap_loader.cpp" />
+    <ClCompile Include="..\src\SfTileEngine\sf_tileset.cpp" />
+    <ClCompile Include="..\src\SfTileEngine\sf_tile_layer.cpp" />
+    <ClCompile Include="..\src\TinyXML\tinyxml2.cpp" />
+    <ClCompile Include="..\src\UbiException.cpp" />
+    <ClCompile Include="..\src\Utils.cpp" />
+    <ClCompile Include="..\src\World.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\include\Asset.hh" />
+    <ClInclude Include="..\include\AssetDescriptor.hh" />
+    <ClInclude Include="..\include\Box.hh" />
+    <ClInclude Include="..\include\Controller.hh" />
+    <ClInclude Include="..\include\EventPlayer.hh" />
+    <ClInclude Include="..\include\FoxSpirit.hh" />
+    <ClInclude Include="..\include\Game.hh" />
+    <ClInclude Include="..\include\GameObject.hh" />
+    <ClInclude Include="..\include\Hero.hh" />
+    <ClInclude Include="..\include\ILayer.hh" />
+    <ClInclude Include="..\include\Light.hh" />
+    <ClInclude Include="..\include\MainMenuLayer.hh" />
+    <ClInclude Include="..\include\QuadTree.hh" />
+    <ClInclude Include="..\include\SfTileEngine\sf_camera.h" />
+    <ClInclude Include="..\include\SfTileEngine\sf_dll_macro.h" />
+    <ClInclude Include="..\include\SfTileEngine\sf_object.h" />
+    <ClInclude Include="..\include\SfTileEngine\sf_object_layer.h" />
+    <ClInclude Include="..\include\SfTileEngine\sf_smart_camera.h" />
+    <ClInclude Include="..\include\SfTileEngine\sf_tile.h" />
+    <ClInclude Include="..\include\SfTileEngine\sf_tilemap.h" />
+    <ClInclude Include="..\include\SfTileEngine\sf_tilemap_loader.h" />
+    <ClInclude Include="..\include\SfTileEngine\sf_tileset.h" />
+    <ClInclude Include="..\include\SfTileEngine\sf_tile_layer.h" />
+    <ClInclude Include="..\include\sf_tile_engine.h" />
+    <ClInclude Include="..\include\TinyXML\tinyxml2.h" />
+    <ClInclude Include="..\include\UbiException.hh" />
+    <ClInclude Include="..\include\Utils.hh" />
+    <ClInclude Include="..\include\World.hh" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8A51D9DE-5CB6-454D-AD30-2B751BE5A4E2}</ProjectGuid>
@@ -20,12 +77,14 @@
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
     <ConfigurationType>Application</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <WholeProgramOptimization>true</WholeProgramOptimization>
     <CharacterSet>Unicode</CharacterSet>
+    <PlatformToolset>v120</PlatformToolset>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings">
@@ -71,7 +130,7 @@
       <FunctionLevelLinking>true</FunctionLevelLinking>
       <IntrinsicFunctions>true</IntrinsicFunctions>
       <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>SFML-2.1/include;include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>../SFML-2.1/include;../include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -82,55 +141,6 @@
       <AdditionalDependencies>sfml-graphics-s.lib;sfml-window-s.lib;sfml-system-s.lib;%(AdditionalDependencies)</AdditionalDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="src\AController.cpp" />
-    <ClCompile Include="src\Asset.cpp" />
-    <ClCompile Include="src\AssetDescriptor.cpp" />
-    <ClCompile Include="src\Controller.cpp" />
-    <ClCompile Include="src\FoxSpirit.cpp" />
-    <ClCompile Include="src\GameObject.cpp" />
-    <ClCompile Include="src\Hero.cpp" />
-    <ClCompile Include="src\main.cpp" />
-    <ClCompile Include="src\QuadTree.cpp" />
-    <ClCompile Include="src\SfTileEngine\sf_camera.cpp" />
-    <ClCompile Include="src\SfTileEngine\sf_entity.cpp" />
-    <ClCompile Include="src\SfTileEngine\sf_object.cpp" />
-    <ClCompile Include="src\SfTileEngine\sf_object_layer.cpp" />
-    <ClCompile Include="src\SfTileEngine\sf_smart_camera.cpp" />
-    <ClCompile Include="src\SfTileEngine\sf_tile.cpp" />
-    <ClCompile Include="src\SfTileEngine\sf_tilemap.cpp" />
-    <ClCompile Include="src\SfTileEngine\sf_tilemap_loader.cpp" />
-    <ClCompile Include="src\SfTileEngine\sf_tileset.cpp" />
-    <ClCompile Include="src\SfTileEngine\sf_tile_layer.cpp" />
-    <ClCompile Include="src\SfTileEngine\sf_world.cpp" />
-    <ClCompile Include="src\TinyXML\tinyxml2.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="include\SfTileEngine\sf_camera.h" />
-    <ClInclude Include="include\SfTileEngine\sf_dll_macro.h" />
-    <ClInclude Include="include\SfTileEngine\sf_entity.h" />
-    <ClInclude Include="include\SfTileEngine\sf_object.h" />
-    <ClInclude Include="include\SfTileEngine\sf_object_layer.h" />
-    <ClInclude Include="include\SfTileEngine\sf_smart_camera.h" />
-    <ClInclude Include="include\SfTileEngine\sf_tile.h" />
-    <ClInclude Include="include\SfTileEngine\sf_tilemap.h" />
-    <ClInclude Include="include\SfTileEngine\sf_tilemap_loader.h" />
-    <ClInclude Include="include\SfTileEngine\sf_tileset.h" />
-    <ClInclude Include="include\SfTileEngine\sf_tile_layer.h" />
-    <ClInclude Include="include\SfTileEngine\sf_world.h" />
-    <ClInclude Include="include\sf_tile_engine.h" />
-    <ClInclude Include="include\TinyXML\tinyxml2.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="include\AController.hh" />
-    <None Include="include\Asset.hh" />
-    <None Include="include\AssetDescriptor.hh" />
-    <None Include="include\Controller.hh" />
-    <None Include="include\FoxSpirit.hh" />
-    <None Include="include\GameObject.hh" />
-    <None Include="include\Hero.hh" />
-    <None Include="include\QuadTree.hh" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
