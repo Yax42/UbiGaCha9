@@ -19,8 +19,8 @@ public:
 	enum
 	{
 		DIE,
-		WALK,
 		STAND,
+		WALK,
 		ATTACK
 	};
 

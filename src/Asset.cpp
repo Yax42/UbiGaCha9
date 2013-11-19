@@ -44,11 +44,11 @@ bool        Asset::update()
 
 void        Asset::draw(const sf::Vector2f &pos, float angle, sf::RenderTexture &window)
 {
-  _sprite.setPosition(pos);
+  _sprite.setPosition(pos + sf::Vector2f(_assetDesc.lines[_curLine].width / 2.0, _assetDesc.lines[_curLine].height / 2.0));
   window.draw(_sprite);
 }
 
 int		Asset::getCount(int line)
 {
-	return (_assetDesc.lines[line %_assetDesc.lines.size()].totalHeight);
+	return (_assetDesc.lines[line %_assetDesc.lines.size()].count);
 }
