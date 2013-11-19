@@ -3,7 +3,7 @@
 const size_t	QuadTree::_maxEntities = 4;
 const size_t	QuadTree::_maxDepth = 8;
 
-QuadTree::QuadTree(const Box &bounds, size_t depth)
+QuadTree::QuadTree(const sf::FloatRect &bounds, size_t depth)
   : _bounds(bounds),
     _depth(depth)
 {
@@ -18,7 +18,7 @@ QuadTree::~QuadTree()
   clear();
 }
 
-void QuadTree::insert(AGameObject *entity)
+void QuadTree::insert(GameObject *entity)
 {
   if (_node[0] != NULL)
     {
@@ -34,7 +34,7 @@ void QuadTree::insert(AGameObject *entity)
     {
       if (_node[0] == NULL)
 	split();
-      AGameObjectVector::iterator it = _entities.begin();
+      GameObjectVector::iterator it = _entities.begin();
       while (it != _entities.end())
 	{
 	  ssize_t i = getIndex(*it);
@@ -60,14 +60,14 @@ void QuadTree::clear()
       }
 }
 
-bool QuadTree::retrieve(AGameObjectVector &returnEntities,
-			AGameObject *entity) const
+bool QuadTree::retrieve(GameObjectVector &returnEntities,
+			GameObject *entity) const
 {
   ssize_t	i = getIndex(entity);
 
   if (i != -1)
     _node[i]->retrieve(returnEntities, entity);
-  for (AGameObjectVector::const_iterator it = _entities.begin();
+  for (GameObjectVector::const_iterator it = _entities.begin();
        it != _entities.end(); ++it)
     if (*it != entity)
       returnEntities.push_back(*it);
@@ -76,24 +76,25 @@ bool QuadTree::retrieve(AGameObjectVector &returnEntities,
 
 void QuadTree::split()
 {
-  sf::Vector2f		subDim(_bounds.getHalfDimension().x / 2,
-			       _bounds.getHalfDimension().y / 2);
-  float		x = _bounds.getCenter().x;
-  float         y = _bounds.getCenter().y;
-  size_t	depth = _depth + 1;
+  sf::Vector2f		subDim(_bounds.width / 2.f,
+			       _bounds.height / 2.f);
+  size_t		depth = _depth + 1;
 
-  _node[0] = new QuadTree(Box(sf::Vector2f(x - subDim.x, y + subDim.y), subDim), depth);
-  _node[1] = new QuadTree(Box(sf::Vector2f(x + subDim.x, y + subDim.y), subDim), depth);
-  _node[2] = new QuadTree(Box(sf::Vector2f(x - subDim.x, y - subDim.y), subDim), depth);
-  _node[3] = new QuadTree(Box(sf::Vector2f(x + subDim.x, y - subDim.y), subDim), depth);
+  _node[0] = new QuadTree(sf::FloatRect(sf::Vector2f(_bounds.left, _bounds.top), subDim), depth);
+  _node[1] = new QuadTree(sf::FloatRect(sf::Vector2f(_bounds.left + subDim.x, _bounds.top), subDim), depth);
+  _node[2] = new QuadTree(sf::FloatRect(sf::Vector2f(_bounds.left, _bounds.top - subDim.y), subDim), depth);
+  _node[3] = new QuadTree(sf::FloatRect(sf::Vector2f(_bounds.left + subDim.x, _bounds.top - subDim.y), subDim), depth);
 }
 
-ssize_t QuadTree::getIndex(AGameObject *entity) const
+ssize_t QuadTree::getIndex(GameObject *entity) const
 {
   if (_node[0] == NULL)
     return (-1);
   for (size_t i = 0; i < 4; ++i)
-    if (_node[i]->_bounds.contains(entity->getBox()))
-      return (i);
+    {
+      sf::FloatRect	res;
+      if (_node[i]->_bounds.intersects(entity->getBox(), res) && entity->getBox() == res)
+	return (i);
+    }
   return (-1);
 }

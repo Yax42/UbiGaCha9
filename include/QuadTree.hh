@@ -8,28 +8,27 @@ typedef SSIZE_T ssize_t;
 
 #include <cstdlib>
 #include <vector>
-#include "Box.hh"
 #include "GameObject.hh"
 
 class QuadTree
 {
 public:
-  QuadTree(const Box &bounds, size_t depth = 0);
+  QuadTree(const sf::FloatRect &bounds, size_t depth = 0);
   ~QuadTree();
-  void			insert(AGameObject *entity);
+  void			insert(GameObject *entity);
   void			clear();
-  bool			retrieve(AGameObjectVector &returnEntities,
-				 AGameObject *entity) const;
+  bool			retrieve(GameObjectVector &returnEntities,
+				 GameObject *entity) const;
 private:
   void			split();
-  ssize_t		getIndex(AGameObject *entity) const;
+  ssize_t		getIndex(GameObject *entity) const;
 
   static const size_t	_maxEntities;
   static const size_t	_maxDepth;
 
-  AGameObjectVector	_entities;
+  GameObjectVector	_entities;
   QuadTree		*_node[4];
-  Box			_bounds;
+  sf::FloatRect		_bounds;
   size_t		_depth;
 };
 

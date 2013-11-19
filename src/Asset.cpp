@@ -3,7 +3,8 @@
 #include <SFML/Graphics.hpp>
 #include "Asset.hh"
 
-Asset::Asset(const AssetDescriptor	&assetDesc) : _assetDesc(assetDesc), _curLine(0), _curFrame(0)
+Asset::Asset(const AssetDescriptor &assetDesc)
+  : _assetDesc(assetDesc), _curLine(0), _curFrame(0)
 {
 }
 

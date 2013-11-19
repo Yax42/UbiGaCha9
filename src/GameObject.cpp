@@ -1,8 +1,9 @@
 #include "GameObject.hh"
 
-AGameObject::AGameObject(const Asset &asset, sf::Vector2f &pos, float size, bool collide)
+GameObject::GameObject(const Asset &asset, const sf::Vector2f &pos,
+		       const sf::Vector2f &size, bool collide)
   : _asset(asset),
-    _box(pos, sf::Vector2f(size / 2.f, size / 2.f)),
+    _box(pos, size),
     _angle(0.f),
     _collide(collide)
 {
@@ -10,40 +11,19 @@ AGameObject::AGameObject(const Asset &asset, sf::Vector2f &pos, float size, bool
 
 void	GameObject::update(float ft)
 {
-  sf::Vector2f pos = _backPos = _box.getCenter();
-
-  pos.x += _direction.x * ft;
-  pos.y += _direction.y * ft;
-  _box.setCenter(pos);
+  _backPos = sf::Vector2f(_box.left, _box.top);
+  _box.left += _direction.x * ft;
+  _box.top += _direction.y * ft;
   _asset.update();
-}
-
-void	AGameObject::toBackPosition()
-{
-	_box.setCenter(_backPos);
 }
 
 void		GameObject::draw()
 {
-	_asset.draw(_box.getCenter(), _angle);
+  _asset.draw(sf::Vector2f(_box.left, _box.top), _angle);
 }
 
-void		GameObject::setPos(const sf::Vector2f &pos)
+void	GameObject::toBackPosition()
 {
-	_pos = pos;
-}
-
-void		GameObject::incPos(const sf::Vector2f &pos)
-{
-	_pos += pos;
-}
-
-void	GameObject::setSpeed(const sf::Vector2f &speed)
-{
-	_speed = speed;
-}
-
-void	GameObject::incSpeed(const sf::Vector2f &speed)
-{
-	_speed += speed;
+  _box.left = _backPos.x;
+  _box.top = _backPos.y;
 }

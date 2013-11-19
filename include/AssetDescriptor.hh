@@ -21,7 +21,7 @@ struct AssetDescriptor
 	AssetDescriptor(const std::string &name);
 	~AssetDescriptor(){}
 
-	void	AssetDescriptor::addLine(AssetLine &line);
+	void   addLine(AssetLine &line);
 	std::vector<AssetLine>	lines;
 	sf::Texture				texture;
 };
