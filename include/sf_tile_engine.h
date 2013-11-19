@@ -25,7 +25,6 @@
 
 /// Enjoy the engine and may Akatosh watch over your code. ;)
 
-#include "SfTileEngine/sf_world.h"
 #include "SfTileEngine/sf_tilemap.h"
 #include "SfTileEngine/sf_smart_camera.h"
 

@@ -1,38 +1,37 @@
-#ifndef DIS_IS_THE_WORLD_BITCH
-#define DIS_IS_THE_WORLD_BITCH
+#ifndef __WORLD_HH__
+#define __WORLD_HH__
 
 #include <iostream>
 #include <string>
 #include <map>
 #include <memory>
-
 #include <SFML/Graphics.hpp>
-
-#include "sf_tilemap_loader.h"
-#include "sf_dll_macro.h"
+#include "SfTileEngine/sf_tilemap_loader.h"
+#include "SfTileEngine/sf_tilemap.h"
+#include "sf_tile_engine.h"
 
 class World
 {
 public:
-  explicit SfWorld();
+  explicit World();
 
 
-  SfWorld(const SfWorld& _copy);
-  SfWorld& operator=(const SfWorld& _copy);
+  World(const World &_copy);
+  World& operator=(const World &_copy);
 
-  SfTilemap* LoadTilemap(string _id, string _path);
-  SfTilemap* GetTilemap(string _id);
-  void HandleEvents(sf::Event _evt);
-  void Update();
-  void Render(sf::RenderWindow& _window);
-
+  sftile::SfTilemap	*loadTilemap(std::string id, std::string path);
+  sftile::SfTilemap	*getTilemap(std::string id);
+  void			handleEvents(sf::Event evt);
+  void			update();
+  void			render(sf::RenderWindow &window);
 
 private:
-  bool LoadFromTMX(std::string _path);
-  bool MapExists(std::string _id);
-  priv::SfTilemapLoader loader;
-  map<std::string, SfTilemap> tilemaps;
-  string current_id;
+  bool loadFromTMX(std::string path);
+  bool mapExists(std::string id);
+
+  sftile::priv::SfTilemapLoader			loader;
+  std::map<std::string, sftile::SfTilemap>	tilemaps;
+  std::string					current_id;
 };
 
-#endif // SF_WORLD_H
+#endif // __WORLD_HH__

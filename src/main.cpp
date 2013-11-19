@@ -1,16 +1,14 @@
 #include <SFML/Window.hpp>
 #include "sf_tile_engine.h"
 #include "Controller.hh"
+#include "World.hh"
 
 int main()
 {
   sf::RenderWindow	window(sf::VideoMode(800, 600), "My window");
-  sftile::SfWorld	world;
   sftile::SfSmartCamera	camera(800, 600);
-
-  // Load a tilemap and save it in the world.
-  // This also saves a pointer to that tilemap.
-  sftile::SfTilemap* tilemap = world.LoadTilemap("TileMap", "ressource/map/TileMap.tmx");
+  World			world;
+  sftile::SfTilemap	*tilemap = world.loadTilemap("TileMap", "ressource/map/TileMap.tmx");
 
   if (!tilemap)
     {
@@ -27,14 +25,11 @@ int main()
 	{
 	  if (event.type == sf::Event::Closed)
 	    window.close();
-	  // Handle any events passed into the engine.
-	  world.HandleEvents(event);
+	  world.handleEvents(event);
 	}
-      // Update the engine.
-      world.Update();
+      world.update();
       window.clear();
-      // Render the engine.
-      world.Render(window);
+      world.render(window);
       window.display();
     }
   return (0);
