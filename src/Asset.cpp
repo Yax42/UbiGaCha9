@@ -6,42 +6,43 @@
 Asset::Asset(const AssetDescriptor &assetDesc)
   : _assetDesc(assetDesc), _curLine(0), _curFrame(0)
 {
-	_sprite.setTexture(assetDesc.texture);
+  _sprite.setTexture(_assetDesc.texture);
 }
 
 
-void	Asset::setCurrentLine(int cur)
+void        Asset::setCurrentLine(int cur)
 {
-	if (cur != _curLine)
-	{
-		_curLine = _assetDesc.lines.size() % cur;
-		_curFrame = -1;
-		resetSprite();
-	}
+  if (cur != _curLine)
+    {
+      _curLine = cur % _assetDesc.lines.size();
+      _curFrame = -1;
+      resetSprite();
+    }
 }
 
-void	Asset::resetSprite()
+void        Asset::resetSprite()
 {
-	if (_curFrame < 0)
-		_curFrame = 0;
-	_sprite.setTextureRect(sf::IntRect(
-		_assetDesc.lines[_curLine].width * _curFrame,
-		_assetDesc.lines[_curLine].totalHeight,
-		_assetDesc.lines[_curLine].width,
-		_assetDesc.lines[_curLine].height));
-	_sprite.setOrigin(_assetDesc.lines[_curLine].width, _assetDesc.lines[_curLine].height);
+  if (_curFrame < 0)
+    _curFrame = 0;
+  _sprite.setTextureRect(sf::IntRect(
+				     _assetDesc.lines[_curLine].width * _curFrame,
+				     _assetDesc.lines[_curLine].totalHeight,
+				     _assetDesc.lines[_curLine].width,
+				     _assetDesc.lines[_curLine].height));
+  _sprite.setOrigin(_assetDesc.lines[_curLine].width, _assetDesc.lines[_curLine].height);
 }
 
-bool	Asset::update()
+bool        Asset::update()
 {
-	_curFrame++;
-	bool	result = (_curFrame == _assetDesc.lines[_curLine].count);
-	_curFrame %= _assetDesc.lines[_curLine].count;
-	resetSprite();
-	return (result);
+  _curFrame++;
+  bool        result = (_curFrame == _assetDesc.lines[_curLine].count);
+  _curFrame %= _assetDesc.lines[_curLine].count;
+  resetSprite();
+  return (result);
 }
 
-void	Asset::draw(const sf::Vector2f &pos)
+void        Asset::draw(const sf::Vector2f &pos, float angle, sf::RenderTexture &window)
 {
   _sprite.setPosition(pos);
+  window.draw(_sprite);
 }
