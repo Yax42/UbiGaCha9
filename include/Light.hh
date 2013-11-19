@@ -26,19 +26,19 @@ public:
     _nextRatio = nextRatio;
   }
 
-  float	getNextRatio() const {return (_nextRatio)}
+  float	getNextRatio() const {return (_nextRatio);}
 
   void	update()
   {
     _frame += 1;
     if (_frame >= 4 && ratio > _nextRatio)
       {
-	ratio -= (_tHalo.getSize().x * (_foxLight.ratio + modRatio) / _tHalo.getSize().y * (_foxLight.ratio + modRatio)) * 0.01;
+	ratio -= (_tex.getSize().x * (ratio) / _tHalo.getSize().y * (ratio)) * 0.01;
 	_frame = 0;
       }
     else if (_frame >= 4 && ratio < _nextRatio)
       {
-	ratio += (_tHalo.getSize().x * (_foxLight.ratio + modRatio) / _tHalo.getSize().y * (_foxLight.ratio + modRatio)) * 0.01;
+	ratio += (_tex.getSize().x * (ratio) / _tex.getSize().y * (ratio)) * 0.01;
 	_frame = 0;
       }
   }
