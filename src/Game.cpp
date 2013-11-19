@@ -9,26 +9,28 @@ Game::Game(sf::RenderWindow &window)
   : _window(window),
     _worldView(window.getView()),
     _frontView(sf::Vector2f(0.f, 0.f), sf::Vector2f(window.getView().getSize().x, window.getView().getSize().y)),
+    _foxLight(sf::Vector2f(_window.getView().getCenter().x, _window.getView().getCenter().y), 1),
     _playerLight(sf::Vector2f(_window.getView().getCenter().x, _window.getView().getCenter().y), 1),
     _camera(window.getView().getSize().x, window.getView().getSize().y),
     _lightDia(true),
     _elapsedTime(0.f),
-    _time(0.f)
+  _time(0.f),
+  _world(_camera, _playerLight)
 {
   if (!_tHalo.loadFromFile("./ressource/textures/halo.png"))
     throw UbiException("Error load halo");
+
   _halo.setTexture(_tHalo);
   _sceneTexture.create(_window.getView().getSize().x, _window.getView().getSize().y);
   _lightTexture.create(_window.getView().getSize().x, _window.getView().getSize().y);
   _frontView.setCenter(sf::Vector2f(_window.getView().getCenter().x, _window.getView().getCenter().y));
   _tilemap = _world.loadTilemap("TileMap", "ressource/maps/tuto.tmx");
+
   if (!_tilemap)
       throw UbiException("Failed to load tilemap");
+
   _camera.SetTrackMode(sftile::SF_TRACK_KEYS_PRESS);
   _tilemap->RegisterCamera(&_camera);
-  _hero = new Hero(sf::Vector2f(_window.getSize().x / 2.f, _window.getSize().y / 2.f));
-  _fox = new FoxSpirit(sf::Vector2f(_window.getSize().x / 2.f, _window.getSize().y / 2.f));
-  _control = new Controller(*_hero, *_fox);
 }
 
 Game::~Game()
@@ -36,7 +38,7 @@ Game::~Game()
 
 void	Game::update()
 {
-  _world.update();
+  _world.update(_elapsedTime);
 }
 
 bool	Game::progressiveLight(float ratio)
@@ -48,17 +50,17 @@ bool	Game::progressiveLight(float ratio)
   frameLight += 1;
   if (toLight && frameLight >= 3)
     {
-      _halo.setScale(sf::Vector2f(_playerLight.ratio + modRatio, _playerLight.ratio + modRatio));
+      _halo.setScale(sf::Vector2f(_foxLight.ratio + modRatio, _foxLight.ratio + modRatio));
       frameLight = 0;
-      modRatio += (_tHalo.getSize().x * (_playerLight.ratio + modRatio) / _tHalo.getSize().y * (_playerLight.ratio + modRatio)) * 0.01;
-      if (_playerLight.ratio + modRatio >= ratio)
+      modRatio += (_tHalo.getSize().x * (_foxLight.ratio + modRatio) / _tHalo.getSize().y * (_foxLight.ratio + modRatio)) * 0.01;
+      if (_foxLight.ratio + modRatio >= ratio)
 	toLight = false;
     }
   else if (frameLight >= 3)
     {
-      _halo.setScale(sf::Vector2f(_playerLight.ratio + modRatio, _playerLight.ratio + modRatio));
+      _halo.setScale(sf::Vector2f(_foxLight.ratio + modRatio, _foxLight.ratio + modRatio));
       frameLight = 0;
-      modRatio -= (_tHalo.getSize().x * (_playerLight.ratio + modRatio) / _tHalo.getSize().y * (_playerLight.ratio + modRatio)) * 0.01;
+      modRatio -= (_tHalo.getSize().x * (_foxLight.ratio + modRatio) / _tHalo.getSize().y * (_foxLight.ratio + modRatio)) * 0.01;
       if (modRatio <= 0)
 	{
 	  toLight = true;
@@ -76,10 +78,17 @@ void Game::drawLights()
   _lightTexture.setView(_frontView);
   _lightTexture.draw(_halo);
 
+  _halo.setPosition(_foxLight.position);
+  centerOrigin(_halo);
+  _halo.setColor(_foxLight.color);
+  this->progressiveLight(1.1);
+  _lightTexture.draw(_halo);
+
   _halo.setPosition(_playerLight.position);
   centerOrigin(_halo);
   _halo.setColor(_playerLight.color);
-  this->progressiveLight(1.1);
+  _halo.setScale(sf::Vector2f(_playerLight.ratio, _playerLight.ratio));
+  //this->progressiveLight(1.1);
   _lightTexture.draw(_halo);
 
   _lightTexture.display();
@@ -87,13 +96,12 @@ void Game::drawLights()
 
 void Game::modifLightPlayer(sf::Vector2f position, float radiusRatio)
 {
-  _playerLight.position = position;
-  _playerLight.ratio = radiusRatio;
+  _foxLight.position = position;
+  _foxLight.ratio = radiusRatio;
 }
 
 void	Game::handleEvent(sf::Event & event)
 {
-  _control->handleEvent(event);
   _world.handleEvents(event);
 }
 

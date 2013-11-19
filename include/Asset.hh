@@ -10,8 +10,8 @@ public:
 	Asset(const AssetDescriptor &assetDesc);
 	void	setCurrentLine(int cur);
 	void	resetSprite();
-	void	update();
-	void	draw(const sf::Vector2f &pos, float angle);
+	bool	update();
+	void	draw(const sf::Vector2f &pos);
 
 private:
 	const AssetDescriptor	&_assetDesc;

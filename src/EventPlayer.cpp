@@ -8,22 +8,22 @@ EventPlayer::EventPlayer(GameObject &monk, GameObject &lantern)
 
 void	EventPlayer::axisLeftX(int speed)
 {
-	_monk.dirX(speed);
+	_monk.dirX(speed / 100.0);
 }
 
 void	EventPlayer::axisLeftY(int speed)
 {
-	_monk.dirY(speed);
+	_monk.dirY(speed / 100.0);
 }
 
 void	EventPlayer::axisRightX(int speed)
 {
-	_lantern.dirX(speed);
+	_lantern.dirX(speed / 100.0);
 }
 
 void	EventPlayer::axisRightY(int speed)
 {
-	_lantern.dirY(speed);
+	_lantern.dirY(speed / 100.0);
 }
 
 void	EventPlayer::pressA()
