@@ -31,14 +31,15 @@ public:
   void	update()
   {
     _frame += 1;
-    if (_frame >= 4 && ratio > _nextRatio)
+    if (_frame >= 8 && ratio > _nextRatio)
       {
-	ratio -= (_tex.getSize().x * (ratio) / _tex.getSize().y * (ratio)) * 0.01;
+	ratio -= (_tex.getSize().x * (ratio) / _tex.getSize().y * (ratio)) * 0.05;
+	std::cout << ratio << std::endl;
 	_frame = 0;
       }
-    else if (_frame >= 4 && ratio < _nextRatio)
+    else if (_frame >= 8 && ratio < _nextRatio)
       {
-	ratio += (_tex.getSize().x * (ratio) / _tex.getSize().y * (ratio)) * 0.01;
+	ratio += (_tex.getSize().x * (ratio) / _tex.getSize().y * (ratio)) * 0.05;
 	_frame = 0;
       }
   }

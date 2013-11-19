@@ -22,6 +22,7 @@ public:
   void	run();
   float	getElapsedTime() const {return _elapsedTime;}
   bool	progressiveLight(float);
+  void	drawRain();
 
 private:
   sf::RenderWindow	&_window;
@@ -39,6 +40,8 @@ private:
   float			_elapsedTime;
   float			_time;
   size_t		_frameCount;
+  sf::Image		_imageRain;
+  sf::Texture		_texRain;
 };
 
 #endif // _GAME_HH_

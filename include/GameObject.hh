@@ -16,6 +16,15 @@ enum EDirection
 class GameObject
 {
 public:
+	enum
+	{
+		DIE,
+		STAND,
+		WALK,
+		ATTACK
+	};
+
+public:
 	GameObject(const Asset &asset, const sf::Vector2f &pos,
 		   const sf::Vector2f &size, float maxSpeed = 100, bool collide = true);
 	~GameObject(){}
@@ -26,6 +35,9 @@ public:
 	bool			collides(const GameObject &obj) const;
 	void			dirX(float x) { _direction.x = x; }
 	void			dirY(float y) { _direction.y = y; }
+	bool			isDead();
+	void				giveOrder(int order) { _order = order;}
+	int				calculateCurLine();
 
 protected:
 	virtual void	updateSprite();
@@ -38,6 +50,11 @@ protected:
 	float			_angle;
 	bool			_collide;
 	float			_maxSpeed;
+	int				_state;
+	int				_stateCount;
+	int				_order;
+public:
+	int				_weapon;
 };
 
 typedef std::vector<GameObject*> GameObjectVector;

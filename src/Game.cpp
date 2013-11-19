@@ -26,6 +26,13 @@ Game::Game(sf::RenderWindow &window)
   _lightTexture.create(_window.getView().getSize().x, _window.getView().getSize().y);
   _frontView.setCenter(sf::Vector2f(_window.getView().getCenter().x, _window.getView().getCenter().y));
   _camera.SetTrackMode(sftile::SF_TRACK_KEYS_PRESS);
+
+  _playerLight.setTexture(_tHalo);
+  _foxLight.setTexture(_tHalo);
+  if (!_imageRain.loadFromFile("./ressource/textures/animation_pluie.jpg"))
+    throw UbiException("Error load Rain");
+  _imageRain.createMaskFromColor(sf::Color(0, 0, 0), 100);
+  _texRain.loadFromImage(_imageRain);
 }
 
 Game::~Game()
@@ -70,7 +77,7 @@ void Game::drawLights()
 {
   static bool	lastProgressif = true;
 
-  _lightTexture.clear(sf::Color(0,0,0));
+  _lightTexture.clear(sf::Color(0, 0, 0));
   _lightTexture.setView(_frontView);
   _lightTexture.draw(_halo);
 
@@ -82,14 +89,16 @@ void Game::drawLights()
   if (lastProgressif && (_foxLight.getNextRatio() != _foxLight.ratio))
     {
       lastProgressif = false;
-      _foxLight.setRatio(_foxLight.ratio + 0.1);
+      _foxLight.setRatio(_foxLight.ratio + 0.2);
     }
   else if (_foxLight.getNextRatio() == _foxLight.ratio)
     {
       lastProgressif = true;
-      _foxLight.setRatio(_foxLight.ratio - 0.1);
+      _foxLight.setRatio(_foxLight.ratio - 0.2);
     }
+  _halo.setScale(sf::Vector2f(_foxLight.ratio, _foxLight.ratio));
   _lightTexture.draw(_halo);
+  _lightTexture.display();
 
   // Lumiere perso
   _halo.setPosition(_playerLight.position);
@@ -112,21 +121,41 @@ void	Game::handleEvent(sf::Event & event)
   _world.handleEvents(event);
 }
 
+void	Game::drawRain()
+{
+  static int	animRain = 0;
+   sf::Sprite tmp(_texRain);
+   int		mult = _texRain.getSize().x / 7;
+
+   if ((_frameCount % 8) == 0)
+     {
+       if (animRain >= _texRain.getSize().x - mult)
+	 animRain = 0;
+       else
+	 animRain += mult;
+     }
+   tmp.setTextureRect(sf::IntRect(animRain, 0, mult, _texRain.getSize().y));
+   _sceneTexture.draw(tmp);
+   _sceneTexture.display();
+}
+
 void Game::draw()
 {
   _window.clear();
   _sceneTexture.clear();
   _sceneTexture.setView(_worldView);
   _world.render(_sceneTexture);
-  //drawLights();
+  drawLights();
+  _sceneTexture.display();
 
-  // sf::Sprite prerendering(_lightTexture.getTexture());
-  // _sceneTexture.setView(_frontView);
-  // _sceneTexture.draw(prerendering, sf::BlendMultiply);
-  // _sceneTexture.display();
-
+   sf::Sprite prerendering(_lightTexture.getTexture());
+   _sceneTexture.setView(_frontView);
+   _sceneTexture.draw(prerendering, sf::BlendMultiply);
+   //this->drawRain();
+   _sceneTexture.display();
+   
   sf::Sprite scene(_sceneTexture.getTexture());
-
+  //scene.rotate(180);
   _window.draw(scene);
   //_window.setView(_window.getView());
   //_window.draw(*mSceneLayers[Foreground]);

@@ -98,21 +98,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\include\Asset.hh" />
-    <ClInclude Include="..\include\AssetDescriptor.hh" />
-    <ClInclude Include="..\include\AudioManager.hh" />
-    <ClInclude Include="..\include\Audios.hh" />
-    <ClInclude Include="..\include\Box.hh" />
-    <ClInclude Include="..\include\Controller.hh" />
-    <ClInclude Include="..\include\EventPlayer.hh" />
-    <ClInclude Include="..\include\FoxSpirit.hh" />
-    <ClInclude Include="..\include\Game.hh" />
-    <ClInclude Include="..\include\GameObject.hh" />
-    <ClInclude Include="..\include\Hero.hh" />
-    <ClInclude Include="..\include\ILayer.hh" />
-    <ClInclude Include="..\include\Light.hh" />
-    <ClInclude Include="..\include\MainMenuLayer.hh" />
-    <ClInclude Include="..\include\QuadTree.hh" />
     <ClInclude Include="..\include\SfTileEngine\sf_camera.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
@@ -149,8 +134,59 @@
     <ClInclude Include="..\include\TinyXML\tinyxml2.h">
       <Filter>Fichiers d%27en-tête</Filter>
     </ClInclude>
-    <ClInclude Include="..\include\UbiException.hh" />
-    <ClInclude Include="..\include\Utils.hh" />
-    <ClInclude Include="..\include\World.hh" />
+    <ClInclude Include="..\include\Asset.hh">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\AssetDescriptor.hh">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\AudioManager.hh">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Audios.hh">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Box.hh">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Controller.hh">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\EventPlayer.hh">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\FoxSpirit.hh">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Game.hh">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\GameObject.hh">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Hero.hh">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\ILayer.hh">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Light.hh">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\MainMenuLayer.hh">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\QuadTree.hh">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\UbiException.hh">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\Utils.hh">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
+    <ClInclude Include="..\include\World.hh">
+      <Filter>Fichiers d%27en-tête</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
