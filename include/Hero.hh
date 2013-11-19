@@ -10,7 +10,7 @@ public:
   virtual ~Hero(){}
 
 private:
-	const static AssetDescriptor s_assetDesc;
+	static AssetDescriptor s_assetDesc;
 public:
 	static void		initAsset();
 };

@@ -1,66 +1,85 @@
-﻿Build started 19/11/2013 15:17:20.
+﻿Build started 19/11/2013 15:42:02.
      1>Project "C:\Users\DANEEL\Documents\UbiGaCha9\UbiGaCha9\UbiGaCha9.vcxproj" on node 2 (Build target(s)).
      1>InitializeBuildStatus:
          Touching "Release\UbiGaCha9.tlog\unsuccessfulbuild".
        ClCompile:
-         F:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"../SFML-2.1/include" /I../include /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\Asset.cpp ..\src\AssetDescriptor.cpp ..\src\Box.cpp ..\src\Controller.cpp ..\src\EventPlayer.cpp ..\src\FoxSpirit.cpp ..\src\Game.cpp ..\src\GameObject.cpp ..\src\Hero.cpp ..\src\main.cpp ..\src\MainMenuLayer.cpp ..\src\QuadTree.cpp ..\src\SfTileEngine\sf_camera.cpp ..\src\SfTileEngine\sf_object.cpp ..\src\SfTileEngine\sf_object_layer.cpp ..\src\SfTileEngine\sf_smart_camera.cpp ..\src\SfTileEngine\sf_tile.cpp ..\src\SfTileEngine\sf_tilemap.cpp ..\src\SfTileEngine\sf_tilemap_loader.cpp ..\src\SfTileEngine\sf_tileset.cpp ..\src\SfTileEngine\sf_tile_layer.cpp ..\src\TinyXML\tinyxml2.cpp ..\src\UbiException.cpp ..\src\Utils.cpp ..\src\World.cpp
-         Asset.cpp
-     1>..\src\Asset.cpp(31): warning C4244: 'argument' : conversion from 'const int' to 'float', possible loss of data
-         AssetDescriptor.cpp
-         Box.cpp
-         Controller.cpp
-     1>..\src\Controller.cpp(101): warning C4244: 'argument' : conversion from 'float' to 'int', possible loss of data
-         EventPlayer.cpp
-     1>..\src\EventPlayer.cpp(11): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>..\src\EventPlayer.cpp(16): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>..\src\EventPlayer.cpp(21): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-     1>..\src\EventPlayer.cpp(26): warning C4244: 'argument' : conversion from 'double' to 'float', possible loss of data
-         FoxSpirit.cpp
-     1>..\src\FoxSpirit.cpp(12): error C2663: 'AssetDescriptor::addLine' : 2 overloads have no legal conversion for 'this' pointer
-     1>..\src\FoxSpirit.cpp(13): error C2663: 'AssetDescriptor::addLine' : 2 overloads have no legal conversion for 'this' pointer
-     1>..\src\FoxSpirit.cpp(14): error C2663: 'AssetDescriptor::addLine' : 2 overloads have no legal conversion for 'this' pointer
-     1>..\src\FoxSpirit.cpp(15): error C2663: 'AssetDescriptor::addLine' : 2 overloads have no legal conversion for 'this' pointer
-         Game.cpp
-     1>..\src\Game.cpp(19): error C2661: 'World::World' : no overloaded function takes 2 arguments
-     1>..\src\Game.cpp(24): warning C4244: 'argument' : conversion from 'const float' to 'unsigned int', possible loss of data
-     1>..\src\Game.cpp(25): warning C4244: 'argument' : conversion from 'const float' to 'unsigned int', possible loss of data
-     1>..\src\Game.cpp(41): error C2660: 'World::update' : function does not take 1 arguments
-     1>..\src\Game.cpp(55): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
-     1>..\src\Game.cpp(63): warning C4244: '-=' : conversion from 'double' to 'float', possible loss of data
-     1>..\src\Game.cpp(84): warning C4305: 'argument' : truncation from 'double' to 'float'
-         GameObject.cpp
-     1>..\src\GameObject.cpp(38): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-     1>..\src\GameObject.cpp(39): warning C4244: 'initializing' : conversion from 'float' to 'int', possible loss of data
-         Hero.cpp
-     1>..\src\Hero.cpp(7): error C2663: 'AssetDescriptor::addLine' : 2 overloads have no legal conversion for 'this' pointer
-     1>..\src\Hero.cpp(8): error C2663: 'AssetDescriptor::addLine' : 2 overloads have no legal conversion for 'this' pointer
-     1>..\src\Hero.cpp(9): error C2663: 'AssetDescriptor::addLine' : 2 overloads have no legal conversion for 'this' pointer
-     1>..\src\Hero.cpp(10): error C2663: 'AssetDescriptor::addLine' : 2 overloads have no legal conversion for 'this' pointer
-         main.cpp
-         MainMenuLayer.cpp
-     1>..\src\MainMenuLayer.cpp(41): warning C4244: 'argument' : conversion from 'unsigned int' to 'float', possible loss of data
-         QuadTree.cpp
-         sf_camera.cpp
-         sf_object.cpp
-         sf_object_layer.cpp
-         sf_smart_camera.cpp
-         sf_tile.cpp
-         sf_tilemap.cpp
-         sf_tilemap_loader.cpp
-     1>..\src\SfTileEngine\sf_tilemap_loader.cpp(205): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
-     1>..\src\SfTileEngine\sf_tilemap_loader.cpp(280): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
-     1>..\src\SfTileEngine\sf_tilemap_loader.cpp(328): warning C4800: 'int' : forcing value to bool 'true' or 'false' (performance warning)
-         sf_tileset.cpp
-     1>..\src\SfTileEngine\sf_tileset.cpp(73): warning C4018: '>=' : signed/unsigned mismatch
-     1>..\src\SfTileEngine\sf_tileset.cpp(73): warning C4018: '<' : signed/unsigned mismatch
-         Compiling...
-         sf_tile_layer.cpp
-         tinyxml2.cpp
-         UbiException.cpp
-         Utils.cpp
-         World.cpp
+         All outputs are up-to-date.
+       Link:
+         F:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\DANEEL\Documents\UbiGaCha9\Release\UbiGaCha9.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"../SFML-2.1/lib" "sfml-graphics-s.lib" "sfml-window-s.lib" "sfml-system-s.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\DANEEL\Documents\UbiGaCha9\Release\UbiGaCha9.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\DANEEL\Documents\UbiGaCha9\Release\UbiGaCha9.lib" /MACHINE:X86 /SAFESEH Release\Asset.obj
+         Release\AssetDescriptor.obj
+         Release\Box.obj
+         Release\Controller.obj
+         Release\EventPlayer.obj
+         Release\FoxSpirit.obj
+         Release\Game.obj
+         Release\GameObject.obj
+         Release\Hero.obj
+         Release\main.obj
+         Release\MainMenuLayer.obj
+         Release\QuadTree.obj
+         Release\sf_camera.obj
+         Release\sf_object.obj
+         Release\sf_object_layer.obj
+         Release\sf_smart_camera.obj
+         Release\sf_tile.obj
+         Release\sf_tilemap.obj
+         Release\sf_tilemap_loader.obj
+         Release\sf_tileset.obj
+         Release\sf_tile_layer.obj
+         Release\tinyxml2.obj
+         Release\UbiException.obj
+         Release\Utils.obj
+         Release\World.obj
+     1>sfml-graphics-s.lib(Transformable.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-graphics-s.lib(Sprite.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-graphics-s.lib(Texture.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-graphics-s.lib(View.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-graphics-s.lib(RenderStates.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-graphics-s.lib(Color.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-graphics-s.lib(RenderTexture.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-graphics-s.lib(RenderTarget.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-graphics-s.lib(RenderWindow.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-graphics-s.lib(Font.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-graphics-s.lib(Text.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-graphics-s.lib(Transform.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-graphics-s.lib(Image.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-graphics-s.lib(GLCheck.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-graphics-s.lib(TextureSaver.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-graphics-s.lib(RenderTextureImplFBO.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-graphics-s.lib(RenderTextureImplDefault.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-graphics-s.lib(Shader.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-graphics-s.lib(VertexArray.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-graphics-s.lib(ImageLoader.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-window-s.lib(Window.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-window-s.lib(VideoMode.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-window-s.lib(Mouse.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-window-s.lib(GlContext.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-window-s.lib(WindowImpl.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-window-s.lib(VideoModeImpl.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-window-s.lib(InputImpl.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-window-s.lib(WglContext.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-window-s.lib(JoystickManager.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-window-s.lib(WindowImplWin32.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-window-s.lib(JoystickImpl.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-system-s.lib(String.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-system-s.lib(Err.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-system-s.lib(ThreadLocal.cpp.obj) : error LNK2038: mismatch detected for '_MSC_VER': value '1700' doesn't match value '1800' in Asset.obj
+     1>sfml-window-s.lib(Window.cpp.obj) : error LNK2001: unresolved external symbol "__declspec(dllimport) class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl std::endl(class std::basic_ostream<char,struct std::char_traits<char> > &)" (__imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z)
+     1>sfml-window-s.lib(WglContext.cpp.obj) : error LNK2001: unresolved external symbol "__declspec(dllimport) class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl std::endl(class std::basic_ostream<char,struct std::char_traits<char> > &)" (__imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z)
+     1>sfml-window-s.lib(WindowImplWin32.cpp.obj) : error LNK2001: unresolved external symbol "__declspec(dllimport) class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl std::endl(class std::basic_ostream<char,struct std::char_traits<char> > &)" (__imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z)
+     1>sfml-graphics-s.lib(GLCheck.cpp.obj) : error LNK2001: unresolved external symbol "__declspec(dllimport) class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl std::endl(class std::basic_ostream<char,struct std::char_traits<char> > &)" (__imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z)
+     1>sfml-graphics-s.lib(RenderTextureImplFBO.cpp.obj) : error LNK2001: unresolved external symbol "__declspec(dllimport) class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl std::endl(class std::basic_ostream<char,struct std::char_traits<char> > &)" (__imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z)
+     1>sfml-graphics-s.lib(Shader.cpp.obj) : error LNK2001: unresolved external symbol "__declspec(dllimport) class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl std::endl(class std::basic_ostream<char,struct std::char_traits<char> > &)" (__imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z)
+     1>sfml-graphics-s.lib(ImageLoader.cpp.obj) : error LNK2001: unresolved external symbol "__declspec(dllimport) class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl std::endl(class std::basic_ostream<char,struct std::char_traits<char> > &)" (__imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z)
+     1>sfml-graphics-s.lib(Texture.cpp.obj) : error LNK2001: unresolved external symbol "__declspec(dllimport) class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl std::endl(class std::basic_ostream<char,struct std::char_traits<char> > &)" (__imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z)
+     1>sfml-graphics-s.lib(RenderTexture.cpp.obj) : error LNK2001: unresolved external symbol "__declspec(dllimport) class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl std::endl(class std::basic_ostream<char,struct std::char_traits<char> > &)" (__imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z)
+     1>sfml-graphics-s.lib(Font.cpp.obj) : error LNK2001: unresolved external symbol "__declspec(dllimport) class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl std::endl(class std::basic_ostream<char,struct std::char_traits<char> > &)" (__imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z)
+     1>sfml-graphics-s.lib(Image.cpp.obj) : error LNK2001: unresolved external symbol "__declspec(dllimport) class std::basic_ostream<char,struct std::char_traits<char> > & __cdecl std::endl(class std::basic_ostream<char,struct std::char_traits<char> > &)" (__imp_?endl@std@@YAAAV?$basic_ostream@DU?$char_traits@D@std@@@1@AAV21@@Z)
+     1>sfml-graphics-s.lib(Shader.cpp.obj) : error LNK2001: unresolved external symbol "__declspec(dllimport) public: virtual void __thiscall std::basic_istream<char,struct std::char_traits<char> >::_Add_vtordisp1(void)" (__imp_?_Add_vtordisp1@?$basic_istream@DU?$char_traits@D@std@@@std@@UAEXXZ)
+     1>sfml-graphics-s.lib(Shader.cpp.obj) : error LNK2001: unresolved external symbol "public: virtual void __thiscall std::basic_ios<char,struct std::char_traits<char> >::_Add_vtordisp2(void)" (?_Add_vtordisp2@?$basic_ios@DU?$char_traits@D@std@@@std@@UAEXXZ)
+     1>C:\Users\DANEEL\Documents\UbiGaCha9\Release\UbiGaCha9.exe : fatal error LNK1120: 3 unresolved externals
      1>Done Building Project "C:\Users\DANEEL\Documents\UbiGaCha9\UbiGaCha9\UbiGaCha9.vcxproj" (Build target(s)) -- FAILED.
 
 Build FAILED.
 
-Time Elapsed 00:00:12.41
+Time Elapsed 00:00:00.79

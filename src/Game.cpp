@@ -15,7 +15,7 @@ Game::Game(sf::RenderWindow &window)
     _lightDia(true),
     _elapsedTime(0.f),
   _time(0.f),
-  _world(_camera, _playerLight)
+  _world()//_camera, _playerLight)
 {
   if (!_tHalo.loadFromFile("./ressource/textures/halo.png"))
     throw UbiException("Error load halo");
@@ -38,7 +38,7 @@ Game::~Game()
 
 void	Game::update()
 {
-  _world.update(_elapsedTime);
+  //_world.update(_elapsedTime);
 }
 
 bool	Game::progressiveLight(float ratio)
