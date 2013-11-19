@@ -7,21 +7,20 @@
 
 Game::Game(sf::RenderWindow &window)
   : _window(window),
-    _worldView(window.getDefaultView()),
-    _frontView(sf::Vector2f(0.f, 0.f), sf::Vector2f(window.getSize().x, window.getSize().y)),
-    _playerLight(sf::Vector2f(_window.getSize().x / 2.f, _window.getSize().y / 2.f), 1),
-    _camera(window.getSize().x, window.getSize().y),
+    _worldView(window.getView()),
+    _frontView(sf::Vector2f(0.f, 0.f), sf::Vector2f(window.getView().getSize().x, window.getView().getSize().y)),
+    _playerLight(sf::Vector2f(_window.getView().getCenter().x, _window.getView().getCenter().y), 1),
+    _camera(window.getView().getSize().x, window.getView().getSize().y),
     _lightDia(true),
     _elapsedTime(0.f),
     _time(0.f)
 {
-  std::string path = "./ressource/textures/halo.png";
-  if (!_tHalo.loadFromFile(path))
+  if (!_tHalo.loadFromFile("./ressource/textures/halo.png"))
     throw UbiException("Error load halo");
   _halo.setTexture(_tHalo);
-  _sceneTexture.create(_window.getSize().x, _window.getSize().y);
-  _lightTexture.create(_window.getSize().x, _window.getSize().y);
-  _frontView.setCenter(sf::Vector2f(_window.getSize().x / 2.f, _window.getSize().y / 2.f));
+  _sceneTexture.create(_window.getView().getSize().x, _window.getView().getSize().y);
+  _lightTexture.create(_window.getView().getSize().x, _window.getView().getSize().y);
+  _frontView.setCenter(sf::Vector2f(_window.getView().getCenter().x, _window.getView().getCenter().y));
   _tilemap = _world.loadTilemap("TileMap", "ressource/maps/tuto.tmx");
   if (!_tilemap)
       throw UbiException("Failed to load tilemap");
@@ -116,7 +115,7 @@ void Game::draw()
   //_window.setView(mFrontView);
   //_window.draw(mTileMap);
   _window.draw(scene);
-  _window.setView(_window.getDefaultView());
+  _window.setView(_window.getView());
   //_window.draw(*mSceneLayers[Foreground]);
 }
 
