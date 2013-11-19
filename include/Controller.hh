@@ -7,7 +7,7 @@
 class Controller : public EventPlayer
 {
 public:
-  Controller(GameObject * monk, GameObject * lantern);
+  Controller(GameObject & monk, GameObject & lantern);
   ~Controller();
   void	playerVertical(int);
   void	playerHorizontal(int);
@@ -41,10 +41,10 @@ public:
 
   virtual void	handleEvent(sf::Event &);
 private:
-  std::map<sf::Keyboard::Key, void (EventPlayer::*)()> _mapPress;
-  std::map<sf::Keyboard::Key, void (EventPlayer::*)()> _mapRelease;
-  std::map<unsigned int, void (EventPlayer::*)()> _mapPressButton;
-  std::map<unsigned int, void (EventPlayer::*)()> _mapReleaseButton;
+  std::map<sf::Keyboard::Key, void (Controller::*)()> _mapPress;
+  std::map<sf::Keyboard::Key, void (Controller::*)()> _mapRelease;
+  std::map<unsigned int, void (Controller::*)()> _mapPressButton;
+  std::map<unsigned int, void (Controller::*)()> _mapReleaseButton;
   std::map<sf::Joystick::Axis, void (Controller::*)(int)> _mapMove;
 };
 

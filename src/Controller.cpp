@@ -2,7 +2,7 @@
 #include <math.h>
 #include "Controller.hh"
 
-Controller::Controller(GameObject * monk, GameObject * lantern)
+Controller::Controller(GameObject & monk, GameObject & lantern)
   : EventPlayer(monk, lantern)
 {
   this->_mapPressButton[0] = &Controller::pressA;
