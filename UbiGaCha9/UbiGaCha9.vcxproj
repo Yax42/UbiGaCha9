@@ -13,6 +13,8 @@
   <ItemGroup>
     <ClCompile Include="..\src\Asset.cpp" />
     <ClCompile Include="..\src\AssetDescriptor.cpp" />
+    <ClCompile Include="..\src\AudioManager.cpp" />
+    <ClCompile Include="..\src\Audios.cpp" />
     <ClCompile Include="..\src\Box.cpp" />
     <ClCompile Include="..\src\Controller.cpp" />
     <ClCompile Include="..\src\EventPlayer.cpp" />
@@ -40,6 +42,8 @@
   <ItemGroup>
     <ClInclude Include="..\include\Asset.hh" />
     <ClInclude Include="..\include\AssetDescriptor.hh" />
+    <ClInclude Include="..\include\AudioManager.hh" />
+    <ClInclude Include="..\include\Audios.hh" />
     <ClInclude Include="..\include\Box.hh" />
     <ClInclude Include="..\include\Controller.hh" />
     <ClInclude Include="..\include\EventPlayer.hh" />
@@ -111,7 +115,7 @@
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
       <PreprocessorDefinitions>SFML_STATIC;WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <AdditionalIncludeDirectories>SFML-2.1/include;include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>SFML-2.1\include;include;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <DebugInformationFormat>OldStyle</DebugInformationFormat>
     </ClCompile>
     <Link>
