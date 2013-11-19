@@ -70,4 +70,3 @@ void	EventPlayer::releaseY()
 {
   std::cout << "Release Y" << std::endl;
 }
-

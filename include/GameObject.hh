@@ -33,6 +33,8 @@ public:
 	void			draw(sf::RenderTexture &window);
 	void			toBackPosition();
 	bool			collides(const GameObject &obj) const;
+	sf::Vector2f		getPos() const {return sf::Vector2f(_box.left, _box.top);}
+	const sf::Vector2f	&getDir() const {return _direction;}
 	void			dirX(float x) { _direction.x = x; }
 	void			dirY(float y) { _direction.y = y; }
 	virtual bool			isDead();
