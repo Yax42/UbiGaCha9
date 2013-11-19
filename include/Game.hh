@@ -31,6 +31,7 @@ private:
   sf::Texture		_tHalo;
   sf::Sprite		_halo;
   Light			_playerLight;
+  Light			_foxLight;
   sf::View		_worldView;
   sf::View              _frontView;
   sftile::SfSmartCamera	_camera;
@@ -39,9 +40,6 @@ private:
   bool			_lightDia;
   float			_elapsedTime;
   float			_time;
-  GameObject		*_hero;
-  GameObject		*_fox;
-  Controller		*_control;
 };
 
 #endif // _GAME_HH_
