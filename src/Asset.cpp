@@ -6,6 +6,7 @@
 Asset::Asset(const AssetDescriptor &assetDesc)
   : _assetDesc(assetDesc), _curLine(0), _curFrame(0)
 {
+  _sprite.setTexture(_assetDesc.texture);
 }
 
 
@@ -13,7 +14,7 @@ void	Asset::setCurrentLine(int cur)
 {
 	if (cur != _curLine)
 	{
-		_curLine = _assetDesc.lines.size() % cur;
+		_curLine = cur % _assetDesc.lines.size();
 		_curFrame = -1;
 		resetSprite();
 	}

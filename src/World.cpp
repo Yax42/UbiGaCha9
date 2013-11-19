@@ -9,11 +9,13 @@ World::World(sftile::SfSmartCamera &camera, Light &heroLight)
   : _camera(camera),
     _heroLight(heroLight)
 {
-  _hero = new Hero(sf::Vector2f(0, 0));
-  _fox = new FoxSpirit(sf::Vector2f(0, 0));
+  _hero = new Hero(sf::Vector2f(142, 142));
+  _fox = new FoxSpirit(sf::Vector2f(242, 142));
   _control = new Controller(*_hero, *_fox);
   loadTilemap("tuto", "./ressource/maps/tuto.tmx");
   setMap("tuto");
+  _gameObjects.push_back(_hero);
+  _gameObjects.push_back(_fox);
   std::cout << "World created" << std::endl;
 }
 
@@ -53,7 +55,7 @@ void World::setMap(const std::string &mapName)
 void World::handleEvents(sf::Event evt)
 {
   _control->handleEvent(evt);
-  _tilemap->HandleEvents(evt);
+  //_tilemap->HandleEvents(evt);
 }
 
 void World::update(float elapsedTime)

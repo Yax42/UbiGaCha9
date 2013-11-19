@@ -7,9 +7,10 @@ GameObject::GameObject(const Asset &asset, const sf::Vector2f &pos,
   : _asset(asset),
     _box(pos, size),
     _backPos(pos),
+    _orientation(DOWN),
     _angle(0.f),
     _collide(collide),
-	_maxSpeed(maxSpeed)
+    _maxSpeed(maxSpeed)
 {
 }
 
@@ -18,6 +19,7 @@ void	GameObject::update(float ft)
   _backPos = sf::Vector2f(_box.left, _box.top);
   _box.left += _direction.x * ft * _maxSpeed;
   _box.top += _direction.y * ft * _maxSpeed;
+  updateSprite();
 }
 
 void		GameObject::draw(sf::RenderTexture &window)

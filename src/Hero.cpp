@@ -1,6 +1,6 @@
 #include "Hero.hh"
 
-AssetDescriptor Hero::s_assetDesc("ressource/monk.png");
+AssetDescriptor Hero::s_assetDesc("ressource/textures/monk.png");
 
 void		Hero::initAsset()
 {

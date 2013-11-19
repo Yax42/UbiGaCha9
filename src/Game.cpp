@@ -113,23 +113,21 @@ void	Game::handleEvent(sf::Event & event)
 
 void Game::draw()
 {
-  _window.clear(sf::Color::Blue);
-  _sceneTexture.clear(sf::Color::Black);
+  _window.clear();
+  _sceneTexture.clear();
   _sceneTexture.setView(_worldView);
   _world.render(_sceneTexture);
-  drawLights();
+  //drawLights();
 
-  sf::Sprite prerendering(_lightTexture.getTexture());
-  _sceneTexture.setView(_frontView);
-  _sceneTexture.draw(prerendering, sf::BlendMultiply);
-  _sceneTexture.display();
+  // sf::Sprite prerendering(_lightTexture.getTexture());
+  // _sceneTexture.setView(_frontView);
+  // _sceneTexture.draw(prerendering, sf::BlendMultiply);
+  // _sceneTexture.display();
 
   sf::Sprite scene(_sceneTexture.getTexture());
 
-  //_window.setView(mFrontView);
-  //_window.draw(mTileMap);
   _window.draw(scene);
-  _window.setView(_window.getView());
+  //_window.setView(_window.getView());
   //_window.draw(*mSceneLayers[Foreground]);
 }
 
