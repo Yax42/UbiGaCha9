@@ -6,7 +6,7 @@
 Asset::Asset(const AssetDescriptor &assetDesc)
   : _assetDesc(assetDesc), _curLine(0), _curFrame(0)
 {
-  _sprite.setTexture(_assetDesc.texture);
+	_sprite.setTexture(assetDesc.texture);
 }
 
 
@@ -14,7 +14,7 @@ void	Asset::setCurrentLine(int cur)
 {
 	if (cur != _curLine)
 	{
-		_curLine = cur % _assetDesc.lines.size();
+		_curLine = _assetDesc.lines.size() % cur;
 		_curFrame = -1;
 		resetSprite();
 	}
@@ -41,8 +41,7 @@ bool	Asset::update()
 	return (result);
 }
 
-void	Asset::draw(const sf::Vector2f &pos, float angle, sf::RenderTexture &window)
+void	Asset::draw(const sf::Vector2f &pos)
 {
   _sprite.setPosition(pos);
-  window.draw(_sprite);
 }
