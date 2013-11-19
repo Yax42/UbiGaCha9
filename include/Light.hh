@@ -8,13 +8,14 @@ struct Light
 {
   Light(sf::Vector2f pos, float ratio) :
     position(pos),
-    ratio(ratio)
+    ratio(ratio),
+    color(sf::Color(255,255,255))
   {
 
   }
 
   sf::Vector2f    position;
-  sf::Color       color = sf::Color(255,255,255);
+  sf::Color       color;
   float           ratio;
 };
 

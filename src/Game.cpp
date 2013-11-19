@@ -34,11 +34,12 @@ void Game::drawLights()
   _lightTexture.clear(sf::Color(0,0,0));
   _lightTexture.setView(_frontView);
   _lightTexture.draw(_halo);
-  for (Light &l : _lights)
+
+  for (std::list<Light>::iterator it = _lights.begin(); it != _lights.end(); ++it)
     {
-      _halo.setPosition(l.position);
-      _halo.setColor(l.color);
-      _halo.setScale(sf::Vector2f(l.ratio, l.ratio));
+      _halo.setPosition((*it).position);
+      _halo.setColor((*it).color);
+      _halo.setScale(sf::Vector2f((*it).ratio, (*it).ratio));
       _lightTexture.draw(_halo);
     }
   
@@ -71,8 +72,8 @@ void Game::draw()
 
   sf::Sprite scene(_sceneTexture.getTexture());
 
-  //mWindow.setView(mFrontView);
-  //mWindow.draw(mTileMap);
+  //_window.setView(mFrontView);
+  //_window.draw(mTileMap);
   _window.draw(scene);
   _window.setView(_window.getDefaultView());
   //_window.draw(*mSceneLayers[Foreground]);
