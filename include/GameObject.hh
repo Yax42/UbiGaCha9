@@ -15,13 +15,17 @@ public:
 	virtual void		update(float dt);
 	void			draw();
 	void			toBackPosition();
+	void			dirX(float x) { _direction.x = x; }
+	void			dirY(float y) { _direction.y = y; }
+
+
 private:
-	Asset		_asset;
+	Asset			_asset;
 	sf::FloatRect	_box;
 	sf::Vector2f	_backPos;
 	sf::Vector2f	_direction;
-	float		_angle;
-	bool		_collide;
+	float			_angle;
+	bool			_collide;
 };
 
 typedef std::vector<GameObject*> GameObjectVector;

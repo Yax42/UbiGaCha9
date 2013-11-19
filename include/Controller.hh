@@ -13,6 +13,32 @@ public:
   void	playerHorizontal(int);
   void	lanternVertical(int);
   void	lanternHorizontal(int);
+
+  void	pressPlayerLeft(int);
+  void	pressPlayerLeft();
+  void	pressPlayerRight(int);
+  void	pressPlayerRight();
+  void	pressPlayerUp(int);
+  void	pressPlayerUp();
+  void	pressPlayerDown(int);
+  void	pressPlayerDown();
+  void	pressLanternLeft(int);
+  void	pressLanternLeft();
+  void	pressLanternRight(int);
+  void	pressLanternRight();
+  void	pressLanternUp(int);
+  void	pressLanternUp();
+  void	pressLanternDown(int);
+  void	pressLanternDown();
+  void	releasePlayerLeft();
+  void	releasePlayerRight();
+  void	releasePlayerDown();
+  void	releasePlayerUp();
+  void	releaseLanternLeft();
+  void	releaseLanternRight();
+  void	releaseLanternDown();
+  void	releaseLanternUp();
+
   virtual void	handleEvent(sf::Event &);
 private:
   std::map<sf::Keyboard::Key, void (EventPlayer::*)()> _mapPress;
