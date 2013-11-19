@@ -11,7 +11,7 @@ public:
     position(pos),
     ratio(ratio),
     color(sf::Color(255,255,255)),
-    _nextRation(ratio),
+    _nextRatio(ratio),
     _frame(0)
   {
   }
@@ -33,7 +33,7 @@ public:
     _frame += 1;
     if (_frame >= 4 && ratio > _nextRatio)
       {
-	ratio -= (_tex.getSize().x * (ratio) / _tHalo.getSize().y * (ratio)) * 0.01;
+	ratio -= (_tex.getSize().x * (ratio) / _tex.getSize().y * (ratio)) * 0.01;
 	_frame = 0;
       }
     else if (_frame >= 4 && ratio < _nextRatio)
