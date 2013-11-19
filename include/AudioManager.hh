@@ -5,7 +5,7 @@
 #include <iostream>
 #include <utility>
 #include <SFML\Audio.hpp>
-#include "Audios.h"
+#include "Audios.hh"
 
 class Audios;
 
