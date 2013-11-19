@@ -88,6 +88,11 @@ protected:
   /// Tile dimensions in pixels
   sf::Vector2i layer_dimensions;
 
+  std::string name;
+
+  float opacity;
+
+  bool visible;
 };
 
 }

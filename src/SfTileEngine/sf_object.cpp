@@ -26,10 +26,12 @@ SfObject::SfObject()
   : object_type(SF_OBJECT_TYPE_UNKNOWN)
   , name("")
   , string_type("")
+  , content("")
   , position(0, 0)
   , dimensions(0, 0)
   , rotation(0.f)
   , gid(-1)
+  , id(-1)
   , visible(true)
 { }
 
@@ -39,10 +41,12 @@ SfObject::SfObject(const SfObject& _copy)
   : object_type(_copy.object_type)
   , name(_copy.name)
   , string_type(_copy.string_type)
+  , content(_copy.content)
   , position(_copy.position)
   , dimensions(_copy.dimensions)
   , rotation(_copy.rotation)
   , gid(_copy.gid)
+  , id(_copy.id)
   , visible(_copy.visible)
 { }
 
@@ -57,6 +61,7 @@ SfObject& SfObject::operator=(const SfObject& _copy)
     std::swap(object_type, temp.object_type);
     std::swap(name, temp.name);
     std::swap(string_type, temp.string_type);
+    std::swap(content, temp.content);
     std::swap(position, temp.position);
     std::swap(dimensions, temp.dimensions);
     std::swap(rotation, temp.rotation);
@@ -81,6 +86,11 @@ string SfObject::GetStringType()
   return string_type;
 }
 
+////////////////////////////////////////////////////////////
+string SfObject::GetContent()
+{
+  return content;
+}
 
 ////////////////////////////////////////////////////////////
 sf::Vector2i SfObject::GetPosition()
@@ -109,6 +119,11 @@ int SfObject::GetGid()
   return gid;
 }
 
+////////////////////////////////////////////////////////////
+int SfObject::GetId()
+{
+  return id;
+}
 
 ////////////////////////////////////////////////////////////
 bool SfObject::IsVisible()

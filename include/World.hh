@@ -28,6 +28,11 @@ public:
 private:
   bool loadFromTMX(std::string path);
   bool mapExists(std::string id);
+  void getWalls(const sftile::priv::SfObjectLayer &walls);
+  void getEnnemies(const sftile::priv::SfObjectLayer &ennemies);
+  void getObjects(const sftile::priv::SfObjectLayer &objects);
+  void getPlayerSpawn(const sftile::priv::SfObjectLayer &playerSpawn);
+  void getExit(const sftile::priv::SfObjectLayer &exit);
 
   sftile::priv::SfTilemapLoader			loader;
   std::map<std::string, sftile::SfTilemap>	tilemaps;

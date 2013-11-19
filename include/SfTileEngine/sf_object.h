@@ -97,6 +97,7 @@ public:
   ////////////////////////////////////////////////////////////
   string GetStringType();
 
+  string GetContent();
 
   ////////////////////////////////////////////////////////////
   /// \brief Returns the position of the object
@@ -133,6 +134,14 @@ public:
   ////////////////////////////////////////////////////////////
   int GetGid();
 
+  ////////////////////////////////////////////////////////////
+  /// \brief Returns the ID of the object being used (if any)
+  ///
+  /// \return ID of the object being used (if any)
+  ///
+  ////////////////////////////////////////////////////////////
+  int GetId();
+
 
   ////////////////////////////////////////////////////////////
   /// \brief Returns whether the object is visible or not
@@ -159,10 +168,10 @@ private:
   /// Name of the object
   string name;
 
-
   /// Custom string literal type - arbitrary string for end-user use
   string string_type;
 
+  string content;
 
   /// Position of the object (in pixels)
   sf::Vector2i position;
@@ -179,6 +188,7 @@ private:
   /// GID of the tile being used (if any)
   int gid;
 
+  int id;
 
   /// Visibility
   bool visible;

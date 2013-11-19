@@ -12,18 +12,14 @@ Game::Game(sf::RenderWindow &window)
     _elapsedTime(0.f),
     _time(0.f)
 {
-#ifdef _WIN32
-  std::string path = "\\ressource\\textures\\halo.png";  
-#else
   std::string path = "./ressource/textures/halo.png";
-#endif
   if (!_tHalo.loadFromFile(path))
     throw UbiException("Error load halo");
   _halo.setTexture(_tHalo);
   _sceneTexture.create(_window.getSize().x, _window.getSize().y);
   _lightTexture.create(_window.getSize().x, _window.getSize().y);
   _frontView.setCenter(sf::Vector2f(_window.getSize().x / 2.f, _window.getSize().y / 2.f));
-  _tilemap = _world.loadTilemap("TileMap", "ressource/map/TileMap.tmx");
+  _tilemap = _world.loadTilemap("TileMap", "ressource/maps/tuto.tmx");
   if (!_tilemap)
       throw UbiException("Failed to load tilemap");
   _camera.SetTrackMode(sftile::SF_TRACK_KEYS_PRESS);
@@ -80,7 +76,7 @@ void Game::drawLights()
   _halo.setColor(_playerLight.color);
   this->progressiveLight(1.1);
   _lightTexture.draw(_halo);
-  
+
   _lightTexture.display();
 }
 
@@ -104,7 +100,6 @@ void	Game::centerOrigin(sf::Sprite & sprite)
 void Game::draw()
 {
   _window.clear(sf::Color::Blue);
-  
   _sceneTexture.clear(sf::Color::Black);
   _sceneTexture.setView(_worldView);
   _world.render(_sceneTexture);

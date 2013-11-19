@@ -30,6 +30,9 @@ namespace priv
 SfObjectLayer::SfObjectLayer()
   : objects()
   , layer_dimensions(-1, -1)
+  , name("")
+  , opacity(1.f)
+  , visible(true)
 {}
 
 
@@ -37,6 +40,9 @@ SfObjectLayer::SfObjectLayer()
 SfObjectLayer::SfObjectLayer(const SfObjectLayer& _copy)
   : objects(_copy.objects)
   , layer_dimensions(_copy.layer_dimensions)
+  , name(_copy.name)
+  , opacity(_copy.opacity)
+  , visible(_copy.visible)
 {}
 
 
@@ -49,11 +55,18 @@ SfObjectLayer& SfObjectLayer::operator=(const SfObjectLayer& _copy)
 
     std::swap(objects, temp.objects);
     std::swap(layer_dimensions, temp.layer_dimensions);
+    std::swap(name, temp.name);
+    std::swap(opacity, temp.opacity);
+    std::swap(visible, temp.visible);
   }
 
   return *this;
 }
 
+const std::string &SfObjectLayer::GetName() const
+{
+  return (name);
+}
 
 ////////////////////////////////////////////////////////////
 SfObject* SfObjectLayer::GetObject(unsigned int _index)

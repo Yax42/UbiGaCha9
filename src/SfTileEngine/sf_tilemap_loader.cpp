@@ -123,9 +123,7 @@ bool SfTilemapLoader::LoadTilemap(const string _path, SfTilemap& _tilemap)
       return false;
     }
     else
-    {
       temp_map.object_layers.push_back(temp_object_layer);
-    }
     object_layer_element = object_layer_element->NextSiblingElement("objectgroup");
   }
   object_layer_element = nullptr;
@@ -154,7 +152,7 @@ bool SfTilemapLoader::ParseTileset(const XMLElement* _element, SfTileset& _tiles
     return false;
 
   // Load the tileset image
-  string source("./ressource/map/");
+  string source("./ressource/textures/");
   source += image_element->Attribute("source");
   sf::Texture texture;
   if (!texture.loadFromFile(source))
@@ -190,6 +188,7 @@ bool SfTilemapLoader::ParseTileLayer(const XMLElement* _element, SfTileLayer& _t
 {
   // Load the arbitrary name of the layer
   string name = _element->Attribute("name");
+  _tile_layer.name = name;
 
   cout << "Loading layer: " << name << endl;
 
@@ -199,6 +198,12 @@ bool SfTilemapLoader::ParseTileLayer(const XMLElement* _element, SfTileLayer& _t
   _element->QueryIntAttribute("height", &layer_dimensions.y);
 
   _tile_layer.layer_dimensions = layer_dimensions;
+
+  float opacity = _element->FloatAttribute("opacity");
+  _tile_layer.opacity = opacity;
+
+  bool visible = _element->IntAttribute("visible");
+  _tile_layer.visible = visible;
 
   // Load the data node
   const XMLElement* data = _element->FirstChildElement("data");
@@ -299,11 +304,11 @@ bool SfTilemapLoader::ParseObjectLayer(const tinyxml2::XMLElement* _element, SfO
 ////////////////////////////////////////////////////////////
 bool SfTilemapLoader::ParseObject(const tinyxml2::XMLElement* _element, SfObject& _object)
 {
-  string name = _element->Attribute("name");
-  _object.name = name;
+  // string name = _element->Attribute("name");
+  // _object.name = name;
 
-  string type = _element->Attribute("type");
-  _object.string_type = type;
+  // string type = _element->Attribute("type");
+  // _object.string_type = type;
 
   int x = _element->IntAttribute("x");
   int y = _element->IntAttribute("y");
@@ -316,7 +321,8 @@ bool SfTilemapLoader::ParseObject(const tinyxml2::XMLElement* _element, SfObject
   float rotation = _element->FloatAttribute("rotation");
   _object.rotation = rotation;
 
-  int gid = -1; _element->QueryIntAttribute("gid", &gid);
+  int gid = -1;
+  _element->QueryIntAttribute("gid", &gid);
   _object.gid = gid;
 
   bool visible = _element->IntAttribute("visible");
@@ -324,51 +330,34 @@ bool SfTilemapLoader::ParseObject(const tinyxml2::XMLElement* _element, SfObject
 
   ObjectType object_type;
   if (gid != -1)
-    {
-      object_type = SF_OBJECT_TYPE_TILE;
-      return true;
-    }
-  const XMLElement* child_element = _element->FirstChildElement();
+    object_type = SF_OBJECT_TYPE_TILE;
+  else
+    object_type = SF_OBJECT_TYPE_UNKNOWN;
+  const XMLElement *child_element = _element->FirstChildElement();
   if (child_element != nullptr)
     {
-      string child_name = child_element->Name();
+      std::string child_name = child_element->Name();
 
-      if (child_name == "ellipse")
+      if (child_name == "properties")
 	{
-	  object_type = SF_OBJECT_TYPE_UNKNOWN;
-	  cout << "Ellipse objects unsupported" << endl;
-	  return false;
+	  const XMLElement *property_element = _element->FirstChildElement("property");
+
+	  while (property_element != nullptr)
+	    {
+	      std::string property_name = property_element->Attribute("name");
+
+	      if (property_name == "content")
+		{
+		  std::string content= property_element->Attribute("value");
+
+		  _object.content = content;
+		}
+	      property_element = property_element->NextSiblingElement();
+	    }
 	}
-      else if (child_name == "polygon")
-	{
-	  object_type = SF_OBJECT_TYPE_UNKNOWN;
-	  cout << "Polygon objects unsupported" << endl;
-	  return false;
-	}
-      else if (child_name == "polyline")
-	{
-	  object_type = SF_OBJECT_TYPE_UNKNOWN;
-	  cout << "Polyline objects unsupported" << endl;
-	  return false;
-	}
-      else if (child_name == "image")
-	{
-	  object_type = SF_OBJECT_TYPE_UNKNOWN;
-	  cout << "Image objects unsupported" << endl;
-	  return false;
-	}
-      else
-	{
-	  object_type = SF_OBJECT_TYPE_UNKNOWN;
-	  cout << "Unknown object type" << endl;
-	  return false;
-	}
+      child_element = child_element->NextSiblingElement();
     }
-  else
-    {
-      object_type = SF_OBJECT_TYPE_UNKNOWN;
-      return true;
-    }
+  return true;
 }
 
 }

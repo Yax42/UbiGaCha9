@@ -41,6 +41,23 @@ sftile::SfTilemap *World::loadTilemap(std::string id, std::string path)
     return nullptr;
   }
 
+  for (std::vector<sftile::priv::SfObjectLayer>::const_iterator it = tilemap.getObjectLayers().begin();
+       it != tilemap.getObjectLayers().end(); ++it)
+    {
+      std::string name = (*it).GetName();
+
+      if (name == "walls")
+	getWalls(*it);
+      else if (name == "ennemies")
+	getEnnemies(*it);
+      else if (name == "objects")
+	getObjects(*it);
+      else if (name == "playerspawn")
+	getPlayerSpawn(*it);
+      else if (name == "exit")
+	getExit(*it);
+    }
+
   tilemaps.emplace(id, tilemap);
 
   cout << "Loaded SfTilemap from path: " << path << endl;
@@ -81,4 +98,29 @@ bool World::mapExists(std::string id)
     return false;
   else
     return true;
+}
+
+void World::getWalls(const sftile::priv::SfObjectLayer &walls)
+{
+  std::cout << "getWalls" << std::endl;
+}
+
+void World::getEnnemies(const sftile::priv::SfObjectLayer &ennemies)
+{
+  std::cout << "getEnnemies" << std::endl;
+}
+
+void World::getObjects(const sftile::priv::SfObjectLayer &objects)
+{
+  std::cout << "getObjects" << std::endl;
+}
+
+void World::getPlayerSpawn(const sftile::priv::SfObjectLayer &playerSpawn)
+{
+  std::cout << "getPlayerSpawn" << std::endl;
+}
+
+void World::getExit(const sftile::priv::SfObjectLayer &exit)
+{
+  std::cout << "getExit" << std::endl;
 }

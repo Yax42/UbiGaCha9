@@ -30,6 +30,9 @@ namespace priv
 SfTileLayer::SfTileLayer()
   : tile_gids()
   , layer_dimensions(-1, -1)
+  , name("")
+  , opacity(1.f)
+  , visible(true)
 {}
 
 
@@ -37,6 +40,9 @@ SfTileLayer::SfTileLayer()
 SfTileLayer::SfTileLayer(const SfTileLayer& _copy)
   : tile_gids(_copy.tile_gids)
   , layer_dimensions(_copy.layer_dimensions)
+  , name(_copy.name)
+  , opacity(_copy.opacity)
+  , visible(_copy.visible)
 {}
 
 
@@ -49,6 +55,9 @@ SfTileLayer& SfTileLayer::operator=(const SfTileLayer& _copy)
 
     std::swap(tile_gids, temp.tile_gids);
     std::swap(layer_dimensions, temp.layer_dimensions);
+    std::swap(name, temp.name);
+    std::swap(opacity, temp.opacity);
+    std::swap(visible, temp.visible);
   }
 
   return *this;
