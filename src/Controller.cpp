@@ -80,7 +80,7 @@ void	Controller::lanternVertical(int speed)
 void	Controller::lanternHorizontal(int speed)
 {
 	if (speed >= -25 && speed <= 25)
-		speed = 0;
+	  speed = 0;
 	this->axisRightX(speed);
 }
 

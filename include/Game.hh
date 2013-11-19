@@ -17,7 +17,12 @@ public:
   void	drawLights();
   void	modifLightPlayer(sf::Vector2f, float);
   void	draw();
+  void	centerOrigin(sf::Sprite & sprite);
   void	handleEvent(sf::Event &);
+  void	run();
+  float	getElapsedTime() const {return _elapsedTime;}
+  bool	progressiveLight(float);
+
 private:
   sf::RenderWindow	&_window;
   sf::RenderTexture	_sceneTexture;
@@ -30,6 +35,9 @@ private:
   sftile::SfSmartCamera	_camera;
   World			_world;
   sftile::SfTilemap	*_tilemap;
+  bool			_lightDia;
+  float			_elapsedTime;
+  float			_time;
 };
 
 #endif // _GAME_HH_
