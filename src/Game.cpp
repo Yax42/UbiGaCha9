@@ -79,7 +79,7 @@ void Game::drawLights()
   _halo.setPosition(_foxLight.position);
   centerOrigin(_halo);
   _halo.setColor(_foxLight.color);
-  if (lastProgressif && (_foxLight.getNextRatio() !== _foxLight.ratio))
+  if (lastProgressif && (_foxLight.getNextRatio() != _foxLight.ratio))
     {
       lastProgressif = false;
       _foxLight.setRatio(_foxLight.ratio + 0.1);
