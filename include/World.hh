@@ -9,34 +9,45 @@
 #include "SfTileEngine/sf_tilemap_loader.h"
 #include "SfTileEngine/sf_tilemap.h"
 #include "sf_tile_engine.h"
+#include "QuadTree.hh"
+#include "Light.hh"
+#include "Controller.hh"
+#include "GameObject.hh"
 
 class World
 {
 public:
-  explicit World();
+  World(sftile::SfSmartCamera &camera, Light &heroLight);
+  ~World();
 
-
-  World(const World &_copy);
-  World& operator=(const World &_copy);
-
-  sftile::SfTilemap	*loadTilemap(std::string id, std::string path);
-  sftile::SfTilemap	*getTilemap(std::string id);
+  void			setMap(const std::string &mapName);
   void			handleEvents(sf::Event evt);
-  void			update();
+  void			update(float elapsedTime);
   void			render(sf::RenderTexture &rect);
 
 private:
-  bool loadFromTMX(std::string path);
-  bool mapExists(std::string id);
+  void loadTilemap(const std::string &mapName, const std::string &path);
+  void clearWorld();
+  void unloadTileMaps();
+  bool mapExists(const std::string &mapName);
+
   void getWalls(const sftile::priv::SfObjectLayer &walls);
   void getEnnemies(const sftile::priv::SfObjectLayer &ennemies);
   void getObjects(const sftile::priv::SfObjectLayer &objects);
   void getPlayerSpawn(const sftile::priv::SfObjectLayer &playerSpawn);
-  void getExit(const sftile::priv::SfObjectLayer &exit);
+  void getExit(const sftile::priv::SfObjectLayer &playerSpawn);
 
-  sftile::priv::SfTilemapLoader			loader;
-  std::map<std::string, sftile::SfTilemap>	tilemaps;
-  std::string					current_id;
+  sftile::priv::SfTilemapLoader			_loader;
+  sftile::SfTilemap				*_tilemap;
+  std::map<std::string, sftile::SfTilemap*>	_tilemaps;
+  std::string					_currentId;
+  QuadTree					_quadTree;
+  GameObjectVector				_gameObjects;
+  sftile::SfSmartCamera				&_camera;
+  Light						&_heroLight;
+  GameObject					*_hero;
+  GameObject					*_fox;
+  Controller					*_control;
 };
 
 #endif // __WORLD_HH__

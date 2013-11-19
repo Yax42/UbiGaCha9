@@ -40,7 +40,8 @@ bool	Asset::update()
 	return (result);
 }
 
-void	Asset::draw(const sf::Vector2f &pos)
+void	Asset::draw(const sf::Vector2f &pos, float angle, sf::RenderTexture &window)
 {
   _sprite.setPosition(pos);
+  window.draw(_sprite);
 }

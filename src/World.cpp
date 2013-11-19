@@ -2,47 +2,38 @@
 #include "SfTileEngine/sf_tileset.h"
 #include "SfTileEngine/sf_tilemap_loader.h"
 #include "World.hh"
+#include "Hero.hh"
+#include "FoxSpirit.hh"
 
-World::World()
-  : loader()
-  , tilemaps()
-  , current_id("null")
+World::World(sftile::SfSmartCamera &camera, Light &heroLight)
+  : _camera(camera),
+    _heroLight(heroLight)
 {
+  _hero = new Hero(sf::Vector2f(0, 0));
+  _fox = new FoxSpirit(sf::Vector2f(0, 0));
+  _control = new Controller(*_hero, *_fox);
+  loadTilemap("tuto", "./ressource/maps/tuto.tmx");
+  setMap("tuto");
   std::cout << "World created" << std::endl;
 }
 
-World::World(const World& copy)
-  : loader(copy.loader)
-  , tilemaps(copy.tilemaps)
-  , current_id(copy.current_id)
-{}
-
-World& World::operator=(const World& copy)
+World::~World()
 {
-  if (this != &copy)
-  {
-    World temp(copy);
-
-    std::swap(loader, temp.loader);
-    std::swap(tilemaps, temp.tilemaps);
-    std::swap(current_id, temp.current_id);
-  }
-
-  return *this;
+  clearWorld();
+  unloadTileMaps();
 }
 
-sftile::SfTilemap *World::loadTilemap(std::string id, std::string path)
+void World::setMap(const std::string &mapName)
 {
-  sftile::SfTilemap tilemap;
-
-  if (!mapExists(id) && !loader.LoadTilemap(path, tilemap))
-  {
-    cout << "Failed to load SfTilemap from path: " << path << endl;
-    return nullptr;
-  }
-
-  for (std::vector<sftile::priv::SfObjectLayer>::const_iterator it = tilemap.getObjectLayers().begin();
-       it != tilemap.getObjectLayers().end(); ++it)
+  if (!mapExists(mapName))
+    {
+      std::cerr << "Error on setMap: " << mapName << " Doesn't exist" << std::endl;
+      return ;
+    }
+  clearWorld();
+  _tilemap = _tilemaps.find(mapName)->second;
+  for (std::vector<sftile::priv::SfObjectLayer>::const_iterator it = _tilemap->getObjectLayers().begin();
+       it != _tilemap->getObjectLayers().end(); ++it)
     {
       std::string name = (*it).GetName();
 
@@ -57,47 +48,87 @@ sftile::SfTilemap *World::loadTilemap(std::string id, std::string path)
       else if (name == "exit")
 	getExit(*it);
     }
-
-  tilemaps.emplace(id, tilemap);
-
-  cout << "Loaded SfTilemap from path: " << path << endl;
-
-  current_id = id;
-  return getTilemap(id);
-}
-
-sftile::SfTilemap *World::getTilemap(std::string id)
-{
-  if (tilemaps.find(id) == tilemaps.end())
-  {
-    cout << "Failed to find SfTilemap with ID: " << id << endl;
-    return nullptr;
-  }
-  else
-    return &tilemaps.at(id);
 }
 
 void World::handleEvents(sf::Event evt)
 {
-  getTilemap(current_id)->HandleEvents(evt);
+  _control->handleEvent(evt);
+  _tilemap->HandleEvents(evt);
 }
 
-void World::update()
+void World::update(float elapsedTime)
 {
-  getTilemap(current_id)->Update();
+  _tilemap->Update();
+  for (GameObjectVector::iterator it = _gameObjects.begin();
+       it != _gameObjects.end(); ++it)
+    {
+      (*it)->update(elapsedTime);
+      _quadTree.insert(*it);
+    }
+  for (GameObjectVector::iterator it = _gameObjects.begin();
+       it != _gameObjects.end(); ++it)
+    {
+      GameObjectVector	returnObjects;
+
+      if (_quadTree.retrieve(returnObjects, *it))
+	{
+	  for (GameObjectVector::iterator it2 = returnObjects.begin();
+	       it2 != returnObjects.end(); ++it2)
+	    if ((*it)->collides(**it2))
+	      (*it)->toBackPosition();
+	}
+    }
+  _quadTree.clear();
 }
 
 void World::render(sf::RenderTexture &window)
 {
-  getTilemap(current_id)->Render(window);
+  _tilemap->Render(window);
+  for (GameObjectVector::iterator it = _gameObjects.begin();
+       it != _gameObjects.end(); ++it)
+    (*it)->draw(window);
 }
 
-bool World::mapExists(std::string id)
+void World::loadTilemap(const std::string &mapName, const std::string &path)
 {
-  if (tilemaps.find(id) == tilemaps.end())
-    return false;
+  if (mapExists(mapName))
+    {
+      std::cerr << "Error: map already exist: " << mapName << std::endl;
+      return ;
+    }
+  sftile::SfTilemap *tilemap = new sftile::SfTilemap;
+  if (_loader.LoadTilemap(path, *tilemap))
+    {
+      tilemap->RegisterCamera(&_camera);
+      _tilemaps.emplace(mapName, tilemap);
+      std::cout << "Loaded SfTilemap from path: " << path << std::endl;
+    }
   else
-    return true;
+    {
+      std::cerr << "Failed to load SfTilemap from path: " << path << std::endl;
+      delete tilemap;
+    }
+}
+
+void World::clearWorld()
+{
+  for (GameObjectVector::iterator it = _gameObjects.begin();
+       it != _gameObjects.end(); ++it)
+    delete *it;
+  _gameObjects.clear();
+}
+
+void World::unloadTileMaps()
+{
+  for (std::map<std::string, sftile::SfTilemap*>::iterator it = _tilemaps.begin();
+       it != _tilemaps.end(); ++it)
+    delete it->second;
+  _tilemaps.clear();
+}
+
+bool World::mapExists(const std::string &mapName)
+{
+  return (_tilemaps.find(mapName) != _tilemaps.end());
 }
 
 void World::getWalls(const sftile::priv::SfObjectLayer &walls)

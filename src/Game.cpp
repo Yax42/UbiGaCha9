@@ -14,8 +14,8 @@ Game::Game(sf::RenderWindow &window)
     _camera(window.getView().getSize().x, window.getView().getSize().y),
     _lightDia(true),
     _elapsedTime(0.f),
-  _time(0.f),
-  _world(_camera, _playerLight)
+    _world(_camera, _playerLight),
+    _time(0.f)
 {
   if (!_tHalo.loadFromFile("./ressource/textures/halo.png"))
     throw UbiException("Error load halo");
@@ -24,15 +24,7 @@ Game::Game(sf::RenderWindow &window)
   _sceneTexture.create(_window.getView().getSize().x, _window.getView().getSize().y);
   _lightTexture.create(_window.getView().getSize().x, _window.getView().getSize().y);
   _frontView.setCenter(sf::Vector2f(_window.getView().getCenter().x, _window.getView().getCenter().y));
-  _tilemap = _world.loadTilemap("TileMap", "ressource/maps/tuto.tmx");
-  _foxLight.setTexture(_tHalo);
-  _playerLight.setTexture(_tHalo);
-
-  if (!_tilemap)
-      throw UbiException("Failed to load tilemap");
-
   _camera.SetTrackMode(sftile::SF_TRACK_KEYS_PRESS);
-  _tilemap->RegisterCamera(&_camera);
 }
 
 Game::~Game()
@@ -93,7 +85,7 @@ void Game::drawLights()
     }
   else if (_foxLight.getNextRatio() == _foxLight.ratio)
     {
-      lastProgressif = true;      
+      lastProgressif = true;
       _foxLight.setRatio(_foxLight.ratio - 0.1);
     }
   _lightTexture.draw(_halo);

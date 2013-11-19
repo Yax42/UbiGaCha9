@@ -1,13 +1,14 @@
+#ifndef		__AUDIMANAGER_HH__
+#define		__AUDIMANAGER_HH__
+
 #include <string>
 #include <map>
 #include <iterator>
 #include <iterator>
 #include <iostream>
 #include <utility>
-#include <SFML\Audio.hpp>
+#include <SFML/Audio.hpp>
 #include "Audios.hh"
-
-class Audios;
 
 class AudioManager
 {
@@ -35,3 +36,5 @@ private:
 	float _pitch;
 	float _volume;
 };
+
+#endif	//	__AUDIMANAGER_HH__
