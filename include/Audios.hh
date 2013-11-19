@@ -2,9 +2,11 @@
 
 typedef enum	e_AudioID
 {
-	MainMenu,
-	GangnamStyle,
-	Rayman
+	Musique_1,
+	Musique_2,
+	Ambiance_Ville,
+	Ambiance_Drone,
+	Main_Menu
 }				AudioID;
 
 typedef enum	e_AudioType
