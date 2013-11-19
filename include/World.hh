@@ -22,7 +22,7 @@ public:
 
   void			setMap(const std::string &mapName);
   void			handleEvents(sf::Event evt);
-  void			update(float elapsedTime);
+  void			update(float elapsedTime, size_t frameCount);
   void			render(sf::RenderTexture &rect);
 
 private:

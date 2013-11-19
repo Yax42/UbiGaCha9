@@ -38,6 +38,7 @@ private:
   bool			_lightDia;
   float			_elapsedTime;
   float			_time;
+  size_t		_frameCount;
 };
 
 #endif // _GAME_HH_

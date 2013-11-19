@@ -58,13 +58,13 @@ void World::handleEvents(sf::Event evt)
   //_tilemap->HandleEvents(evt);
 }
 
-void World::update(float elapsedTime)
+void World::update(float elapsedTime, size_t frameCount)
 {
   _tilemap->Update();
   for (GameObjectVector::iterator it = _gameObjects.begin();
        it != _gameObjects.end(); ++it)
     {
-      (*it)->update(elapsedTime);
+      (*it)->update(elapsedTime, frameCount);
       _quadTree.insert(*it);
     }
   for (GameObjectVector::iterator it = _gameObjects.begin();

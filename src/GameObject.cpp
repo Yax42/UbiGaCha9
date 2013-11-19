@@ -14,12 +14,13 @@ GameObject::GameObject(const Asset &asset, const sf::Vector2f &pos,
 {
 }
 
-void	GameObject::update(float ft)
+void	GameObject::update(float ft, size_t frameCount)
 {
   _backPos = sf::Vector2f(_box.left, _box.top);
   _box.left += _direction.x * ft * _maxSpeed;
   _box.top += _direction.y * ft * _maxSpeed;
-  updateSprite();
+  if ((frameCount % 4) == 0)
+    updateSprite();
 }
 
 void		GameObject::draw(sf::RenderTexture &window)

@@ -20,7 +20,7 @@ public:
 		   const sf::Vector2f &size, float maxSpeed = 100, bool collide = true);
 	~GameObject(){}
 	const sf::FloatRect	&getBox() const {return (_box);};
-	virtual void		update(float dt);
+	virtual void		update(float dt, size_t frameCount);
 	void			draw(sf::RenderTexture &window);
 	void			toBackPosition();
 	bool			collides(const GameObject &obj) const;
