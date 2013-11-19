@@ -6,9 +6,11 @@ GameObject::GameObject(const Asset &asset, const sf::Vector2f &pos,
 		       const sf::Vector2f &size, float maxSpeed, bool collide)
   : _asset(asset),
     _box(pos, size),
+    _backPos(pos),
+    _orientation(DOWN),
     _angle(0.f),
     _collide(collide),
-	_maxSpeed(maxSpeed)
+    _maxSpeed(maxSpeed)
 {
 }
 
@@ -17,11 +19,12 @@ void	GameObject::update(float ft)
   _backPos = sf::Vector2f(_box.left, _box.top);
   _box.left += _direction.x * ft * _maxSpeed;
   _box.top += _direction.y * ft * _maxSpeed;
+  updateSprite();
 }
 
-void		GameObject::draw()
+void		GameObject::draw(sf::RenderTexture &window)
 {
-  _asset.draw(sf::Vector2f(_box.left, _box.top));
+  _asset.draw(sf::Vector2f(_box.left, _box.top), _angle, window);
 }
 
 void	GameObject::toBackPosition()
@@ -49,4 +52,11 @@ void			GameObject::updateSprite()
   else
 	_asset.setCurrentLine(_orientation + 4);
   _asset.update();
+}
+
+bool GameObject::collides(const GameObject &obj) const
+{
+  if (_collide == false || obj._collide == false)
+    return (false);
+  return (_box.intersects(obj._box));
 }

@@ -11,7 +11,7 @@ public:
 	void	setCurrentLine(int cur);
 	void	resetSprite();
 	bool	update();
-	void	draw(const sf::Vector2f &pos);
+	void	draw(const sf::Vector2f &pos, float angle, sf::RenderTexture &window);
 
 private:
 	const AssetDescriptor	&_assetDesc;

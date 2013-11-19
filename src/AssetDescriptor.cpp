@@ -19,5 +19,7 @@ void	AssetDescriptor::addLine(AssetLine &line)
 
 void   AssetDescriptor::addLine(int h, int w, int c)
 {
-	addLine(AssetLine(h, w, c));
+	AssetLine	assetLine(h, w, c);
+
+	addLine(assetLine);
 }

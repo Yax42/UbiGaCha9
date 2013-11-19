@@ -13,8 +13,9 @@ typedef SSIZE_T ssize_t;
 class QuadTree
 {
 public:
-  QuadTree(const sf::FloatRect &bounds, size_t depth = 0);
+  QuadTree(const sf::FloatRect &bounds = sf::FloatRect(), size_t depth = 0);
   ~QuadTree();
+  void			setBounds(const sf::FloatRect &bounds) {_bounds = bounds;}
   void			insert(GameObject *entity);
   void			clear();
   bool			retrieve(GameObjectVector &returnEntities,

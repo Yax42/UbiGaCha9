@@ -8,7 +8,6 @@
 #include "Light.hh"
 #include "sf_tile_engine.h"
 #include "GameObject.hh"
-#include "Controller.hh"
 
 class	Game
 {
@@ -36,7 +35,6 @@ private:
   sf::View              _frontView;
   sftile::SfSmartCamera	_camera;
   World			_world;
-  sftile::SfTilemap	*_tilemap;
   bool			_lightDia;
   float			_elapsedTime;
   float			_time;

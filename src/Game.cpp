@@ -14,8 +14,8 @@ Game::Game(sf::RenderWindow &window)
     _camera(window.getView().getSize().x, window.getView().getSize().y),
     _lightDia(true),
     _elapsedTime(0.f),
-  _time(0.f),
-  _world()//_camera, _playerLight)
+    _world(_camera, _playerLight),
+    _time(0.f)
 {
   if (!_tHalo.loadFromFile("./ressource/textures/halo.png"))
     throw UbiException("Error load halo");
@@ -24,13 +24,7 @@ Game::Game(sf::RenderWindow &window)
   _sceneTexture.create(_window.getView().getSize().x, _window.getView().getSize().y);
   _lightTexture.create(_window.getView().getSize().x, _window.getView().getSize().y);
   _frontView.setCenter(sf::Vector2f(_window.getView().getCenter().x, _window.getView().getCenter().y));
-  _tilemap = _world.loadTilemap("TileMap", "ressource/maps/tuto.tmx");
-
-  if (!_tilemap)
-      throw UbiException("Failed to load tilemap");
-
   _camera.SetTrackMode(sftile::SF_TRACK_KEYS_PRESS);
-  _tilemap->RegisterCamera(&_camera);
 }
 
 Game::~Game()
@@ -38,7 +32,8 @@ Game::~Game()
 
 void	Game::update()
 {
-  //_world.update(_elapsedTime);
+  _foxLight.update();
+  _world.update(_elapsedTime);
 }
 
 bool	Game::progressiveLight(float ratio)
@@ -72,23 +67,34 @@ bool	Game::progressiveLight(float ratio)
 
 void Game::drawLights()
 {
-  static bool	lastProgressif = false;
+  static bool	lastProgressif = true;
 
   _lightTexture.clear(sf::Color(0,0,0));
   _lightTexture.setView(_frontView);
   _lightTexture.draw(_halo);
 
+
+  // Lumiere fox
   _halo.setPosition(_foxLight.position);
   centerOrigin(_halo);
   _halo.setColor(_foxLight.color);
-  this->progressiveLight(1.1);
+  if (lastProgressif && (_foxLight.getNextRatio() !== _foxLight.ratio))
+    {
+      lastProgressif = false;
+      _foxLight.setRatio(_foxLight.ratio + 0.1);
+    }
+  else if (_foxLight.getNextRatio() == _foxLight.ratio)
+    {
+      lastProgressif = true;
+      _foxLight.setRatio(_foxLight.ratio - 0.1);
+    }
   _lightTexture.draw(_halo);
 
+  // Lumiere perso
   _halo.setPosition(_playerLight.position);
   centerOrigin(_halo);
   _halo.setColor(_playerLight.color);
   _halo.setScale(sf::Vector2f(_playerLight.ratio, _playerLight.ratio));
-  //this->progressiveLight(1.1);
   _lightTexture.draw(_halo);
 
   _lightTexture.display();
@@ -107,23 +113,21 @@ void	Game::handleEvent(sf::Event & event)
 
 void Game::draw()
 {
-  _window.clear(sf::Color::Blue);
-  _sceneTexture.clear(sf::Color::Black);
+  _window.clear();
+  _sceneTexture.clear();
   _sceneTexture.setView(_worldView);
   _world.render(_sceneTexture);
-  drawLights();
+  //drawLights();
 
-  sf::Sprite prerendering(_lightTexture.getTexture());
-  _sceneTexture.setView(_frontView);
-  _sceneTexture.draw(prerendering, sf::BlendMultiply);
-  _sceneTexture.display();
+  // sf::Sprite prerendering(_lightTexture.getTexture());
+  // _sceneTexture.setView(_frontView);
+  // _sceneTexture.draw(prerendering, sf::BlendMultiply);
+  // _sceneTexture.display();
 
   sf::Sprite scene(_sceneTexture.getTexture());
 
-  //_window.setView(mFrontView);
-  //_window.draw(mTileMap);
   _window.draw(scene);
-  _window.setView(_window.getView());
+  //_window.setView(_window.getView());
   //_window.draw(*mSceneLayers[Foreground]);
 }
 

@@ -4,6 +4,7 @@
 #include <vector>
 #include <SFML/Graphics.hpp>
 #include "Asset.hh"
+
 enum EDirection
 {
 	DOWN,
@@ -20,9 +21,9 @@ public:
 	~GameObject(){}
 	const sf::FloatRect	&getBox() const {return (_box);};
 	virtual void		update(float dt);
-
-	void			draw();
+	void			draw(sf::RenderTexture &window);
 	void			toBackPosition();
+	bool			collides(const GameObject &obj) const;
 	void			dirX(float x) { _direction.x = x; }
 	void			dirY(float y) { _direction.y = y; }
 
