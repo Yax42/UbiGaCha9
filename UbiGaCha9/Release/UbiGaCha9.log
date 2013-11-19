@@ -1,0 +1,24 @@
+﻿La génération a démarré 18/11/2013 17:13:46.
+     1>Projet "C:\Users\jean-_000\Desktop\UbiGaCha9\UbiGaCha9\UbiGaCha9.vcxproj" sur le nœud 2 (build cible(s)).
+     1>InitializeBuildStatus:
+         Création de "Release\UbiGaCha9.unsuccessfulbuild", car "AlwaysCreate" a été spécifié.
+       ClCompile:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\CL.exe /c /I"C:\Users\jean-_000\Documents\sfml\SFML-2.1\include" /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc100.pdb" /Gd /TP /analyze- /errorReport:prompt main.cpp Scoring.cpp
+         main.cpp
+         Scoring.cpp
+       Link:
+         C:\Program Files (x86)\Microsoft Visual Studio 10.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\jean-_000\Desktop\UbiGaCha9\Release\UbiGaCha9.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"C:\Users\jean-_000\Documents\sfml\SFML-2.1\lib" "sfml-graphics.lib" "sfml-window.lib" "sfml-system.lib" "sfml-audio.lib" "sfml-network.lib" "sfml-main.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /ManifestFile:"Release\UbiGaCha9.exe.intermediate.manifest" /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /DEBUG /PDB:"C:\Users\jean-_000\Desktop\UbiGaCha9\Release\UbiGaCha9.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\jean-_000\Desktop\UbiGaCha9\Release\UbiGaCha9.lib" /MACHINE:X86 Release\main.obj
+         Release\Scoring.obj
+         Génération de code en cours
+         Fin de la génération du code
+         UbiGaCha9.vcxproj -> C:\Users\jean-_000\Desktop\UbiGaCha9\Release\UbiGaCha9.exe
+       Manifest:
+         C:\Program Files (x86)\Microsoft SDKs\Windows\v7.0A\bin\mt.exe /nologo /verbose /outputresource:"C:\Users\jean-_000\Desktop\UbiGaCha9\Release\UbiGaCha9.exe;#1" /manifest Release\UbiGaCha9.exe.intermediate.manifest
+       FinalizeBuildStatus:
+         Suppression du fichier "Release\UbiGaCha9.unsuccessfulbuild".
+         Mise à jour de l'horodatage "Release\UbiGaCha9.lastbuildstate".
+     1>Génération du projet "C:\Users\jean-_000\Desktop\UbiGaCha9\UbiGaCha9\UbiGaCha9.vcxproj" terminée (build cible(s)).
+
+La génération a réussi.
+
+Temps écoulé 00:00:01.69
