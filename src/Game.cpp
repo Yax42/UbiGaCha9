@@ -5,7 +5,9 @@
 Game::Game(sf::RenderWindow &window)
   : _window(window),
     _worldView(window.getDefaultView()),
-    _frontView(sf::Vector2f(0.f, 0.f), sf::Vector2f(window.getSize().x, window.getSize().y))
+    _frontView(sf::Vector2f(0.f, 0.f), sf::Vector2f(window.getSize().x, window.getSize().y)),
+    _playerLight(sf::Vector2f(_window.getSize().x / 2.f, _window.getSize().y / 2.f), 1),
+    _camera(window.getSize().x, window.getSize().y)
 {
 #ifdef _WIN32
   std::string path = "\\ressource\\textures\\halo.png";  
@@ -18,7 +20,13 @@ Game::Game(sf::RenderWindow &window)
   _sceneTexture.create(_window.getSize().x, _window.getSize().y);
   _lightTexture.create(_window.getSize().x, _window.getSize().y);
   _frontView.setCenter(sf::Vector2f(_window.getSize().x / 2.f, _window.getSize().y / 2.f));
-  addLight(sf::Vector2f(window.getSize().x / 2, window.getSize().y / 2), 1);
+  _tilemap = _world.loadTilemap("TileMap", "ressource/map/TileMap.tmx");
+  if (!_tilemap)
+    {
+      throw UbiException("Failed to load tilemap");
+    }
+  _camera.SetTrackMode(sftile::SF_TRACK_KEYS_PRESS);
+  _tilemap->RegisterCamera(&_camera);
 }
 
 Game::~Game()
@@ -26,7 +34,7 @@ Game::~Game()
 
 void	Game::update()
 {
-  // à la pose du moine
+  _world.update();
 }
 
 void Game::drawLights()
@@ -35,20 +43,23 @@ void Game::drawLights()
   _lightTexture.setView(_frontView);
   _lightTexture.draw(_halo);
 
-  for (std::list<Light>::iterator it = _lights.begin(); it != _lights.end(); ++it)
-    {
-      _halo.setPosition((*it).position);
-      _halo.setColor((*it).color);
-      _halo.setScale(sf::Vector2f((*it).ratio, (*it).ratio));
-      _lightTexture.draw(_halo);
-    }
+  _halo.setPosition(_playerLight.position);
+  _halo.setColor(_playerLight.color);
+  _halo.setScale(sf::Vector2f(_playerLight.ratio, _playerLight.ratio));
+  _lightTexture.draw(_halo);
   
   _lightTexture.display();
 }
 
-void Game::addLight(sf::Vector2f position, float radiusRatio)
+void Game::modifLightPlayer(sf::Vector2f position, float radiusRatio)
 {
-  _lights.push_back(Light(position, radiusRatio));
+  _playerLight.position = position;
+  _playerLight.ratio = radiusRatio;
+}
+
+void	Game::handleEvent(sf::Event & event)
+{
+  _world.handleEvents(event);
 }
 
 void Game::draw()
@@ -57,12 +68,7 @@ void Game::draw()
   
   _sceneTexture.clear(sf::Color::Red);
   _sceneTexture.setView(_worldView);
-  // _sceneTexture.draw(_tileMap);
-  // for(int i = 0; i < Foreground; ++i)
-  //   {
-  //     mSceneTexture.draw(*mSceneLayers[i]);
-  //   }
-  // mQuadTree.draw(mSceneTexture);
+  _world.render(_sceneTexture);
   drawLights();
 
   sf::Sprite prerendering(_lightTexture.getTexture());

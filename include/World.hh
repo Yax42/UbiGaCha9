@@ -23,7 +23,7 @@ public:
   sftile::SfTilemap	*getTilemap(std::string id);
   void			handleEvents(sf::Event evt);
   void			update();
-  void			render(sf::RenderWindow &window);
+  void			render(sf::RenderTexture &rect);
 
 private:
   bool loadFromTMX(std::string path);

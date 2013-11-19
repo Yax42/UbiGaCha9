@@ -127,7 +127,7 @@ public:
   /// \param _y Y position to render tile at (in pixels)
   ///
   ////////////////////////////////////////////////////////////
-  void RenderTile(sf::RenderWindow& _window, const unsigned int _id, const float _x, const float _y);
+  void RenderTile(sf::RenderTexture& _window, const unsigned int _id, const float _x, const float _y);
 
 private:
   /// Dimensions of the tiles in pixels

@@ -8,7 +8,7 @@ World::World()
   , tilemaps()
   , current_id("null")
 {
-	cout << "World created" << endl;
+  std::cout << "World created" << std::endl;
 }
 
 World::World(const World& copy)
@@ -70,7 +70,7 @@ void World::update()
   getTilemap(current_id)->Update();
 }
 
-void World::render(sf::RenderWindow &window)
+void World::render(sf::RenderTexture &window)
 {
   getTilemap(current_id)->Render(window);
 }

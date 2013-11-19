@@ -80,7 +80,7 @@ void SfTilemap::Update()
 
 
 ////////////////////////////////////////////////////////////
-void SfTilemap::Render(sf::RenderWindow& _window)
+void SfTilemap::Render(sf::RenderTexture& _window)
 {
   sf::Vector2i offset = camera->GetTileOffset(tile_dimensions.x, tile_dimensions.y);
   sf::IntRect bounds = camera->GetBounds(tile_dimensions.x, tile_dimensions.y);
