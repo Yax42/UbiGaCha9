@@ -145,14 +145,14 @@ void Game::draw()
   _sceneTexture.clear();
   _sceneTexture.setView(_worldView);
   _world.render(_sceneTexture);
-  //drawLights();
+  drawLights();
   _sceneTexture.display();
 
-   //sf::Sprite prerendering(_lightTexture.getTexture());
-   //_sceneTexture.setView(_frontView);
-   //_sceneTexture.draw(prerendering, sf::BlendMultiply);
+   sf::Sprite prerendering(_lightTexture.getTexture());
+   _sceneTexture.setView(_frontView);
+   _sceneTexture.draw(prerendering, sf::BlendMultiply);
    //this->drawRain();
-   //_sceneTexture.display();
+   _sceneTexture.display();
    
   sf::Sprite scene(_sceneTexture.getTexture());
   //scene.rotate(180);

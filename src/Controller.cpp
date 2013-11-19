@@ -86,11 +86,13 @@ void	Controller::lanternHorizontal(int speed)
 
 void	Controller::handleEvent(sf::Event & event)
 {
+	/*
   if (event.type == sf::Event::TextEntered)
     {
       if (event.text.unicode < 128)
 	std::cout << static_cast<char>(event.text.unicode) << std::endl;
     }
+	*/
   if(event.type == sf::Event::JoystickMoved)
     {
       if (event.joystickMove.joystickId > 0)

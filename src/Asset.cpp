@@ -14,7 +14,6 @@ void        Asset::setCurrentLine(int cur)
 {
   if (cur != _curLine)
     {
-		std::cout << "Line: " << cur << "/" << _assetDesc.lines.size() << " height: " << _assetDesc.lines[cur].totalHeight << std::endl;
       _curLine = cur % _assetDesc.lines.size();
       _curFrame = -1;
       resetSprite();
