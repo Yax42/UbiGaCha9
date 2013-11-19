@@ -9,6 +9,7 @@ class FoxSpirit : public GameObject
 public:
 	FoxSpirit(const sf::Vector2f &pos);
 	virtual ~FoxSpirit(){}
+	virtual bool			isDead();
 
 private:
 	static AssetDescriptor s_assetDesc;

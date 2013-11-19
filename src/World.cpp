@@ -15,7 +15,7 @@ World::World(sftile::SfSmartCamera &camera, Light &heroLight)
   loadTilemap("tuto", "./ressource/maps/tuto.tmx");
   setMap("tuto");
   _gameObjects.push_back(_hero);
-  //_gameObjects.push_back(_fox);
+  _gameObjects.push_back(_fox);
   std::cout << "World created" << std::endl;
 }
 

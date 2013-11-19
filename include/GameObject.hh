@@ -35,9 +35,10 @@ public:
 	bool			collides(const GameObject &obj) const;
 	void			dirX(float x) { _direction.x = x; }
 	void			dirY(float y) { _direction.y = y; }
-	bool			isDead();
-	void				giveOrder(int order) { _order = order;}
-	int				calculateCurLine();
+	virtual bool			isDead();
+	void			giveOrder(int order) { _order = order;}
+	void			weapon(int v) { if (_state != ATTACK) _weapon = v;}
+	int				weapon() { return _weapon;}
 
 protected:
 	virtual void	updateSprite();
@@ -46,15 +47,18 @@ protected:
 	sf::FloatRect	_box;
 	sf::Vector2f	_backPos;
 	sf::Vector2f	_direction;
-	EDirection		_orientation;
+	int				_orientation;
 	float			_angle;
 	bool			_collide;
 	float			_maxSpeed;
 	int				_state;
 	int				_stateCount;
 	int				_order;
-public:
 	int				_weapon;
+public:
+
+	int				_type;//0mur 1gentil 2mechant
+	int				_mobType;
 };
 
 typedef std::vector<GameObject*> GameObjectVector;

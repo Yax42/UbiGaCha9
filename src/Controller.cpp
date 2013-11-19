@@ -193,12 +193,12 @@ void	Controller::pressLanternDown(int speed)
 
 void	Controller::pressLanternLeft()
 {
-	this->axisRightX(100);
+	this->axisRightX(-100);
 }
 
 void	Controller::pressLanternRight()
 {
-	this->axisRightX(-100);
+	this->axisRightX(100);
 }
 
 void	Controller::pressLanternUp()
