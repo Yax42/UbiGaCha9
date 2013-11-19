@@ -16,3 +16,8 @@ void	AssetDescriptor::addLine(AssetLine &line)
 		line.totalHeight = lines[lines.size() - 1].totalHeight + lines[lines.size() - 1].height;
 	lines.push_back(line);
 }
+
+void   AssetDescriptor::addLine(int h, int w, int c)
+{
+	addLine(AssetLine(h, w, c));
+}

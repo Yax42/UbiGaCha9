@@ -1,9 +1,13 @@
 #include "Hero.hh"
 
-const AssetDescriptor Hero::s_assetDesc("ressource/Hero.png");
+const AssetDescriptor Hero::s_assetDesc("ressource/fox.png");
 
 void		Hero::initAsset()
 {
+	s_assetDesc.addLine(32, 8, 4);
+	s_assetDesc.addLine(32, 8, 4);
+	s_assetDesc.addLine(32, 8, 4);
+	s_assetDesc.addLine(32, 8, 4);
 }
 
 Hero::Hero(sf::Vector2f &pos)

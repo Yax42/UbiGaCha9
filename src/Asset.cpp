@@ -11,9 +11,12 @@ Asset::Asset(const AssetDescriptor &assetDesc)
 
 void	Asset::setCurrentLine(int cur)
 {
-	_curLine = _assetDesc.lines.size() % cur;
-	_curFrame = -1;
-	resetSprite();
+	if (cur != _curLine)
+	{
+		_curLine = _assetDesc.lines.size() % cur;
+		_curFrame = -1;
+		resetSprite();
+	}
 }
 
 void	Asset::resetSprite()
@@ -28,15 +31,16 @@ void	Asset::resetSprite()
 	_sprite.setOrigin(_assetDesc.lines[_curLine].width, _assetDesc.lines[_curLine].height);
 }
 
-void	Asset::update()
+bool	Asset::update()
 {
 	_curFrame++;
+	bool	result = (_curFrame == _assetDesc.lines[_curLine].count);
 	_curFrame %= _assetDesc.lines[_curLine].count;
 	resetSprite();
+	return (result);
 }
 
-void	Asset::draw(const sf::Vector2f &pos, float angle)
+void	Asset::draw(const sf::Vector2f &pos)
 {
-  _sprite.setRotation(angle);
   _sprite.setPosition(pos);
 }

@@ -10,9 +10,6 @@ public:
 	FoxSpirit(sf::Vector2f &pos);
 	virtual ~FoxSpirit(){}
 
-
-
-
 private:
 	const static AssetDescriptor s_assetDesc;
 public:
