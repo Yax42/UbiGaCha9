@@ -14,6 +14,7 @@ void        Asset::setCurrentLine(int cur)
 {
   if (cur != _curLine)
     {
+		std::cout << "Line: " << cur << "/" << _assetDesc.lines.size() << " height: " << _assetDesc.lines[cur].totalHeight << std::endl;
       _curLine = cur % _assetDesc.lines.size();
       _curFrame = -1;
       resetSprite();
@@ -45,4 +46,9 @@ void        Asset::draw(const sf::Vector2f &pos, float angle, sf::RenderTexture 
 {
   _sprite.setPosition(pos);
   window.draw(_sprite);
+}
+
+int		Asset::getCount(int line)
+{
+	return (_assetDesc.lines[line %_assetDesc.lines.size()].totalHeight);
 }

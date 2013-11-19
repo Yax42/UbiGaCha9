@@ -28,17 +28,17 @@ void	EventPlayer::axisRightY(int speed)
 
 void	EventPlayer::pressA()
 {
-  std::cout << "Press A" << std::endl;
+	_monk.giveOrder(GameObject::ATTACK);
 }
 
 void	EventPlayer::pressB()
 {
-  std::cout << "Press B" << std::endl;
+	_monk.giveOrder(GameObject::ATTACK);
 }
 
 void	EventPlayer::pressX()
 {
-  std::cout << "Press X" << std::endl;
+	_monk._weapon = !_monk._weapon;
 }
 
 void	EventPlayer::pressY()

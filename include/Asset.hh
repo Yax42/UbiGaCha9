@@ -12,6 +12,7 @@ public:
 	void	resetSprite();
 	bool	update();
 	void	draw(const sf::Vector2f &pos, float angle, sf::RenderTexture &window);
+	int		getCount(int line);
 
 private:
 	const AssetDescriptor	&_assetDesc;

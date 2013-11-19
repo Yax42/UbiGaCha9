@@ -163,12 +163,12 @@ void	Controller::pressPlayerRight()
 
 void	Controller::pressPlayerUp()
 {
-  std::cout << "PressPlayerUp speed : " << 100 << std::endl;
+	this->axisLeftY(-100);
 }
 
 void	Controller::pressPlayerDown()
 {
-  std::cout << "PressPlayerDown speed : " << 100 << std::endl;
+	this->axisLeftY(100);
 }
 
 void	Controller::pressLanternLeft(int speed)

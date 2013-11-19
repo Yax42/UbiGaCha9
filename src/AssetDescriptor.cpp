@@ -12,7 +12,7 @@ AssetDescriptor::AssetDescriptor(const std::string &name)
 
 void	AssetDescriptor::addLine(AssetLine &line)
 {
-	if (lines.size() > 1)
+	if (lines.size() > 0)
 		line.totalHeight = lines[lines.size() - 1].totalHeight + lines[lines.size() - 1].height;
 	lines.push_back(line);
 }
