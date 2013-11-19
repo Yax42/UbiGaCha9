@@ -6,6 +6,7 @@
 Asset::Asset(const AssetDescriptor &assetDesc)
   : _assetDesc(assetDesc), _curLine(0), _curFrame(0)
 {
+	_sprite.setTexture(assetDesc.texture);
 }
 
 
