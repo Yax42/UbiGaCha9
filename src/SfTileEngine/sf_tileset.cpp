@@ -61,7 +61,7 @@ const int SfTileset::GetNumTiles()
 }
 
 ////////////////////////////////////////////////////////////
-void SfTileset::RenderTile(sf::RenderWindow& _window, const unsigned int _id, const float _x, const float _y)
+void SfTileset::RenderTile(sf::RenderTexture& _window, const unsigned int _id, const float _x, const float _y)
 {
   std::vector<std::pair<int, sf::Texture> >::iterator it = tileset_images.begin();
   SfTile tile = GetTile(_id);

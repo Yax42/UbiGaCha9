@@ -166,7 +166,7 @@ public:
   /// \param _window SFML window to render to
   ///
   ////////////////////////////////////////////////////////////
-  void Render(sf::RenderWindow& _window);
+  void Render(sf::RenderTexture& _window);
 
 
 private:

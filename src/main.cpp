@@ -2,10 +2,12 @@
 #include "sf_tile_engine.h"
 #include "Controller.hh"
 #include "World.hh"
+#include "Game.hh"
 
 int main()
 {
   sf::RenderWindow	window(sf::VideoMode(800, 600), "My window");
+  /*
   sftile::SfSmartCamera	camera(800, 600);
   World			world;
   sftile::SfTilemap	*tilemap = world.loadTilemap("TileMap", "ressource/map/TileMap.tmx");
@@ -17,6 +19,9 @@ int main()
     }
   camera.SetTrackMode(sftile::SF_TRACK_KEYS_PRESS);
   tilemap->RegisterCamera(&camera);
+  */
+  Game game(window);
+
   window.setJoystickThreshold(15);
   while (window.isOpen())
     {
@@ -25,11 +30,14 @@ int main()
 	{
 	  if (event.type == sf::Event::Closed)
 	    window.close();
-	  world.handleEvents(event);
+	  //world.handleEvents(event);
+	  game.handleEvent(event);
 	}
-      world.update();
+      game.update();
+      //world.update();
       window.clear();
-      world.render(window);
+      //world.render(window);
+      game.draw();
       window.display();
     }
   return (0);
