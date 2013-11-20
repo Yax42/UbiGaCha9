@@ -133,7 +133,7 @@
   </object>
  </objectgroup>
  <objectgroup name="playerspawn" width="10" height="10">
-  <object x="192" y="300">
+  <object x="513" y="257">
    <ellipse/>
   </object>
  </objectgroup>

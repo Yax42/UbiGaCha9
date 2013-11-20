@@ -50,7 +50,7 @@ void		Hero::initAsset()
 	s_assetDesc.addLine(32, 24, 4);
 	s_assetDesc.addLine(32, 24, 4);
 	s_assetDesc.addLine(32, 24, 4);
-	s_assetDesc.addLine(32, 24, 4);
+	s_assetDesc.addLine(48, 24, 4);
 
 	//ATTACK WEAPON 3
 	s_assetDesc.addLine(32, 16, 8);
