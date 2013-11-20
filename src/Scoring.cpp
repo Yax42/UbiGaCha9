@@ -8,8 +8,13 @@ Scoring::Scoring(sf::IpAddress &ip, unsigned short port, sf::RenderWindow &windo
 	if (!_font.loadFromFile(path))
 		throw UbiException("Error load Font");
 
-	_select.loadFromFile("./ressource/textures/quit.png");
+	if (!_select.loadFromFile("./ressource/textures/quit.png"))
+		throw UbiException("Error load quit");
+	if (!_music.openFromFile("./ressource/sounds/Musique_02.wav"))
+		throw UbiException("Error load leaderMusic");
 	setScoreList();
+	_music.setLoop(true);
+	_music.play();
 }
 
 

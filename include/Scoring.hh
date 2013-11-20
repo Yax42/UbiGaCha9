@@ -3,6 +3,7 @@
 
 #include <SFML/Network.hpp>
 #include <SFML/System.hpp>
+#include <SFML/Audio.hpp>
 #include <list>
 #include <iostream>
 #include "ILayer.hh"
@@ -35,6 +36,7 @@ private:
 	sf::Text	_text;
 	State _state;
 	sf::Texture	_select;
+	sf::Music _music;
 };
 
 #endif	//	__SCORING_H__
