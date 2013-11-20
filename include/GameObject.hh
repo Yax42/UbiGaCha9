@@ -42,10 +42,10 @@ public:
 	void			weapon(int v) { if (_state != ATTACK) _weapon = v;}
 	int			weapon() { return _weapon;}
 
-	void update(float ft, size_t frameCount);
-	void  draw(sf::RenderTexture &window);
-	void toBackPosition();
-	bool collides(const GameObject &obj) const;
+	virtual void update(float ft, size_t frameCount);
+	virtual void  draw(sf::RenderTexture &window);
+	virtual void toBackPosition();
+	virtual bool collides(const GameObject &obj) const;
 
 protected:
 	virtual void	updateSprite();
