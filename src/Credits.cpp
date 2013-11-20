@@ -14,7 +14,7 @@ Credits::Credits(sf::RenderWindow &window)
 		throw UbiException("Error load credits");
 	if (!_select.loadFromFile("./ressource/textures/quit.png"))
 			throw UbiException("Error load quit");
-	if (!_music.openFromFile("./ressource/sounds/Crédits .wav"))
+	if (!_music.openFromFile("./ressource/sounds/Credits.wav"))
 	throw UbiException("Error load Crédits .wav");
 	_music.setLoop(true);
 	_music.play();

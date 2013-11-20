@@ -3,6 +3,7 @@
 #include "Hero.hh"
 #include "FoxSpirit.hh"
 #include "Utils.hh"
+#include "SoundManager.hh"
 #include <iostream>
 
 bool Game::_run = false;
@@ -50,6 +51,9 @@ Game::Game(sf::RenderWindow &window)
   _musicFade.play();
   _ambianceFade.play();
   _ambiance.setLoop(true);
+
+  SoundManager::getInstance().getSound("ressource/sounds/Cloche_01.wav").setLoop(true);
+  SoundManager::getInstance().getSound("ressource/sounds/Cloche_01.wav").play();
 }
 
 Game::~Game()
@@ -61,10 +65,12 @@ void	Game::update()
 {
   _foxLight.update();
   _world.update(_elapsedTime, _frameCount);
+
   if (_musicFade.getStatus() == sf::Music::Stopped && _music.getStatus() != sf::Music::Playing)
     _music.play();
   if (_ambianceFade.getStatus() == sf::Music::Stopped && _ambiance.getStatus() != sf::Music::Playing)
     _ambiance.play();
+
 }
 
 void Game::drawLights()
