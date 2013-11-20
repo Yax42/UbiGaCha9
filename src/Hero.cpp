@@ -42,7 +42,7 @@ void		Hero::initAsset()
 }
 
 Hero::Hero(const sf::Vector2f &pos)
-  : GameObject(Asset(s_assetDesc), pos, sf::Vector2f(32, 32))
+  : GameObject(Asset(s_assetDesc), pos, sf::Vector2f(32, 32), 75)
 {
 	_attackBoxState = NO_ATTACK;
 	_type = 1;
@@ -74,6 +74,7 @@ void			Hero::updateSprite()
 	  }
 	  else if (xAbs + yAbs > 0)
 	  {
+
 		  if (xAbs > yAbs)
 			  _orientation = xSign > 0 ? RIGHT : LEFT;
 		  else

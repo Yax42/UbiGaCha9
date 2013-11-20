@@ -1,3 +1,4 @@
+#include <memory>
 #include "SfTileEngine/sf_tilemap.h"
 #include "SfTileEngine/sf_tileset.h"
 #include "SfTileEngine/sf_tilemap_loader.h"
@@ -5,17 +6,19 @@
 #include "Hero.hh"
 #include "FoxSpirit.hh"
 
+Hero *World::hero = nullptr;
+
 World::World(sftile::SfSmartCamera &camera, Light &heroLight)
   : _camera(camera),
-    _heroLight(heroLight)
+    _heroLight(heroLight),
+    _fox(nullptr),
+    _control(nullptr)
 {
-  _hero = new Hero(sf::Vector2f(40, 40));
-  _fox = new FoxSpirit(sf::Vector2f(140, 140));
-  _control = new Controller(*_hero, *_fox);
+  hero = new Hero;
+  _fox = new FoxSpirit;
+  _control = new Controller(*hero, *_fox);
   loadTilemap("tuto", "./ressource/maps/tuto.tmx");
   setMap("tuto");
-  _gameObjects.push_back(_hero);
-  _gameObjects.push_back(_fox);
   std::cout << "World created" << std::endl;
 }
 
@@ -23,6 +26,9 @@ World::~World()
 {
   clearWorld();
   unloadTileMaps();
+  delete _control;
+  delete _fox;
+  delete hero;
 }
 
 void World::setMap(const std::string &mapName)
@@ -67,21 +73,17 @@ void World::update(float elapsedTime, size_t frameCount)
       (*it)->update(elapsedTime, frameCount);
       _quadTree.insert(*it);
     }
+  hero->update(elapsedTime, frameCount);
+  _quadTree.insert(hero);
+  _fox->update(elapsedTime, frameCount);
+  _quadTree.insert(_fox);
   for (GameObjectVector::iterator it = _gameObjects.begin();
        it != _gameObjects.end(); ++it)
-    {
-      GameObjectVector	returnObjects;
-
-      if (_quadTree.retrieve(returnObjects, *it))
-	{
-	  for (GameObjectVector::iterator it2 = returnObjects.begin();
-	       it2 != returnObjects.end(); ++it2)
-	    if ((*it)->collides(**it2))
-	      (*it)->toBackPosition();
-	}
-    }
+    collideObject(*it);
+  collideObject(hero);
+  collideObject(_fox);
   _quadTree.clear();
-  _heroLight.position = _hero->getPos();
+  _heroLight.position = hero->getPos();
   sf::Vector2f foxPos = _fox->getPos();
   _camera.SetCenterPosition(foxPos.x, foxPos.y);
 }
@@ -95,6 +97,8 @@ void World::render(sf::RenderTexture &window)
   for (GameObjectVector::iterator it = _gameObjects.begin();
        it != _gameObjects.end(); ++it)
     (*it)->draw(window);
+  hero->draw(window);
+  _fox->draw(window);
 }
 
 void World::loadTilemap(const std::string &mapName, const std::string &path)
@@ -137,6 +141,19 @@ void World::unloadTileMaps()
 bool World::mapExists(const std::string &mapName)
 {
   return (_tilemaps.find(mapName) != _tilemaps.end());
+}
+
+void World::collideObject(GameObject *obj)
+{
+  GameObjectVector	returnObjects;
+
+  if (_quadTree.retrieve(returnObjects, obj))
+    {
+      for (GameObjectVector::iterator it = returnObjects.begin();
+	   it != returnObjects.end(); ++it)
+	if (obj->collides(**it))
+	  obj->toBackPosition();
+    }
 }
 
 void World::getWalls(const sftile::priv::SfObjectLayer &walls)
