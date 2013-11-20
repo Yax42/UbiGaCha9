@@ -31,7 +31,7 @@ public:
 	const sf::FloatRect	&getBox() const {return (_box);};
 	virtual void		update(float dt, size_t frameCount);
 	void			draw(sf::RenderTexture &window);
-	void			toBackPosition();
+	virtual void			toBackPosition();
 	bool			collides(const GameObject &obj) const;
 	sf::Vector2f		getPos() const {return sf::Vector2f(_box.left, _box.top);}
 	const sf::Vector2f	&getDir() const {return _direction;}

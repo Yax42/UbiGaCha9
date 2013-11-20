@@ -1,4 +1,6 @@
 #include <iostream>
+#include "Arrow.hh"
+#include "Kamea.hh"
 #include "Hero.hh"
 
 AssetDescriptor Hero::s_assetDesc("ressource/textures/monk.png");
@@ -149,6 +151,19 @@ void	Hero::update(float ft, size_t frameCount)
 				  _direction.x = 0;
 				  _direction.y = 0;
 			  }
+		  }
+
+	  }
+	if (_weapon == 2)
+	{
+		  _attackBoxState = NO_ATTACK;
+		  if ((frameCount % 8) == 0)
+		  {
+			  if (_stateCount == 0)
+			  {
+				  new Arrow(getPos(), _direction);
+			  }
+			updateSprite();
 		  }
 	  }
   }

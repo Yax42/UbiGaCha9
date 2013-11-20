@@ -11,6 +11,7 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="..\src\Arrow.cpp" />
     <ClCompile Include="..\src\Asset.cpp" />
     <ClCompile Include="..\src\AssetDescriptor.cpp" />
     <ClCompile Include="..\src\AudioManager.cpp" />
@@ -22,6 +23,7 @@
     <ClCompile Include="..\src\Game.cpp" />
     <ClCompile Include="..\src\GameObject.cpp" />
     <ClCompile Include="..\src\Hero.cpp" />
+    <ClCompile Include="..\src\Kamea.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\MainMenuLayer.cpp" />
     <ClCompile Include="..\src\Mob.cpp" />
@@ -45,6 +47,7 @@
     <ClCompile Include="..\src\World.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="..\include\Arrow.hh" />
     <ClInclude Include="..\include\Asset.hh" />
     <ClInclude Include="..\include\AssetDescriptor.hh" />
     <ClInclude Include="..\include\AudioManager.hh" />
@@ -57,6 +60,7 @@
     <ClInclude Include="..\include\GameObject.hh" />
     <ClInclude Include="..\include\Hero.hh" />
     <ClInclude Include="..\include\ILayer.hh" />
+    <ClInclude Include="..\include\Kamea.hh" />
     <ClInclude Include="..\include\Light.hh" />
     <ClInclude Include="..\include\MainMenuLayer.hh" />
     <ClInclude Include="..\include\Mob.hh" />
