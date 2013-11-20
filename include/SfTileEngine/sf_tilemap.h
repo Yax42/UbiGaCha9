@@ -168,7 +168,7 @@ public:
   ////////////////////////////////////////////////////////////
   void Render(sf::RenderTexture& _window);
 
-  const vector<priv::SfObjectLayer> &getObjectLayers() const {return (object_layers);}
+  vector<priv::SfObjectLayer> &getObjectLayers() {return (object_layers);}
 
 private:
   /// Camera registered to the tile map

@@ -27,20 +27,23 @@ public:
 public:
 	GameObject(const Asset &asset, const sf::Vector2f &pos,
 		   const sf::Vector2f &size, float maxSpeed = 100, bool collide = true);
-	~GameObject(){}
+	virtual ~GameObject(){}
+
 	const sf::FloatRect	&getBox() const {return (_box);};
-	virtual void		update(float dt, size_t frameCount);
-	void			draw(sf::RenderTexture &window);
-	void			toBackPosition();
-	bool			collides(const GameObject &obj) const;
+	void			setPos(const sf::Vector2f &v) {_box.left = v.x; _box.top = v.y;}
 	sf::Vector2f		getPos() const {return sf::Vector2f(_box.left, _box.top);}
 	const sf::Vector2f	&getDir() const {return _direction;}
 	void			dirX(float x) { _direction.x = x; }
 	void			dirY(float y) { _direction.y = y; }
+
+	virtual void		update(float dt, size_t frameCount);
+	void			draw(sf::RenderTexture &window);
+	void			toBackPosition();
+	bool			collides(const GameObject &obj) const;
 	virtual bool			isDead();
 	void			giveOrder(int order) { _order = order;}
 	void			weapon(int v) { if (_state != ATTACK) _weapon = v;}
-	int				weapon() { return _weapon;}
+	int			weapon() { return _weapon;}
 
 protected:
 	virtual void	updateSprite();
