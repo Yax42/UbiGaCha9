@@ -10,12 +10,14 @@ void		Arrow::initAsset()
 	s_assetDesc.addLine(3, 18, 2);
 }
 
-Arrow::Arrow(const sf::Vector2f &pos, const sf::Vector2f &dir)
+Arrow::Arrow(const sf::Vector2f &pos, float orientation)
   : GameObject(Asset(s_assetDesc), pos, sf::Vector2f(2, 2), 130)
 {
+	_asset.setCurrentLine(orientation);
+    _asset.update();
 	_alive = true;
-	_type = 3;
-	_direction = dir;
+	_type = 4;
+	_direction = sf::Vector2f(orientation == RIGHT ? 1 : orientation == LEFT ? -1 : 0,  orientation == DOWN ? 1 : orientation == UP ? -1 : 0);
 }
 
 void	Arrow::toBackPosition()

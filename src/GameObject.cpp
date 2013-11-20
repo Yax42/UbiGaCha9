@@ -15,7 +15,7 @@ GameObject::GameObject(const Asset &asset, const sf::Vector2f &pos,
 	_state(STAND),
 	_stateCount(0),
 	_order(-1),
-	_weapon(0)
+	_weapon(2)
 {
 	_asset._size = size;
 	_type = 0;
@@ -63,6 +63,8 @@ void			GameObject::updateSprite()
 bool GameObject::collides(const GameObject &obj) const
 {
   if (_collide == false || obj._collide == false)
+    return (false);
+  if ((_type == 4 && obj._type == 1) || (_type == 1 && obj._type == 4))
     return (false);
   return (_box.intersects(obj._box));
 }

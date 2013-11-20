@@ -31,6 +31,7 @@
     <ClCompile Include="..\src\Mob1.cpp" />
     <ClCompile Include="..\src\Mob2.cpp" />
     <ClCompile Include="..\src\Mob3.cpp" />
+    <ClCompile Include="..\src\PlayerInventory.cpp" />
     <ClCompile Include="..\src\QuadTree.cpp" />
     <ClCompile Include="..\src\SfTileEngine\sf_camera.cpp" />
     <ClCompile Include="..\src\SfTileEngine\sf_object.cpp" />
@@ -68,6 +69,7 @@
     <ClInclude Include="..\include\Mob1.hh" />
     <ClInclude Include="..\include\Mob2.hh" />
     <ClInclude Include="..\include\Mob3.hh" />
+    <ClInclude Include="..\include\PlayerInventory.hh" />
     <ClInclude Include="..\include\QuadTree.hh" />
     <ClInclude Include="..\include\SfTileEngine\sf_camera.h" />
     <ClInclude Include="..\include\SfTileEngine\sf_dll_macro.h" />

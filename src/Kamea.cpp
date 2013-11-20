@@ -1,20 +1,23 @@
 #include "Kamea.hh"
 
-AssetDescriptor Kamea::s_assetDesc("ressource/textures/arrow.png");
+AssetDescriptor Kamea::s_assetDesc("ressource/textures/kamea.png");
 
 void		Kamea::initAsset()
 {
-	s_assetDesc.addLine(32, 16, 1);
-	s_assetDesc.addLine(32, 16, 1);
-	s_assetDesc.addLine(32, 16, 1);
-	s_assetDesc.addLine(32, 16, 1);
+	s_assetDesc.addLine(64, 48, 5);
+	s_assetDesc.addLine(64, 48, 5);
+	s_assetDesc.addLine(48, 64, 6);
+	s_assetDesc.addLine(48, 64, 6);
 }
 
-Kamea::Kamea(const sf::Vector2f &pos)
-  : GameObject(Asset(s_assetDesc), pos, sf::Vector2f(50, 50), 0)
+Kamea::Kamea(const sf::Vector2f &pos, float orientation)
+  : GameObject(Asset(s_assetDesc), pos, sf::Vector2f(2, 2), 130)
 {
-	_lifeTime = 20;
-	_type = 4;
+	_asset.setCurrentLine(orientation);
+    _asset.update();
+	_lifeTime = 6;
+	_type = 5;
+	_direction = sf::Vector2f(0, 0);
 }
 
 void	Kamea::toBackPosition()

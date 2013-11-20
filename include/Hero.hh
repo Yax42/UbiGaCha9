@@ -32,6 +32,7 @@ public:
 	int				_oldOrient;
   static std::vector<bool>	_listWeapons;
   static std::vector<int>	_listEquip;
+  int				_prevWalk;
 };
 
 #endif
