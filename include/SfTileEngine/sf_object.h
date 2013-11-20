@@ -97,7 +97,6 @@ public:
   ////////////////////////////////////////////////////////////
   string GetStringType();
 
-  string GetContent();
 
   ////////////////////////////////////////////////////////////
   /// \brief Returns the position of the object
@@ -170,8 +169,6 @@ private:
 
   /// Custom string literal type - arbitrary string for end-user use
   string string_type;
-
-  string content;
 
   /// Position of the object (in pixels)
   sf::Vector2i position;

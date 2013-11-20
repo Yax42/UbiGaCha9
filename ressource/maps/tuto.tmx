@@ -142,9 +142,15 @@
  </objectgroup>
  <objectgroup name="ennemies" width="10" height="10">
   <object x="192" y="320">
+   <properties>
+    <property name="id" value="2"/>
+   </properties>
    <ellipse/>
   </object>
   <object x="319" y="321">
+   <properties>
+    <property name="id" value="1"/>
+   </properties>
    <ellipse/>
   </object>
  </objectgroup>

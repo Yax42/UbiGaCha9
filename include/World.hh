@@ -27,6 +27,7 @@ public:
   void			render(sf::RenderTexture &rect);
 
   static Hero		*hero;
+  static std::map<std::string, sftile::SfTilemap*>	tilemaps;
 
 private:
   void loadTilemap(const std::string &mapName, const std::string &path);
@@ -35,15 +36,14 @@ private:
   bool mapExists(const std::string &mapName);
   void collideObject(GameObject *obj);
 
-  void getWalls(const sftile::priv::SfObjectLayer &walls);
-  void getEnnemies(const sftile::priv::SfObjectLayer &ennemies);
-  void getObjects(const sftile::priv::SfObjectLayer &objects);
-  void getPlayerSpawn(const sftile::priv::SfObjectLayer &playerSpawn);
-  void getExit(const sftile::priv::SfObjectLayer &playerSpawn);
+  void getWalls(sftile::priv::SfObjectLayer &walls);
+  void getEnnemies(sftile::priv::SfObjectLayer &ennemies);
+  void getObjects(sftile::priv::SfObjectLayer &objects);
+  void getPlayerSpawn(sftile::priv::SfObjectLayer &playerSpawn);
+  void getExit(sftile::priv::SfObjectLayer &playerSpawn);
 
   sftile::priv::SfTilemapLoader			_loader;
   sftile::SfTilemap				*_tilemap;
-  std::map<std::string, sftile::SfTilemap*>	_tilemaps;
   std::string					_currentId;
   QuadTree					_quadTree;
   GameObjectVector				_gameObjects;
