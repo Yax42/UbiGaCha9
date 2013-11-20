@@ -102,6 +102,14 @@ void			Hero::updateSprite()
   {
 	  if (_order > -1)
 	  {
+		  if (_order == GameObject::ATTACK2)
+		  {
+			_order = ATTACK;
+			_weapon = _listEquip[1];
+		  }
+		  else if (_order == GameObject::ATTACK2)
+			_weapon = _listEquip[0];
+
 		_oldOrient = _orientation;
 		_state = _order;
 		_stateCount = _asset.getCount(calculateCurLine());
@@ -141,7 +149,10 @@ void	Hero::update(float ft, size_t frameCount)
 		  _attackBoxState = ATTACK0;
 		  _attackBox = sf::FloatRect(_box.left - 15, _box.top - 15, _box.width + 30, _box.height + 30);
 		  if ((frameCount % 4) == 0)
+		  {
 			updateSprite();
+			  _attackBoxState = NO_ATTACK;
+		  }
 	  }
 	  else if (_weapon == 1)
 	  {
@@ -202,14 +213,17 @@ void	Hero::update(float ft, size_t frameCount)
 	  }
 	else if (_weapon == 3)
 	{
+			_direction.y = 0;
+			_direction.x = 0;
 		  _attackBoxState = NO_ATTACK;
-		  int	framing = 4;
+		  int	framing = 6;
 
 		  if ((frameCount % framing) == 0)
 		  {
 			  if (_stateCount == 1)
 			  {
-				 World::gameObjects->push_back(new Kamea(getPos(), _orientation));
+				//_attackBox = sf::FloatRect(_box.left - 15, _box.top - 15, _box.width + 30, _box.height + 30);
+				 World::gameObjects->push_back(new Kamea(getPos() + sf::Vector2f(signX * 25, signY * 25)));
 			  }
 			updateSprite();
 		  }

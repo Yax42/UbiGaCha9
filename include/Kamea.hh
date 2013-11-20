@@ -7,7 +7,7 @@
 class Kamea : public GameObject
 {
 public:
-	Kamea(const sf::Vector2f &pos, float orientation);
+	Kamea(const sf::Vector2f &pos);
 	virtual ~Kamea(){}
 	virtual bool			isDead();
 

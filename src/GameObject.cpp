@@ -15,7 +15,7 @@ GameObject::GameObject(const Asset &asset, const sf::Vector2f &pos,
 	_state(STAND),
 	_stateCount(0),
 	_order(-1),
-	_weapon(2)
+	_weapon(3)
 {
 	_asset._size = size;
 	_type = 0;
