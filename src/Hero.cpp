@@ -1,4 +1,5 @@
 #include <iostream>
+#include "World.hh"
 #include "Arrow.hh"
 #include "Kamea.hh"
 #include "Hero.hh"
@@ -21,6 +22,22 @@ void		Hero::initAsset()
 	s_assetDesc.addLine(32, 16, 4);
 	s_assetDesc.addLine(32, 16, 4);
 	//ATTACK WEAPON 0
+	s_assetDesc.addLine(32, 24, 4);
+	s_assetDesc.addLine(32, 24, 4);
+	s_assetDesc.addLine(32, 32, 4);
+	s_assetDesc.addLine(32, 32, 4);
+
+	//STAND WEAPON 1
+	s_assetDesc.addLine(32, 16, 2);
+	s_assetDesc.addLine(32, 16, 2);
+	s_assetDesc.addLine(32, 16, 2);
+	s_assetDesc.addLine(32, 16, 2);
+	//WALK WEAPON 1
+	s_assetDesc.addLine(32, 16, 2);
+	s_assetDesc.addLine(32, 16, 2);
+	s_assetDesc.addLine(32, 16, 2);
+	s_assetDesc.addLine(32, 16, 2);
+	//ATTACK WEAPON 1
 	s_assetDesc.addLine(32, 24, 4);
 	s_assetDesc.addLine(32, 24, 4);
 	s_assetDesc.addLine(32, 32, 4);
@@ -161,7 +178,7 @@ void	Hero::update(float ft, size_t frameCount)
 		  {
 			  if (_stateCount == 0)
 			  {
-				  new Arrow(getPos(), _direction);
+				 World::gameObjects->push_back(new Arrow(getPos(), _direction));
 			  }
 			updateSprite();
 		  }

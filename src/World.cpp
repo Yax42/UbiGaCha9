@@ -12,6 +12,7 @@
 
 Hero *World::hero = nullptr;
 std::map<std::string, sftile::SfTilemap*> World::tilemaps;
+GameObjectVector							*World::gameObjects = nullptr;
 
 World::World(sftile::SfSmartCamera &camera, Light &heroLight)
   : _camera(camera),
@@ -20,6 +21,7 @@ World::World(sftile::SfSmartCamera &camera, Light &heroLight)
     _control(nullptr)
 {
   hero = new Hero;
+  gameObjects = &_gameObjects;
   _fox = new FoxSpirit;
   _control = new Controller(*hero, *_fox);
   loadTilemap("tuto", "./ressource/maps/tuto.tmx");

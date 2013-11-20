@@ -26,8 +26,9 @@ public:
   void			update(float elapsedTime, size_t frameCount);
   void			render(sf::RenderTexture &rect);
 
-  static Hero		*hero;
+  static Hero										*hero;
   static std::map<std::string, sftile::SfTilemap*>	tilemaps;
+  static GameObjectVector							*gameObjects;
 
 private:
   void loadTilemap(const std::string &mapName, const std::string &path);
