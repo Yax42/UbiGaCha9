@@ -10,6 +10,7 @@
 #include "Light.hh"
 #include "sf_tile_engine.h"
 #include "GameObject.hh"
+#include "PlayerInventory.hh"
 
 class	Game
 {
@@ -50,6 +51,8 @@ private:
   sf::Music		_ambianceFade;
   sf::Music		_ambiance;
   int			_nbMusic;
+  PlayerInventory	_inventory;
+  bool			_openInventory;
 };
 
 #endif // _GAME_HH_

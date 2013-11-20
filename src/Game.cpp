@@ -15,7 +15,8 @@ Game::Game(sf::RenderWindow &window)
     _world(_camera, _playerLight),
     _time(0.f),
       _frameCount(0),
-  _nbMusic(0)
+    _nbMusic(0),
+    _openInventory(false)
 {
   if (!_tHaloFox.loadFromFile("./ressource/textures/haloFox.png"))
     throw UbiException("Failed to load haloFox.png");
@@ -111,6 +112,29 @@ void Game::modifLightPlayer(sf::Vector2f position, float radiusRatio)
 void	Game::handleEvent(sf::Event & event)
 {
   _world.handleEvents(event);
+
+  if (_openInventory)
+    _inventory.handleEvent(event);
+  if (event.type == sf::Event::JoystickButtonPressed)
+    {
+      if (event.joystickButton.button == 7)
+	{
+	  if (_openInventory)
+	    _openInventory = false;
+	  else
+	    _openInventory = true;
+	}
+    }
+  else if (event.type == sf::Event::KeyPressed)
+    {
+      if (event.key.code == sf::Keyboard::Return)
+	{
+	  if (_openInventory)
+	    _openInventory = false;
+	  else
+	    _openInventory = true;
+	}
+    }
 }
 
 void	Game::drawRain()
@@ -131,19 +155,22 @@ void	Game::drawRain()
    _sceneTexture.display();
 }
 
+
 void Game::draw()
 {
   _window.clear();
   _sceneTexture.clear();
   _sceneTexture.setView(_window.getView());
   _world.render(_sceneTexture);
-  this->drawRain();
+  //this->drawRain();
   drawLights();
   _sceneTexture.display();
 
   sf::Sprite prerendering(_lightTexture.getTexture());
   prerendering.setPosition(_camera.GetPosition());
   _sceneTexture.draw(prerendering, sf::BlendMultiply);
+  if (_openInventory)
+    _inventory.draw(_sceneTexture);
   _sceneTexture.display();
 
   sf::Sprite scene(_sceneTexture.getTexture());
