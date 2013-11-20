@@ -17,6 +17,7 @@ private:
 	sf::RenderWindow 	&_window;
 	sf::Sprite	_sprite;
 	sf::Texture	_select;
+	sf::Texture _fontText;
 	sf::Font		_font;
 	sf::Text	_text;
 	sf::Music	_music;

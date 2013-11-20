@@ -30,7 +30,6 @@ private:
 	sf::TcpSocket _socket;
 	sf::IpAddress _ip;
 	unsigned short _port;
-	sf::Packet _packet;
 	sf::Font		_font;
 	sf::Sprite	_sprite;
 	sf::Text	_text;
