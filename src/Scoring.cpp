@@ -1,3 +1,4 @@
+#include <sstream>
 #include "Scoring.hh"
 #include "UbiException.hh"
 
@@ -32,16 +33,24 @@ std::list<std::string> Scoring::getScoreList() const
 	return _scoreList;
 }
 
-void Scoring::sendScore()
+void Scoring::sendScore(const std::string &ipz, int port, int score)
 {
-	sf::Socket::Status status = _socket.connect(_ip, _port);
-	if (status != sf::Socket::Done)
-		std::cerr << "Error: Can't connect to " << _ip << ":" << _port << std::endl;
+  sf::IpAddress ip(ipz);
+  sf::TcpSocket socket;
 
+  sf::Socket::Status status = socket.connect(ip, port);
+  if (status != sf::Socket::Done)
+    std::cerr << "Error: Can't connect to " << ip << ":" << port << std::endl;
+  std::string	s_score;
+  {
+    std::ostringstream oss;
 
-	std::string s = "SendScore " + _score + "\n";
-	_socket.send(s.c_str(), s.size() + 1);
-	_socket.disconnect();
+    oss << score;
+    s_score = oss.str();
+  }
+  std::string s = "SendScore Guest " + s_score + "\n";
+  socket.send(s.c_str(), s.size() + 1);
+  socket.disconnect();
 }
 
 void Scoring::setScoreList()

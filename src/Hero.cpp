@@ -4,6 +4,7 @@
 #include "Kamea.hh"
 #include "Hero.hh"
 #include "SoundManager.hh"
+#include "Scoring.hh"
 
 AssetDescriptor Hero::s_assetDesc("ressource/textures/monk.png");
 std::vector<bool> Hero::_listWeapons;
@@ -75,6 +76,7 @@ Hero::Hero(const sf::Vector2f &pos)
 	_type = 1;
 	_prevWalk = 0;
 	_die = false;
+	_score = 0;
 }
 
 int				Hero::calculateCurLine()

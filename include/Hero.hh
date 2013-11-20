@@ -1,6 +1,7 @@
 #ifndef HERO_HH
 #define HERO_HH
 
+#include "Scoring.hh"
 #include "GameObject.hh"
 
 class Hero : public GameObject
@@ -16,7 +17,10 @@ class Hero : public GameObject
 
 public:
   Hero(const sf::Vector2f &pos = sf::Vector2f());
-  virtual ~Hero(){}
+  virtual ~Hero()
+  {
+    Scoring::sendScore("127.0.0.1", 4242, _score);
+  }
 
   virtual void		update(float dt, size_t frameCount);
   virtual bool		collides(GameObject &obj);

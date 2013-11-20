@@ -16,11 +16,11 @@ public:
 	std::string getScore() const;
 	std::list<std::string> getScoreList() const;
 	void setScoreList();
-	void sendScore();
+  static void sendScore(const std::string &, int, int);
 	virtual bool update(sf::Event &);
 	virtual void draw();
 	virtual void run();
-	
+
 public:
 	float score;
 
