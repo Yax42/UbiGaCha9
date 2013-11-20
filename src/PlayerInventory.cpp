@@ -14,7 +14,7 @@ void	PlayerInventory::handleEvent(sf::Event & event)
     {
       if (event.joystickMove.position == 100)
 	{
-	  if (_inventoryCursor >= Hero::_listWeapons.size())
+	  if (_inventoryCursor >= Hero::_listWeapons.size() - 1)
 	    _inventoryCursor = 0;
 	  else
 	    _inventoryCursor += 1;
@@ -22,7 +22,7 @@ void	PlayerInventory::handleEvent(sf::Event & event)
       else if (event.joystickMove.position == -100)
 	{
 	  if (_inventoryCursor <= 0)
-	    _inventoryCursor = Hero::_listWeapons.size();
+	    _inventoryCursor = Hero::_listWeapons.size() - 1;
 	  else
 	    _inventoryCursor -= 1;
 	}
@@ -36,17 +36,17 @@ void	PlayerInventory::handleEvent(sf::Event & event)
     }
   else if (event.type == sf::Event::KeyPressed)
     {
-      if (event.key.code == sf::Keyboard::Numpad4)
+      if (event.key.code == sf::Keyboard::Numpad6)
 	{
-	  if (_inventoryCursor >= Hero::_listWeapons.size())
+	  if (_inventoryCursor >= Hero::_listWeapons.size() - 1)
 	    _inventoryCursor = 0;
 	  else
 	    _inventoryCursor += 1;
 	}
-      else if (event.key.code == sf::Keyboard::Numpad6)
+      else if (event.key.code == sf::Keyboard::Numpad4)
 	{
 	  if (_inventoryCursor <= 0)
-	    _inventoryCursor = Hero::_listWeapons.size();
+	    _inventoryCursor = Hero::_listWeapons.size() - 1;
 	  else
 	    _inventoryCursor -= 1;
 	}
@@ -64,7 +64,6 @@ void	PlayerInventory::draw(sf::RenderTexture & sceneTexture)
   sf::Vector2u	sizeTex = _inventoryTex.getSize();
   sf::Vector2f	mult(sizeTex.x / 4, sizeTex.y / 8);
   sf::Sprite tmp(_inventoryTex);
-  //  tmp.setScale(sf::Vector2f((800 / 256), (600 / 240)));
 
   for (std::vector<bool>::iterator it = Hero::_listWeapons.begin();
        it != Hero::_listWeapons.end(); ++it)

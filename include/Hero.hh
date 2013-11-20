@@ -31,7 +31,8 @@ public:
 public:
 	sf::FloatRect	_attackBox;
 	int				_attackBoxState;
-	int				_oldOrient;
+  int				_oldOrient;
+  bool				_sound;
   static std::vector<bool>	_listWeapons;
   static std::vector<int>	_listEquip;
 };
