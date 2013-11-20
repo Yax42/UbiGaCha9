@@ -5,6 +5,7 @@
 #include "Game.hh"
 #include "FoxSpirit.hh"
 #include "Hero.hh"
+#include "MainMenuLayer.hh"
 #include "Mob0.hh"
 #include "Mob1.hh"
 #include "Mob2.hh"
@@ -26,6 +27,9 @@ int main()
   Kamea::initAsset();
   window.setView(sf::View(sf::FloatRect(sf::Vector2f(0.f, 0.f), sf::Vector2f(256, 240))));
   window.setFramerateLimit(30);
+  window.setKeyRepeatEnabled(false);
+  MainMenuLayer mainMenu(window);
+  mainMenu.run();
   Game game(window);
   game.run();
 }
