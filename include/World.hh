@@ -13,6 +13,7 @@
 #include "Light.hh"
 #include "Controller.hh"
 #include "GameObject.hh"
+#include "Hero.hh"
 
 class World
 {
@@ -25,11 +26,14 @@ public:
   void			update(float elapsedTime, size_t frameCount);
   void			render(sf::RenderTexture &rect);
 
+  static Hero		*hero;
+
 private:
   void loadTilemap(const std::string &mapName, const std::string &path);
   void clearWorld();
   void unloadTileMaps();
   bool mapExists(const std::string &mapName);
+  void collideObject(GameObject *obj);
 
   void getWalls(const sftile::priv::SfObjectLayer &walls);
   void getEnnemies(const sftile::priv::SfObjectLayer &ennemies);
@@ -45,7 +49,6 @@ private:
   GameObjectVector				_gameObjects;
   sftile::SfSmartCamera				&_camera;
   Light						&_heroLight;
-  GameObject					*_hero;
   GameObject					*_fox;
   Controller					*_control;
 };

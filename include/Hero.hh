@@ -13,9 +13,9 @@ class Hero : public GameObject
 		ATTACK2,
 		ATTACK3
 	};
-	
+
 public:
-  Hero(const sf::Vector2f &pos);
+  Hero(const sf::Vector2f &pos = sf::Vector2f());
   virtual ~Hero(){}
   virtual void		update(float dt, size_t frameCount);
 

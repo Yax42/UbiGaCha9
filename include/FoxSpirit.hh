@@ -7,7 +7,7 @@
 class FoxSpirit : public GameObject
 {
 public:
-	FoxSpirit(const sf::Vector2f &pos);
+	FoxSpirit(const sf::Vector2f &pos = sf::Vector2f());
 	virtual ~FoxSpirit(){}
 	virtual bool			isDead();
 

@@ -152,7 +152,7 @@ bool SfTilemapLoader::ParseTileset(const XMLElement* _element, SfTileset& _tiles
     return false;
 
   // Load the tileset image
-  string source("./ressource/textures/");
+  string source("./ressource/maps/");
   source += image_element->Attribute("source");
   sf::Texture texture;
   if (!texture.loadFromFile(source))
