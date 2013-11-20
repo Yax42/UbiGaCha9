@@ -83,7 +83,7 @@ void Game::drawLights()
   if (lastProgressif && (_foxLight.getNextRatio() != _foxLight.ratio))
     {
       lastProgressif = false;
-      _foxLight.setRatio(_foxLight.ratio + 0.2);
+      _foxLight.setRatio(_foxLight.ratio + 0.8);
     }
   else if (_foxLight.getNextRatio() == _foxLight.ratio)
     {
