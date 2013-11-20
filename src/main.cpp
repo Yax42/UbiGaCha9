@@ -33,7 +33,4 @@ int main()
   window.setKeyRepeatEnabled(false);
   MainMenuLayer mainMenu(window);
   mainMenu.run();
-  SoundManager::getInstance().getSound("ressource/sounds/Jingle_Positif_Harp_01.wav").play();
-  Game game(window);
-  game.run();
 }

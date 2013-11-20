@@ -3,6 +3,8 @@
 #include "Game.hh"
 #include "Scoring.hh"
 #include "Credits.hh"
+#include "SoundManager.hh"
+#include "Game.hh"
 #include <iostream>
 
 MainMenuLayer::MainMenuLayer(sf::RenderWindow &window)
@@ -107,7 +109,10 @@ void	MainMenuLayer::run()
 			if (_state == PLAY)
 			{
 				_music.stop();
-				return;
+				SoundManager::getInstance().getSound("ressource/sounds/Jingle_Positif_Harp_01.wav").play();
+				Game	game(_window);
+				game.run();
+				_state = MENU;
 			}
 			if (_state == LEADER)
 			{
