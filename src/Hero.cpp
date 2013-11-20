@@ -274,7 +274,7 @@ bool Hero::collides(GameObject &obj)
 {
   if (_collide == false || obj._collide == false || obj._type == 4 || obj._type == 5)
     return (false);
-  if (obj._type == 2 && _box.intersects(obj._box))
+  if (obj._type == 2 && _box.intersects(obj._box) && _state != ATTACK)
     {
       giveOrder(DIE);
       _die = true;
