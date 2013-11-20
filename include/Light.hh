@@ -1,17 +1,17 @@
 #ifndef _LIGHT_HH_
 #define _LIGHT_HH_
 
-#include <SFML/Graphics/Color.hpp>
-#include <SFML/System/Vector2.hpp>
+#include <SFML/Graphics.hpp>
+#include <SFML/System.hpp>
 
 class Light
 {
 public:
-  Light(sf::Vector2f pos, float ratio) :
+  Light(sf::Vector2f pos, float rat) :
     position(pos),
-    ratio(ratio),
-    color(sf::Color(255,255,255)),
-    _nextRatio(ratio),
+    color(sf::Color::White),
+    ratio(rat),
+    _nextRatio(rat),
     _frame(0)
   {
   }
@@ -34,7 +34,6 @@ public:
     if (_frame >= 8 && ratio > _nextRatio)
       {
 	ratio -= (_tex.getSize().x * (ratio) / _tex.getSize().y * (ratio)) * 0.05;
-	std::cout << ratio << std::endl;
 	_frame = 0;
       }
     else if (_frame >= 8 && ratio < _nextRatio)
