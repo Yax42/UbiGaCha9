@@ -108,29 +108,35 @@ void			Hero::updateSprite()
 			_order = ATTACK;
 			_weapon = _listEquip[1];
 		  }
-		  else if (_order == GameObject::ATTACK2)
+		  else if (_order == GameObject::ATTACK)
 			_weapon = _listEquip[0];
-
-		_oldOrient = _orientation;
-		_state = _order;
-		_stateCount = _asset.getCount(calculateCurLine());
+		  if (_order == ATTACK && _listWeapons[_weapon])
+		  {
+				_oldOrient = _orientation;
+				_state = _order;
+				_stateCount = _asset.getCount(calculateCurLine());
+		  }
 	  }
-	  else if (xAbs + yAbs > 0)
+	  if (_stateCount == 0)
 	  {
+		  if (xAbs + yAbs > 0)
+		  {
 
-		  if (xAbs > yAbs)
-			  _orientation = xSign > 0 ? RIGHT : LEFT;
+			  if (xAbs > yAbs)
+				  _orientation = xSign > 0 ? RIGHT : LEFT;
+			  else
+				  _orientation = ySign > 0 ? DOWN : UP;
+			  _state = WALK;
+		  }
 		  else
-			  _orientation = ySign > 0 ? DOWN : UP;
-		  _state = WALK;
+			  _state = STAND;
 	  }
-	  else
-		  _state = STAND;
   }
   if (_stateCount != 0)
   {
 	_order = -1;
 	_stateCount--;
+	std::cout << _stateCount << std::endl;
   }
   _asset.setCurrentLine(calculateCurLine());
   _asset.update();

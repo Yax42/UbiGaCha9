@@ -22,7 +22,7 @@ public:
 		STAND,
 		WALK,
 		ATTACK,
-		ATTACK2
+		ATTACK2,
 	};
 
 public:

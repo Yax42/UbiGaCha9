@@ -44,6 +44,7 @@
     <ClCompile Include="..\src\SfTileEngine\sf_tilemap_loader.cpp" />
     <ClCompile Include="..\src\SfTileEngine\sf_tileset.cpp" />
     <ClCompile Include="..\src\SfTileEngine\sf_tile_layer.cpp" />
+    <ClCompile Include="..\src\SoundManager.cpp" />
     <ClCompile Include="..\src\TinyXML\tinyxml2.cpp" />
     <ClCompile Include="..\src\UbiException.cpp" />
     <ClCompile Include="..\src\Utils.cpp" />
@@ -86,6 +87,7 @@
     <ClInclude Include="..\include\SfTileEngine\sf_tileset.h" />
     <ClInclude Include="..\include\SfTileEngine\sf_tile_layer.h" />
     <ClInclude Include="..\include\sf_tile_engine.h" />
+    <ClInclude Include="..\include\SoundManager.hh" />
     <ClInclude Include="..\include\TinyXML\tinyxml2.h" />
     <ClInclude Include="..\include\UbiException.hh" />
     <ClInclude Include="..\include\Utils.hh" />

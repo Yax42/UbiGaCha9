@@ -1,14 +1,21 @@
-﻿Build started 20/11/2013 11:11:18.
+﻿Build started 20/11/2013 11:56:34.
      1>Project "C:\Users\DANEEL\Documents\UbiGaCha9\UbiGaCha9\UbiGaCha9.vcxproj" on node 2 (Build target(s)).
      1>InitializeBuildStatus:
-         Touching "Release\UbiGaCha9.tlog\unsuccessfulbuild".
+         Creating "Release\UbiGaCha9.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
-         F:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"../SFML-2.1/include" /I../include /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\Credits.cpp
-         Credits.cpp
+         F:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"../SFML-2.1/include" /I../include /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\Hero.cpp
+         Hero.cpp
      1>c:\users\daneel\documents\ubigacha9\include\Light.hh(26): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
      1>c:\users\daneel\documents\ubigacha9\include\Light.hh(36): warning C4244: '-=' : conversion from 'double' to 'float', possible loss of data
      1>c:\users\daneel\documents\ubigacha9\include\Light.hh(41): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
-     1>..\src\Credits.cpp(51): warning C4305: 'argument' : truncation from 'double' to 'float'
+     1>..\src\Hero.cpp(187): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>..\src\Hero.cpp(188): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>..\src\Hero.cpp(197): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>..\src\Hero.cpp(198): warning C4244: '=' : conversion from 'double' to 'float', possible loss of data
+     1>..\src\Hero.cpp(205): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>..\src\Hero.cpp(206): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>..\src\Hero.cpp(231): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
+     1>..\src\Hero.cpp(248): warning C4244: 'argument' : conversion from 'int' to 'float', possible loss of data
        Link:
          F:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\DANEEL\Documents\UbiGaCha9\Release\UbiGaCha9.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"../SFML-2.1/lib" "sfml-graphics.lib" "sfml-window.lib" "sfml-system.lib" "sfml-audio.lib" "sfml-network.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\DANEEL\Documents\UbiGaCha9\Release\UbiGaCha9.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\DANEEL\Documents\UbiGaCha9\Release\UbiGaCha9.lib" /MACHINE:X86 /SAFESEH Release\Arrow.obj
          Release\Asset.obj
@@ -43,6 +50,7 @@
          Release\sf_tilemap_loader.obj
          Release\sf_tileset.obj
          Release\sf_tile_layer.obj
+         Release\SoundManager.obj
          Release\tinyxml2.obj
          Release\UbiException.obj
          Release\Utils.obj
@@ -57,4 +65,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:04.08
+Time Elapsed 00:00:04.06
