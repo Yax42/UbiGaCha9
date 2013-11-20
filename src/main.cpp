@@ -17,7 +17,7 @@
 
 int main()
 {
-  sf::RenderWindow	window(sf::VideoMode(1024, 768), "Ubisoft");
+  sf::RenderWindow	window(sf::VideoMode(1024, 768), "MAGPOPA");
 
   FoxSpirit::initAsset();
   Hero::initAsset();
