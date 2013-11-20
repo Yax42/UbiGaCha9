@@ -1,6 +1,6 @@
 #include "Kamea.hh"
 
-AssetDescriptor Kamea::s_assetDesc("ressource/textures/kamea.png");
+AssetDescriptor Kamea::s_assetDesc("ressource/textures/arrow.png");
 
 void		Kamea::initAsset()
 {

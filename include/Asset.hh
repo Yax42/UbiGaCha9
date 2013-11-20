@@ -19,6 +19,8 @@ private:
 	int						_curLine;
 	int						_curFrame;
 	sf::Sprite				_sprite;
+public:
+	sf::Vector2f			_size;
 };
 
 #endif

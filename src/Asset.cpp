@@ -42,7 +42,7 @@ bool        Asset::update()
 
 void        Asset::draw(const sf::Vector2f &pos, float angle, sf::RenderTexture &window)
 {
-  _sprite.setPosition(pos + sf::Vector2f(_assetDesc.lines[_curLine].width, _assetDesc.lines[_curLine].height));
+  _sprite.setPosition(pos + sf::Vector2f((_size.x - _assetDesc.lines[_curLine].width) / 2,  (_size.y - _assetDesc.lines[_curLine].height) /2));
   window.draw(_sprite);
 }
 
