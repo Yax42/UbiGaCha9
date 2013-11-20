@@ -86,11 +86,6 @@ void	Controller::lanternHorizontal(int speed)
 
 void	Controller::handleEvent(sf::Event & event)
 {
-  if (event.type == sf::Event::TextEntered)
-    {
-      if (event.text.unicode < 128)
-	std::cout << static_cast<char>(event.text.unicode) << std::endl;
-    }
   if(event.type == sf::Event::JoystickMoved)
     {
       if (event.joystickMove.joystickId > 0)
@@ -101,34 +96,34 @@ void	Controller::handleEvent(sf::Event & event)
 	    (this->*(it->second))(event.joystickMove.position);
 	}
     }
-  if (event.type == sf::Event::JoystickButtonPressed)
+  else if (event.type == sf::Event::JoystickButtonPressed)
     {
       std::map<unsigned int, void (Controller::*)()>::iterator      it;
 
       if ((it = this->_mapPressButton.find(event.joystickButton.button)) != this->_mapPressButton.end())
 	(this->*(it->second))();
     }
-  if (event.type == sf::Event::JoystickButtonReleased)
+  else if (event.type == sf::Event::JoystickButtonReleased)
     {
       std::map<unsigned int, void (Controller::*)()>::iterator      it;
 
       if ((it = this->_mapReleaseButton.find(event.joystickButton.button)) != this->_mapReleaseButton.end())
 	(this->*(it->second))();
     }
-  if (event.type == sf::Event::KeyPressed)
+  else if (event.type == sf::Event::KeyPressed)
     {
       std::map<sf::Keyboard::Key, void (Controller::*)()>::iterator      it;
 
       if ((it = this->_mapPress.find(event.key.code)) != this->_mapPress.end())
 	(this->*(it->second))();
     }
-  if (event.type == sf::Event::KeyReleased)
+  else if (event.type == sf::Event::KeyReleased)
     {
       std::map<sf::Keyboard::Key, void (Controller::*)()>::iterator      it;
 
       if ((it = this->_mapRelease.find(event.key.code)) != this->_mapRelease.end())
 	(this->*(it->second))();
-    }  
+    }
 }
 
 void	Controller::pressPlayerLeft(int speed)
@@ -193,12 +188,12 @@ void	Controller::pressLanternDown(int speed)
 
 void	Controller::pressLanternLeft()
 {
-	this->axisRightX(100);
+	this->axisRightX(-100);
 }
 
 void	Controller::pressLanternRight()
 {
-	this->axisRightX(-100);
+	this->axisRightX(100);
 }
 
 void	Controller::pressLanternUp()

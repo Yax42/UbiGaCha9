@@ -30,7 +30,8 @@ private:
   sf::RenderWindow	&_window;
   sf::RenderTexture	_sceneTexture;
   sf::RenderTexture	_lightTexture;
-  sf::Texture		_tHalo;
+  sf::Texture		_tHaloFox;
+  sf::Texture		_tHaloMonk;
   sf::Sprite		_halo;
   Light			_playerLight;
   Light			_foxLight;

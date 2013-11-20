@@ -7,30 +7,26 @@
 
 Game::Game(sf::RenderWindow &window)
   : _window(window),
-    _worldView(window.getView()),
-    _frontView(sf::Vector2f(0.f, 0.f), sf::Vector2f(window.getView().getSize().x, window.getView().getSize().y)),
-    _foxLight(sf::Vector2f(_window.getView().getCenter().x, _window.getView().getCenter().y), 1),
-    _playerLight(sf::Vector2f(_window.getView().getCenter().x, _window.getView().getCenter().y), 1),
+    _foxLight(_window.getView().getCenter(), 1),
+    _playerLight(_window.getView().getCenter(), 1),
     _camera(window.getView().getSize().x, window.getView().getSize().y),
     _lightDia(true),
     _elapsedTime(0.f),
-  _world(_camera, _playerLight),
-  _time(0.f),
-  _frameCount(0),
+    _world(_camera, _playerLight),
+    _time(0.f),
+      _frameCount(0),
   _nbMusic(0)
 {
-  
-  if (!_tHalo.loadFromFile("./ressource/textures/halo.png"))
-    throw UbiException("Error load halo");
-
-  _halo.setTexture(_tHalo);
+  if (!_tHaloFox.loadFromFile("./ressource/textures/haloFox.png"))
+    throw UbiException("Failed to load haloFox.png");
+  if (!_tHaloMonk.loadFromFile("./ressource/textures/haloMonk.png"))
+    throw UbiException("Failed to load haloMonk.png");
   _sceneTexture.create(_window.getView().getSize().x, _window.getView().getSize().y);
   _lightTexture.create(_window.getView().getSize().x, _window.getView().getSize().y);
-  _frontView.setCenter(sf::Vector2f(_window.getView().getCenter().x, _window.getView().getCenter().y));
-  _camera.SetTrackMode(sftile::SF_TRACK_KEYS_PRESS);
+  _playerLight.setTexture(_tHaloMonk);
+  _foxLight.setTexture(_tHaloFox);
 
-  _playerLight.setTexture(_tHalo);
-  _foxLight.setTexture(_tHalo);
+  _window.setKeyRepeatEnabled(false);
   if (!_texRain.loadFromFile("./ressource/textures/pluie.png"))
     throw UbiException("Error load Rain");
 
@@ -53,7 +49,9 @@ Game::Game(sf::RenderWindow &window)
 }
 
 Game::~Game()
-{}
+{
+  _window.setKeyRepeatEnabled(true);
+}
 
 void	Game::update()
 {
@@ -65,45 +63,15 @@ void	Game::update()
     _ambiance.play();
 }
 
-bool	Game::progressiveLight(float ratio)
-{
-  static int	frameLight = 0;
-  static bool	toLight = true;
-  static float	modRatio = 0.f;
-
-  frameLight += 1;
-  if (toLight && frameLight >= 12)
-    {
-      _halo.setScale(sf::Vector2f(_foxLight.ratio + modRatio, _foxLight.ratio + modRatio));
-      frameLight = 0;
-      modRatio += (_tHalo.getSize().x * (_foxLight.ratio + modRatio) / _tHalo.getSize().y * (_foxLight.ratio + modRatio)) * 0.01;
-      if (_foxLight.ratio + modRatio >= ratio)
-	toLight = false;
-    }
-  else if (frameLight >= 12)
-    {
-      _halo.setScale(sf::Vector2f(_foxLight.ratio + modRatio, _foxLight.ratio + modRatio));
-      frameLight = 0;
-      modRatio -= (_tHalo.getSize().x * (_foxLight.ratio + modRatio) / _tHalo.getSize().y * (_foxLight.ratio + modRatio)) * 0.01;
-      if (modRatio <= 0)
-	{
-	  toLight = true;
-	  return (false);
-	}
-    }
-  return (true);
-}
-
 void Game::drawLights()
 {
   static bool	lastProgressif = true;
 
-  _lightTexture.clear(sf::Color(0, 0, 0));
-  _lightTexture.setView(_frontView);
-  _lightTexture.draw(_halo);
-
+  _lightTexture.clear();
+  _lightTexture.setView(_window.getView());
 
   // Lumiere fox
+  _halo.setTexture(_tHaloFox);
   _halo.setPosition(_foxLight.position);
   centerOrigin(_halo);
   _halo.setColor(_foxLight.color);
@@ -119,13 +87,16 @@ void Game::drawLights()
       _foxLight.setRatio(_foxLight.ratio - 0.2);
     }  _halo.setScale(sf::Vector2f(_foxLight.ratio, _foxLight.ratio));
   _lightTexture.draw(_halo);
-  _lightTexture.display();
 
+  sf::View view = _window.getView();
+  view.setCenter(_camera.GetCenterPosition());
+  _lightTexture.setView(view);
   // Lumiere perso
-  _halo.setPosition(_playerLight.position);
+  _halo.setTexture(_tHaloMonk);
+  _halo.setPosition(_playerLight.position.x + 25, _playerLight.position.y + 20);
   centerOrigin(_halo);
   _halo.setColor(_playerLight.color);
-  _halo.setScale(sf::Vector2f(_playerLight.ratio, _playerLight.ratio));
+  _halo.setScale(_playerLight.ratio, _playerLight.ratio);
   _lightTexture.draw(_halo);
 
   _lightTexture.display();
@@ -164,17 +135,17 @@ void Game::draw()
 {
   _window.clear();
   _sceneTexture.clear();
-  _sceneTexture.setView(_worldView);
+  _sceneTexture.setView(_window.getView());
   _world.render(_sceneTexture);
   this->drawRain();
   drawLights();
   _sceneTexture.display();
 
-   sf::Sprite prerendering(_lightTexture.getTexture());
-   _sceneTexture.setView(_frontView);
-   _sceneTexture.draw(prerendering, sf::BlendMultiply);
-   _sceneTexture.display();
-   
+  sf::Sprite prerendering(_lightTexture.getTexture());
+  prerendering.setPosition(_camera.GetPosition());
+  _sceneTexture.draw(prerendering, sf::BlendMultiply);
+  _sceneTexture.display();
+
   sf::Sprite scene(_sceneTexture.getTexture());
   _window.draw(scene);
   //_window.setView(_window.getView());

@@ -24,6 +24,8 @@
     <ClCompile Include="..\src\Hero.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\MainMenuLayer.cpp" />
+    <ClCompile Include="..\src\Mob.cpp" />
+    <ClCompile Include="..\src\Mob0.cpp" />
     <ClCompile Include="..\src\QuadTree.cpp" />
     <ClCompile Include="..\src\SfTileEngine\sf_camera.cpp" />
     <ClCompile Include="..\src\SfTileEngine\sf_object.cpp" />
@@ -54,6 +56,7 @@
     <ClInclude Include="..\include\ILayer.hh" />
     <ClInclude Include="..\include\Light.hh" />
     <ClInclude Include="..\include\MainMenuLayer.hh" />
+    <ClInclude Include="..\include\Mob0.hh" />
     <ClInclude Include="..\include\QuadTree.hh" />
     <ClInclude Include="..\include\SfTileEngine\sf_camera.h" />
     <ClInclude Include="..\include\SfTileEngine\sf_dll_macro.h" />
@@ -70,6 +73,7 @@
     <ClInclude Include="..\include\UbiException.hh" />
     <ClInclude Include="..\include\Utils.hh" />
     <ClInclude Include="..\include\World.hh" />
+    <ClInclude Include="..\src\Mob.hh" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8A51D9DE-5CB6-454D-AD30-2B751BE5A4E2}</ProjectGuid>

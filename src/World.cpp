@@ -9,13 +9,13 @@ World::World(sftile::SfSmartCamera &camera, Light &heroLight)
   : _camera(camera),
     _heroLight(heroLight)
 {
-  _hero = new Hero(sf::Vector2f(142, 142));
-  _fox = new FoxSpirit(sf::Vector2f(242, 142));
+  _hero = new Hero(sf::Vector2f(40, 40));
+  _fox = new FoxSpirit(sf::Vector2f(140, 140));
   _control = new Controller(*_hero, *_fox);
   loadTilemap("tuto", "./ressource/maps/tuto.tmx");
   setMap("tuto");
   _gameObjects.push_back(_hero);
-  //_gameObjects.push_back(_fox);
+  _gameObjects.push_back(_fox);
   std::cout << "World created" << std::endl;
 }
 
@@ -55,7 +55,7 @@ void World::setMap(const std::string &mapName)
 void World::handleEvents(sf::Event evt)
 {
   _control->handleEvent(evt);
-  //_tilemap->HandleEvents(evt);
+  _tilemap->HandleEvents(evt);
 }
 
 void World::update(float elapsedTime, size_t frameCount)
@@ -81,11 +81,17 @@ void World::update(float elapsedTime, size_t frameCount)
 	}
     }
   _quadTree.clear();
+  _heroLight.position = _hero->getPos();
+  sf::Vector2f foxPos = _fox->getPos();
+  _camera.SetCenterPosition(foxPos.x, foxPos.y);
 }
 
 void World::render(sf::RenderTexture &window)
 {
   _tilemap->Render(window);
+  sf::View view = window.getView();
+  view.setCenter(_camera.GetCenterPosition());
+  window.setView(view);
   for (GameObjectVector::iterator it = _gameObjects.begin();
        it != _gameObjects.end(); ++it)
     (*it)->draw(window);

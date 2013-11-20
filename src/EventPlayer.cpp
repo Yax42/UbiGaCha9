@@ -38,7 +38,7 @@ void	EventPlayer::pressB()
 
 void	EventPlayer::pressX()
 {
-	_monk._weapon = !_monk._weapon;
+	_monk.weapon(!_monk.weapon());
 }
 
 void	EventPlayer::pressY()
@@ -70,4 +70,3 @@ void	EventPlayer::releaseY()
 {
   std::cout << "Release Y" << std::endl;
 }
-

@@ -14,8 +14,10 @@ GameObject::GameObject(const Asset &asset, const sf::Vector2f &pos,
     _maxSpeed(maxSpeed),
 	_state(STAND),
 	_stateCount(0),
+	_order(-1),
 	_weapon(0)
 {
+	_type = 0;
 }
 
 void	GameObject::update(float ft, size_t frameCount)
@@ -38,14 +40,6 @@ void	GameObject::toBackPosition()
   _box.top = _backPos.y;
 }
 
-int				GameObject::calculateCurLine()
-{
-  if (_state == DIE)
-	  return (DIE);
-  else
-    return (_orientation + 4 * _state + _weapon * 12 + 1);
-}
-
 void			GameObject::updateSprite()
 {
   int		xSign =  (_direction.x > 0) ? 1 : -1;
@@ -54,30 +48,14 @@ void			GameObject::updateSprite()
   int		xAbs = xSign * _direction.x;
   int		yAbs = ySign * _direction.y;
 
-  if (_stateCount == 0)
+  if (xAbs + yAbs > 0)
   {
-	  if (_order > STAND)
-	  {
-		_state = _order;
-		_stateCount = _asset.getCount(calculateCurLine());
-	  }
-	  else if (xAbs + yAbs > 0)
-	  {
-		  if (xAbs > yAbs)
-			  _orientation = xSign > 0 ? RIGHT : LEFT;
-		  else
-			  _orientation = ySign > 0 ? DOWN : UP;
-		  _state = WALK;
-	  }
+	  if (xAbs > yAbs)
+		  _orientation = xSign > 0 ? RIGHT : LEFT;
 	  else
-		  _state = STAND;
+		  _orientation = ySign > 0 ? DOWN : UP;
   }
-  else
-  {
-	_order = 0;
-	_stateCount--;
-  }
-  _asset.setCurrentLine(calculateCurLine());
+  _asset.setCurrentLine(_orientation);
   _asset.update();
 }
 
