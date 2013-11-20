@@ -95,7 +95,7 @@ void World::update(float elapsedTime, size_t frameCount)
   collideObject(hero);
   collideObject(_fox);
   _quadTree.clear();
-  _heroLight.position = hero->getPos() + sf::Vector2f(32, 32);
+  _heroLight.position = hero->getPos() + sf::Vector2f(26, 24);
   sf::Vector2f foxPos = _fox->getCenterPos();
   _camera.SetCenterPosition(foxPos.x, foxPos.y);
 }

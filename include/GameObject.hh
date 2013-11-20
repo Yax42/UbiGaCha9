@@ -64,7 +64,7 @@ protected:
 	int				_weapon;
 public:
 
-	int				_type;//0mur 1gentil 2mechant
+	int				_type;//0mur 1gentil 2mechant 3exit
 	int				_mobType;
 };
 
