@@ -8,7 +8,7 @@ class Mob : public GameObject
 {
 public:
   Mob(const sf::Vector2f &pos, AssetDescriptor &assetDesc, float speed);
-  virtual ~Mob(){}
+  virtual ~Mob();
 
 public:
 	void	Follow();

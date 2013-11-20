@@ -4,6 +4,7 @@
 #include "Kamea.hh"
 #include "Hero.hh"
 #include "SoundManager.hh"
+#include "Scoring.hh"
 
 AssetDescriptor Hero::s_assetDesc("ressource/textures/monk.png");
 std::vector<bool> Hero::_listWeapons;
@@ -74,6 +75,8 @@ Hero::Hero(const sf::Vector2f &pos)
 	_attackBoxState = NO_ATTACK;
 	_type = 1;
 	_prevWalk = 0;
+	_die = false;
+	_score = 0;
 }
 
 int				Hero::calculateCurLine()
@@ -274,8 +277,13 @@ bool Hero::collides(GameObject &obj)
   if (obj._type == 2 && _box.intersects(obj._box))
     {
       giveOrder(DIE);
-      std::cout << "DIE PLAYER" << std::endl;
+      _die = true;
       return (false);
     }
   return (obj._type == 0 && _box.intersects(obj._box));
+}
+
+bool	Hero::isDead()
+{
+  return (_die);
 }

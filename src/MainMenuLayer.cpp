@@ -117,7 +117,7 @@ void	MainMenuLayer::run()
 			if (_state == LEADER)
 			{
 				_music.pause();
-				sf::IpAddress ip("10.17.73.49");
+				sf::IpAddress ip("127.0.0.1");
 				unsigned short port = 4242;
 				Scoring s(ip, port, _window);
 				s.run();

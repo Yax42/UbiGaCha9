@@ -30,10 +30,10 @@ World::World(sftile::SfSmartCamera &camera, Light &heroLight)
   gameObjects = &_gameObjects;
   _fox = new FoxSpirit;
   _control = new Controller(*hero, *_fox);
-  loadTilemap("tuto", "./ressource/maps/tuto.tmx");
   loadTilemap("level1", "./ressource/maps/level1.tmx");
   loadTilemap("level2", "./ressource/maps/level2.tmx");
-  setMap("tuto");
+  loadTilemap("level3", "./ressource/maps/level3.tmx");
+  setMap("level1");
   std::cout << "World created" << std::endl;
 }
 
@@ -104,12 +104,12 @@ void World::update(float elapsedTime, size_t frameCount)
   _quadTree.insert(hero);
   _fox->update(elapsedTime, frameCount);
   _quadTree.insert(_fox);
+  if (collideObject(hero) || collideObject(_fox))
+    return ;
   for (GameObjectVector::iterator it = _gameObjects.begin();
        it != _gameObjects.end(); ++it)
     if (collideObject(*it))
       return ;
-  if (collideObject(hero) || collideObject(_fox))
-    return ;
   _quadTree.clear();
   _heroLight.position = hero->getPos() + sf::Vector2f(26, 24);
   sf::Vector2f foxPos = _fox->getCenterPos();
