@@ -1,5 +1,6 @@
 #include "PlayerInventory.hh"
 #include "Hero.hh"
+#include "SoundManager.hh"
 #include "UbiException.hh"
 
 PlayerInventory::PlayerInventory(): _inventoryCursor(0)
@@ -30,9 +31,19 @@ void	PlayerInventory::handleEvent(sf::Event & event)
   else if (event.type == sf::Event::JoystickButtonPressed)
     {
       if (event.joystickButton.button == 4)
-	Hero::_listEquip[0] = _inventoryCursor;// select first weapon
+	{
+	  if (Hero::_listWeapons[_inventoryCursor])
+	    Hero::_listEquip[0] = _inventoryCursor;// select first weapon
+	  else
+	    SoundManager::getInstance().getSound("ressource/sounds/negativeClickInventory.wav").play();
+	}
       if (event.joystickButton.button == 5)
-	Hero::_listEquip[1] = _inventoryCursor;// select second weapon
+	{
+	  if (Hero::_listWeapons[_inventoryCursor])
+	    Hero::_listEquip[1] = _inventoryCursor;// select second weapon
+	  else
+	    SoundManager::getInstance().getSound("ressource/sounds/negativeClickInventory.wav").play();
+	}
     }
   else if (event.type == sf::Event::KeyPressed)
     {
@@ -51,9 +62,19 @@ void	PlayerInventory::handleEvent(sf::Event & event)
 	    _inventoryCursor -= 1;
 	}
       else if (event.key.code == sf::Keyboard::Numpad7)
-	Hero::_listEquip[0] = _inventoryCursor;// select first weapon
+	{
+	  if (Hero::_listWeapons[_inventoryCursor])
+	    Hero::_listEquip[0] = _inventoryCursor;// select first weapon
+	  else
+	    SoundManager::getInstance().getSound("ressource/sounds/negativeClickInventory.wav").play();
+	}
       else if (event.key.code == sf::Keyboard::Numpad9)
-	Hero::_listEquip[1] = _inventoryCursor;// select second weapon
+	{
+	  if (Hero::_listWeapons[_inventoryCursor])
+	    Hero::_listEquip[1] = _inventoryCursor;// select second weapon
+	  else
+	    SoundManager::getInstance().getSound("ressource/sounds/negativeClickInventory.wav").play();
+	}
     }
 }
 
