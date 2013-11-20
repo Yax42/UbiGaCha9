@@ -20,9 +20,9 @@ public:
 
   virtual void		update(float dt, size_t frameCount);
   virtual bool		collides(GameObject &obj);
-
+  virtual bool		isDead();
 private:
-	static AssetDescriptor s_assetDesc;
+  static AssetDescriptor s_assetDesc;
 protected:
 	virtual void	updateSprite();
 	int				calculateCurLine();
@@ -36,6 +36,8 @@ public:
   static std::vector<bool>	_listWeapons;
   static std::vector<int>	_listEquip;
   int				_prevWalk;
+  unsigned int			_score;
+  bool				_die;
 };
 
 #endif
