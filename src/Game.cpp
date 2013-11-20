@@ -94,7 +94,7 @@ void Game::drawLights()
   _lightTexture.setView(view);
   // Lumiere perso
   _halo.setTexture(_tHaloMonk);
-  _halo.setPosition(_playerLight.position.x + 25, _playerLight.position.y + 20);
+  _halo.setPosition(_playerLight.position);
   centerOrigin(_halo);
   _halo.setColor(_playerLight.color);
   _halo.setScale(_playerLight.ratio, _playerLight.ratio);
@@ -163,6 +163,7 @@ void Game::draw()
   _sceneTexture.setView(_window.getView());
   _world.render(_sceneTexture);
   //this->drawRain();
+  _sceneTexture.display();
   drawLights();
   _sceneTexture.display();
 

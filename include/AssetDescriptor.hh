@@ -19,6 +19,7 @@ struct AssetLine
 struct AssetDescriptor
 {
 public:
+	AssetDescriptor() {}
 	AssetDescriptor(const std::string &name);
 	~AssetDescriptor(){}
 

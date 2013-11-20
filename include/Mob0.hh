@@ -1,9 +1,9 @@
 #ifndef MOB_0_HH_
 #define MOB_0_HH_
 
-#include "GameObject.hh"
+#include "Mob.hh"
 
-class Mob0 : public GameObject
+class Mob0 : public Mob
 {
 public:
   Mob0(const sf::Vector2f &pos);
@@ -11,8 +11,6 @@ public:
 
 private:
 	static AssetDescriptor s_assetDesc;
-protected:
-	virtual void	updateSprite();
 public:
 	static void		initAsset();
 };

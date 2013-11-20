@@ -102,6 +102,8 @@ public:
   ////////////////////////////////////////////////////////////
   SfObject* GetObject(unsigned int _index);
 
+  size_t getSizeObjects() const {return objects.size();}
+
 private:
   /// Vector of the objects in the layer
   vector<SfObject> objects;

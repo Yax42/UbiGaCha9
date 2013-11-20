@@ -340,19 +340,19 @@ bool SfTilemapLoader::ParseObject(const tinyxml2::XMLElement* _element, SfObject
 
       if (child_name == "properties")
 	{
-	  const XMLElement *property_element = _element->FirstChildElement("property");
+	  const XMLElement *property_element = child_element->FirstChildElement("property");
 
 	  while (property_element != nullptr)
 	    {
 	      std::string property_name = property_element->Attribute("name");
 
-	      if (property_name == "content")
+	      if (property_name == "id")
 		{
-		  std::string content= property_element->Attribute("value");
-
-		  _object.content = content;
+		  int id = -1;
+		  property_element->QueryIntAttribute("value", &id);
+		  _object.id = id;
 		}
-	      property_element = property_element->NextSiblingElement();
+	      property_element = property_element->NextSiblingElement("property");
 	    }
 	}
       child_element = child_element->NextSiblingElement();

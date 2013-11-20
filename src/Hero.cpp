@@ -1,4 +1,6 @@
 #include <iostream>
+#include "Arrow.hh"
+#include "Kamea.hh"
 #include "Hero.hh"
 
 AssetDescriptor Hero::s_assetDesc("ressource/textures/monk.png");
@@ -53,7 +55,7 @@ void		Hero::initAsset()
 }
 
 Hero::Hero(const sf::Vector2f &pos)
-  : GameObject(Asset(s_assetDesc), pos, sf::Vector2f(32, 32), 75)
+  : GameObject(Asset(s_assetDesc), pos, sf::Vector2f(16, 32), 75)
 {
 	_attackBoxState = NO_ATTACK;
 	_type = 1;
@@ -106,8 +108,6 @@ void			Hero::updateSprite()
 
 void	Hero::update(float ft, size_t frameCount)
 {
-  if ((frameCount % 8) == 0)
-    updateSprite();
   if (_state == ATTACK)
   {
 	int signX = (_orientation == LEFT) ? -1 :
@@ -119,37 +119,67 @@ void	Hero::update(float ft, size_t frameCount)
 	  {
 		  _attackBoxState = ATTACK0;
 		  _attackBox = sf::FloatRect(0, 0, 64, 64);
+		  if ((frameCount % 4) == 0)
+			updateSprite();
 	  }
-	  if (_weapon == 1)
+	  else if (_weapon == 1)
 	  {
 		  if (_stateCount == 3)
 		  {
 			  _attackBoxState = NO_ATTACK;
-			  _attackBox = sf::FloatRect(signX * 32, signY * 32, 32, 32);
-			  _direction.x = -0.4 * signX;
-			  _direction.y = -0.4 * signY;
+			  _direction.x = 0;
+			  _direction.y = 0;
+			if ((frameCount % 4) == 0)
+					updateSprite();
 		  }
 		  else if (_stateCount == 2)
+		  {
+			  _attackBoxState = NO_ATTACK;
+			  _direction.x = -0.4 * signX;
+			  _direction.y = -0.4 * signY;
+			if ((frameCount % 4) == 0)
+					updateSprite();
+
+		  }
+		  else if (_stateCount == 1)
 		  {
 			  _attackBoxState = ATTACK1;
 			  _attackBox = sf::FloatRect(signX * 32, signY * 32, 32, 32);
 			  _direction.x = 0.4 * signX;
 			  _direction.y = 0.4 * signY;
+			if ((frameCount % 8) == 0)
+					updateSprite();
 		  }
-		  else if (_stateCount == 1)
+		  else
 		  {
 			  _attackBoxState = ATTACK1;
 			  _direction.x = 2 * signX;
 			  _direction.y = 2 * signY;
+			if ((frameCount % 8) == 0)
+			  {
+					updateSprite();
+					_attackBoxState = NO_ATTACK;
+				  _direction.x = 0;
+				  _direction.y = 0;
+			  }
 		  }
-		  else
+
+	  }
+	if (_weapon == 2)
+	{
+		  _attackBoxState = NO_ATTACK;
+		  if ((frameCount % 8) == 0)
 		  {
-			  _attackBoxState = NO_ATTACK;
-			  _direction.x = 0;
-			  _direction.y = 0;
+			  if (_stateCount == 0)
+			  {
+				  new Arrow(getPos(), _direction);
+			  }
+			updateSprite();
 		  }
 	  }
   }
+  else if ((frameCount % 8) == 0)
+    updateSprite();
   _backPos = sf::Vector2f(_box.left, _box.top);
   _box.left += _direction.x * ft * _maxSpeed;
   _box.top += _direction.y * ft * _maxSpeed;
