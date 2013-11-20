@@ -61,7 +61,7 @@ void		Hero::initAsset()
 }
 
 Hero::Hero(const sf::Vector2f &pos)
-  : GameObject(Asset(s_assetDesc), pos, sf::Vector2f(16, 32), 75)
+  : GameObject(Asset(s_assetDesc), pos, sf::Vector2f(5, 5), 75)
 {
 	_attackBoxState = NO_ATTACK;
 	_type = 1;

@@ -20,7 +20,7 @@ void Mob::setAssetDesc(AssetDescriptor &assetDesc)
 }
 
 Mob::Mob(const sf::Vector2f &pos, AssetDescriptor &assetDesc, float speed)
-  : GameObject(Asset(assetDesc), pos, sf::Vector2f(32, 32), speed)
+  : GameObject(Asset(assetDesc), pos, sf::Vector2f(8, 16), speed)
 {
 	_isMad = false;
 	_type = 2;
