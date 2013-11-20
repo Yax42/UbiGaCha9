@@ -2,6 +2,7 @@
 #include "Credits.hh"
 #include "Game.hh"
 #include <iostream>
+#include "SoundManager.hh"
 
 Credits::Credits(sf::RenderWindow &window)
 : _window(window), _state(WHO)
@@ -18,6 +19,7 @@ Credits::Credits(sf::RenderWindow &window)
 	throw UbiException("Error load Crédits .wav");
 	_music.setLoop(true);
 	_music.play();
+  SoundManager::getInstance().getSound("ressource/sounds/Jingle_Neutre_Harp_03.wav").play();
 }
 
 bool	Credits::update(sf::Event & event)
