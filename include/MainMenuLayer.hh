@@ -3,6 +3,7 @@
 
 #include "ILayer.hh"
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 
 class	MainMenuLayer : public ILayer
 {
@@ -25,6 +26,7 @@ private:
   State _state;
   bool	_pressedDown;
   bool _pressedUp;
+  sf::Music _music;
 };
 
 #endif	// _MAINMENULAYER_HH_

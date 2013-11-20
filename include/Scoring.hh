@@ -3,6 +3,7 @@
 
 #include <SFML/Network.hpp>
 #include <SFML/System.hpp>
+#include <SFML/Audio.hpp>
 #include <list>
 #include <iostream>
 #include "ILayer.hh"
@@ -30,12 +31,12 @@ private:
 	sf::TcpSocket _socket;
 	sf::IpAddress _ip;
 	unsigned short _port;
-	sf::Packet _packet;
 	sf::Font		_font;
 	sf::Sprite	_sprite;
 	sf::Text	_text;
 	State _state;
 	sf::Texture	_select;
+	sf::Music _music;
 };
 
 #endif	//	__SCORING_H__

@@ -2,6 +2,7 @@
 #include "Credits.hh"
 #include "Game.hh"
 #include <iostream>
+#include "SoundManager.hh"
 
 Credits::Credits(sf::RenderWindow &window)
 : _window(window), _state(WHO)
@@ -10,10 +11,15 @@ Credits::Credits(sf::RenderWindow &window)
 	if (!_font.loadFromFile(path))
 		throw UbiException("Error load Font");
 
-	_select.loadFromFile("./ressource/quit.png");
-	_music.openFromFile("./ressource/sounds/credits.wav");
+	if (!_fontText.loadFromFile("./ressource/textures/credits.png"))
+		throw UbiException("Error load credits");
+	if (!_select.loadFromFile("./ressource/textures/quit.png"))
+			throw UbiException("Error load quit");
+	if (!_music.openFromFile("./ressource/sounds/Credits.wav"))
+	throw UbiException("Error load Crédits .wav");
 	_music.setLoop(true);
 	_music.play();
+  SoundManager::getInstance().getSound("ressource/sounds/Jingle_Neutre_Harp_03.wav").play();
 }
 
 bool	Credits::update(sf::Event & event)
@@ -37,19 +43,18 @@ bool	Credits::update(sf::Event & event)
 
 void	Credits::draw()
 {
-	_text.setFont(_font);
-	_text.setCharacterSize(10);
-	_text.setColor(sf::Color::White);
-	_text.setString("Credits:\n\n4 Programmeurs\n\nJean Ludovic\nBenjamin Jean-Sebastien\n\n2 Sound Designers\n\nGuillaume Paul\n\n2 Graphistes\n\nIbrahim Nathanael\n\n3 Game Designer\n\nRaoul Pierre Maxime");
-	_text.setPosition(75, 0);
-	_window.draw(_text);
+	sf::Sprite s;
+	s.setTexture(_fontText);
+	s.setColor(sf::Color::White);
+	s.setPosition(0, 0);
+	_window.draw(s);
 
-
-	_sprite.setTexture(_select);
-	_sprite.setColor(sf::Color::White);
-	_sprite.setPosition(220, 200);
-	_sprite.setScale(0.2, 0.2);
-	_window.draw(_sprite);
+	sf::Sprite tmp;
+	tmp.setTexture(_select);
+	tmp.setColor(sf::Color::White);
+	tmp.setPosition(220, 200);
+	tmp.setScale(1, 1);
+	_window.draw(tmp);
 
 }
 

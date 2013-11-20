@@ -11,8 +11,14 @@ MainMenuLayer::MainMenuLayer(sf::RenderWindow &window)
   std::string	path = "./ressource/font/arial.ttf";
   if (!_font.loadFromFile(path))
     throw UbiException("Error load Font");
-  _select.loadFromFile("./ressource/textures/puce.png");
-  _noSelect.loadFromFile("./ressource/textures/menu 3.0.png");
+  if (!_select.loadFromFile("./ressource/textures/cloche.png"))
+	  throw UbiException("Error load bell");
+  if (!_noSelect.loadFromFile("./ressource/textures/menu 4.0.png"))
+	  throw UbiException("Error load Menu");
+  if (!_music.openFromFile("./ressource/sounds/music lvl1 ou menu .wav"))
+	  throw UbiException("Error load Music");
+  _music.setLoop(true);
+  _music.play();
 }
 
 bool	MainMenuLayer::update(sf::Event & event)
@@ -59,20 +65,20 @@ void	MainMenuLayer::draw()
 {
 	_sprite.setTexture(_noSelect);
 	_sprite.setColor(sf::Color::White);
-	_sprite.setPosition(0, -10);
+	_sprite.setPosition(0, 0);
 	_window.draw(_sprite);
 
-	_sprite.setTexture(_select);
-	_sprite.setColor(sf::Color::White);
+	sf::Sprite tmp;
+	tmp.setTexture(_select);
 	if (_whatButton == 0)
-		_sprite.setPosition(0, 75);
+		tmp.setPosition(50, 75);
 	if (_whatButton == 1)
-		_sprite.setPosition(0, 117);
+		tmp.setPosition(0, 125);
 	if (_whatButton == 2)
-		_sprite.setPosition(0, 160);
+		tmp.setPosition(15, 160);
 	if (_whatButton == 3)
-		_sprite.setPosition(0, 205);
-	_window.draw(_sprite);
+		tmp.setPosition(100, 205);
+	_window.draw(tmp);
 
 }
 
@@ -99,19 +105,26 @@ void	MainMenuLayer::run()
 				}
 			}
 			if (_state == PLAY)
+			{
+				_music.stop();
 				return;
+			}
 			if (_state == LEADER)
 			{
-				sf::IpAddress ip("localhost");
+				_music.pause();
+				sf::IpAddress ip("10.17.73.49");
 				unsigned short port = 4242;
 				Scoring s(ip, port, _window);
 				s.run();
+				_music.play();
 				_state = MENU;
 			}
 			if (_state == WHO)
 			{
+				_music.pause();
 				Credits  c(_window);
 				c.run();
+				_music.play();
 				_state = MENU;
 			}
 			if (_state == QUIT)

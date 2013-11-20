@@ -8,12 +8,13 @@ Scoring::Scoring(sf::IpAddress &ip, unsigned short port, sf::RenderWindow &windo
 	if (!_font.loadFromFile(path))
 		throw UbiException("Error load Font");
 
-	_select.loadFromFile("./ressource/quit.png");
-	_scoreList.push_back("1 Stanilas 1500");
-	_scoreList.push_back("2 Bernard 1300");
-	_scoreList.push_back("3 Aude 500");
-	_scoreList.push_back("4 Claude 300");
-	_scoreList.push_back("5 Barbara 15");
+	if (!_select.loadFromFile("./ressource/textures/quit.png"))
+		throw UbiException("Error load quit");
+	if (!_music.openFromFile("./ressource/sounds/Musique_02.wav"))
+		throw UbiException("Error load leaderMusic");
+	setScoreList();
+	_music.setLoop(true);
+	_music.play();
 }
 
 
@@ -37,9 +38,9 @@ void Scoring::sendScore()
 	if (status != sf::Socket::Done)
 		std::cerr << "Error: Can't connect to " << _ip << ":" << _port << std::endl;
 
-	_score = _score == "" ? "" : _score;
-	_packet << "SendScore " << _score;
-	_socket.send(_packet);
+
+	std::string s = "SendScore " + _score + "\n";
+	_socket.send(s.c_str(), s.size() + 1);
 	_socket.disconnect();
 }
 
@@ -47,30 +48,29 @@ void Scoring::setScoreList()
 {
 	std::string tmpScore;
 	size_t pos = 0;
+	char buffer[1024];
+	size_t dataReceived = 0;
 	std::string received = "SCORE ";
 	std::string token;
 	std::string delimiter = ";";
 
 	_socket.connect(_ip, _port);
-	sf::Packet packet;
-	packet << "GetScore";
-	_socket.send(packet);
-	_socket.receive(_packet);
+	std::string s = "GetScore\n";
+	_socket.send(s.c_str(), s.size() + 1);
+	_socket.receive(buffer, sizeof(buffer), dataReceived);
+	std::string data(buffer, dataReceived);
 	_socket.disconnect();
 
-	_packet >> tmpScore;
 	if (!_scoreList.empty())
 		_scoreList.clear();
 
 	// Rempli la liste des Hi-Scores
-	if (!tmpScore.find(received))
-		return;
-	tmpScore.erase(0, received.length());
-	while ((pos = tmpScore.find(delimiter)) != std::string::npos)
+	data.erase(0, received.length());
+	while ((pos = data.find(delimiter)) != std::string::npos)
 	{
-		token = tmpScore.substr(0, pos);
+		token = data.substr(0, pos);
 		_scoreList.push_back(token);
-		tmpScore.erase(0, pos + delimiter.length());
+		data.erase(0, pos + delimiter.length());
 	}
 }
 
@@ -102,7 +102,7 @@ void Scoring::draw()
 	_sprite.setTexture(_select);
 	_sprite.setColor(sf::Color::White);
 	_sprite.setPosition(220, 200);
-	_sprite.setScale(0.2, 0.2);
+	_sprite.setScale(1, 1);
 	_window.draw(_sprite);
 }
 
