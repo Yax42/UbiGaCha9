@@ -46,21 +46,17 @@ void		Hero::initAsset()
 	s_assetDesc.addLine(32, 32, 4);
 	s_assetDesc.addLine(32, 32, 4);
 
-	//STAND WEAPON 1
-	s_assetDesc.addLine(32, 16, 2);
-	s_assetDesc.addLine(32, 16, 2);
-	s_assetDesc.addLine(32, 16, 2);
-	s_assetDesc.addLine(32, 16, 2);
-	//WALK WEAPON 1
-	s_assetDesc.addLine(32, 16, 2);
-	s_assetDesc.addLine(32, 16, 2);
-	s_assetDesc.addLine(32, 16, 2);
-	s_assetDesc.addLine(32, 16, 2);
-	//ATTACK WEAPON 1
+	//ATTACK WEAPON 2
 	s_assetDesc.addLine(32, 24, 4);
 	s_assetDesc.addLine(32, 24, 4);
-	s_assetDesc.addLine(32, 32, 4);
-	s_assetDesc.addLine(32, 32, 4);
+	s_assetDesc.addLine(32, 24, 4);
+	s_assetDesc.addLine(32, 24, 4);
+
+	//ATTACK WEAPON 3
+	s_assetDesc.addLine(32, 16, 8);
+	s_assetDesc.addLine(32, 16, 8);
+	s_assetDesc.addLine(32, 16, 8);
+	s_assetDesc.addLine(32, 16, 8);
 
 	//FILL LISTWEAPON ALL FALSE IN BEGIN TEST WITH TRUE
 	_listWeapons.push_back(true);
@@ -77,14 +73,22 @@ Hero::Hero(const sf::Vector2f &pos)
 {
 	_attackBoxState = NO_ATTACK;
 	_type = 1;
+	_prevWalk = 0;
 }
 
 int				Hero::calculateCurLine()
 {
   if (_state == DIE)
 	  return (DIE);
-  else
+  else if (_state != ATTACK)
+    return (_orientation + 4 * (_state - 1) + _prevWalk * 12 + 1);
+  else if (_weapon < 2)
     return (_orientation + 4 * (_state - 1) + _weapon * 12 + 1);
+  else if (_weapon == 2)
+    return (_orientation + 25);
+	else
+    return (_orientation + 29);
+
 }
 
 void			Hero::updateSprite()
@@ -99,26 +103,40 @@ void			Hero::updateSprite()
   {
 	  if (_order > -1)
 	  {
-		_oldOrient = _orientation;
-		_state = _order;
-		_stateCount = _asset.getCount(calculateCurLine());
+		  if (_order == GameObject::ATTACK2)
+		  {
+			_order = ATTACK;
+			_weapon = _listEquip[1];
+		  }
+		  else if (_order == GameObject::ATTACK)
+			_weapon = _listEquip[0];
+		  if (_order == ATTACK && _listWeapons[_weapon])
+		  {
+				_oldOrient = _orientation;
+				_state = _order;
+				_stateCount = _asset.getCount(calculateCurLine());
+		  }
 	  }
-	  else if (xAbs + yAbs > 0)
+	  if (_stateCount == 0)
 	  {
+		  if (xAbs + yAbs > 0)
+		  {
 
-		  if (xAbs > yAbs)
-			  _orientation = xSign > 0 ? RIGHT : LEFT;
+			  if (xAbs > yAbs)
+				  _orientation = xSign > 0 ? RIGHT : LEFT;
+			  else
+				  _orientation = ySign > 0 ? DOWN : UP;
+			  _state = WALK;
+		  }
 		  else
-			  _orientation = ySign > 0 ? DOWN : UP;
-		  _state = WALK;
+			  _state = STAND;
 	  }
-	  else
-		  _state = STAND;
   }
   if (_stateCount != 0)
   {
 	_order = -1;
 	_stateCount--;
+	std::cout << _stateCount << std::endl;
   }
   _asset.setCurrentLine(calculateCurLine());
   _asset.update();
@@ -143,7 +161,10 @@ void	Hero::update(float ft, size_t frameCount)
 	  _attackBoxState = ATTACK0;
 	  _attackBox = sf::FloatRect(_box.left - 15, _box.top - 15, _box.width + 30, _box.height + 30);
 	  if ((frameCount % 4) == 0)
-	    updateSprite();
+	    {
+	      updateSprite();
+	      _attackBoxState = NO_ATTACK;
+	    }
 	}
       else if (_weapon == 1)
 	{
@@ -201,11 +222,30 @@ void	Hero::update(float ft, size_t frameCount)
 	      SoundManager::getInstance().getSound("ressource/sounds/bowGluant1.wav").play();
 	    }
 	  _attackBoxState = NO_ATTACK;
-	  if ((frameCount % 8) == 0)
+	  int	framing = (_stateCount > 1) * 2 + 2;
+
+	  if ((frameCount % 3) == 0)
 	    {
-	      if (_stateCount == 0)
+	      if (_stateCount == 1)
 		{
-		  World::gameObjects->push_back(new Arrow(getPos(), _direction));
+		  World::gameObjects->push_back(new Arrow(getPos(), _orientation));
+		}
+	      updateSprite();
+	    }
+	}
+      else if (_weapon == 3)
+	{
+	  _direction.y = 0;
+	  _direction.x = 0;
+	  _attackBoxState = NO_ATTACK;
+	  int	framing = 6;
+
+	  if ((frameCount % framing) == 0)
+	    {
+	      if (_stateCount == 1)
+		{
+		  //_attackBox = sf::FloatRect(_box.left - 15, _box.top - 15, _box.width + 30, _box.height + 30);
+		  World::gameObjects->push_back(new Kamea(getPos() + sf::Vector2f(signX * 25, signY * 25)));
 		}
 	      updateSprite();
 	    }
@@ -215,6 +255,8 @@ void	Hero::update(float ft, size_t frameCount)
     updateSprite();
   else
     _sound = false;
+  if (_weapon < 2)
+    _prevWalk = _weapon;
   _backPos = sf::Vector2f(_box.left, _box.top);
   _box.left += _direction.x * ft * _maxSpeed;
   _box.top += _direction.y * ft * _maxSpeed;

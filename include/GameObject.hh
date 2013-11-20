@@ -21,7 +21,8 @@ public:
 		DIE,
 		STAND,
 		WALK,
-		ATTACK
+		ATTACK,
+		ATTACK2,
 	};
 
 public:

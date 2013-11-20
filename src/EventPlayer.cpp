@@ -33,12 +33,12 @@ void	EventPlayer::pressA()
 
 void	EventPlayer::pressB()
 {
-	_monk.giveOrder(GameObject::ATTACK);
+	_monk.giveOrder(GameObject::ATTACK2);
 }
 
 void	EventPlayer::pressX()
 {
-	_monk.weapon(!_monk.weapon());
+//	_monk.weapon(!_monk.weapon());
 }
 
 void	EventPlayer::pressY()

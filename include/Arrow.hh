@@ -7,7 +7,7 @@
 class Arrow : public GameObject
 {
 public:
-	Arrow(const sf::Vector2f &pos, const sf::Vector2f &dir);
+	Arrow(const sf::Vector2f &pos, float orientation);
 	virtual ~Arrow(){}
 
 private:
