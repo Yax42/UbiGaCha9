@@ -2,8 +2,10 @@
 #define	_GAME_HH_
 
 #include <list>
+#include <vector>
 #include <SFML/System.hpp>
 #include <SFML/Graphics.hpp>
+#include <SFML/Audio.hpp>
 #include "World.hh"
 #include "Light.hh"
 #include "sf_tile_engine.h"
@@ -42,6 +44,11 @@ private:
   size_t		_frameCount;
   sf::Image		_imageRain;
   sf::Texture		_texRain;
+  sf::Music		_musicFade;
+  sf::Music		_music;
+  sf::Music		_ambianceFade;
+  sf::Music		_ambiance;
+  int			_nbMusic;
 };
 
 #endif // _GAME_HH_

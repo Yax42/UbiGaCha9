@@ -16,8 +16,10 @@ Game::Game(sf::RenderWindow &window)
     _elapsedTime(0.f),
   _world(_camera, _playerLight),
   _time(0.f),
-  _frameCount(0)
+  _frameCount(0),
+  _nbMusic(0)
 {
+  
   if (!_tHalo.loadFromFile("./ressource/textures/halo.png"))
     throw UbiException("Error load halo");
 
@@ -29,10 +31,25 @@ Game::Game(sf::RenderWindow &window)
 
   _playerLight.setTexture(_tHalo);
   _foxLight.setTexture(_tHalo);
-  if (!_imageRain.loadFromFile("./ressource/textures/animation_pluie.jpg"))
+  if (!_texRain.loadFromFile("./ressource/textures/pluie.png"))
     throw UbiException("Error load Rain");
-  _imageRain.createMaskFromColor(sf::Color(0, 0, 0), 100);
-  _texRain.loadFromImage(_imageRain);
+
+  if (!_musicFade.openFromFile("./ressource/sound/Musique_In_Game_Fade_01.wav"))
+    throw UbiException("Error load music Fade Game");
+  if (!_music.openFromFile("./ressource/sound/Musique_In_Game_01.wav"))
+    throw UbiException("Error load music Game");
+  if (!_ambianceFade.openFromFile("./ressource/sound/Ambiance_Fade_01.wav"))
+    throw UbiException("Error load ambiance Fade Game");
+  if (!_ambiance.openFromFile("./ressource/sound/Ambiance_01.wav"))
+    throw UbiException("Error load ambiance Game");
+
+  _musicFade.setVolume(100);
+  _music.setVolume(100);
+  _music.setLoop(true);
+
+  _musicFade.play();
+  _ambianceFade.play();
+  _ambiance.setLoop(true);
 }
 
 Game::~Game()
@@ -42,6 +59,10 @@ void	Game::update()
 {
   _foxLight.update();
   _world.update(_elapsedTime, _frameCount);
+  if (_musicFade.getStatus() == sf::Music::Stopped && _music.getStatus() != sf::Music::Playing)
+    _music.play();
+  if (_ambianceFade.getStatus() == sf::Music::Stopped && _ambiance.getStatus() != sf::Music::Playing)
+    _ambiance.play();
 }
 
 bool	Game::progressiveLight(float ratio)
@@ -51,7 +72,7 @@ bool	Game::progressiveLight(float ratio)
   static float	modRatio = 0.f;
 
   frameLight += 1;
-  if (toLight && frameLight >= 3)
+  if (toLight && frameLight >= 12)
     {
       _halo.setScale(sf::Vector2f(_foxLight.ratio + modRatio, _foxLight.ratio + modRatio));
       frameLight = 0;
@@ -59,7 +80,7 @@ bool	Game::progressiveLight(float ratio)
       if (_foxLight.ratio + modRatio >= ratio)
 	toLight = false;
     }
-  else if (frameLight >= 3)
+  else if (frameLight >= 12)
     {
       _halo.setScale(sf::Vector2f(_foxLight.ratio + modRatio, _foxLight.ratio + modRatio));
       frameLight = 0;
@@ -86,6 +107,7 @@ void Game::drawLights()
   _halo.setPosition(_foxLight.position);
   centerOrigin(_halo);
   _halo.setColor(_foxLight.color);
+  //this->progressiveLight(1.1);
   if (lastProgressif && (_foxLight.getNextRatio() != _foxLight.ratio))
     {
       lastProgressif = false;
@@ -95,8 +117,7 @@ void Game::drawLights()
     {
       lastProgressif = true;
       _foxLight.setRatio(_foxLight.ratio - 0.2);
-    }
-  _halo.setScale(sf::Vector2f(_foxLight.ratio, _foxLight.ratio));
+    }  _halo.setScale(sf::Vector2f(_foxLight.ratio, _foxLight.ratio));
   _lightTexture.draw(_halo);
   _lightTexture.display();
 
@@ -124,8 +145,8 @@ void	Game::handleEvent(sf::Event & event)
 void	Game::drawRain()
 {
   static int	animRain = 0;
-   sf::Sprite tmp(_texRain);
-   int		mult = _texRain.getSize().x / 7;
+  sf::Sprite	tmp(_texRain);
+  int		mult = _texRain.getSize().x / 11;
 
    if ((_frameCount % 8) == 0)
      {
@@ -145,17 +166,16 @@ void Game::draw()
   _sceneTexture.clear();
   _sceneTexture.setView(_worldView);
   _world.render(_sceneTexture);
+  this->drawRain();
   drawLights();
   _sceneTexture.display();
 
    sf::Sprite prerendering(_lightTexture.getTexture());
    _sceneTexture.setView(_frontView);
    _sceneTexture.draw(prerendering, sf::BlendMultiply);
-   //this->drawRain();
    _sceneTexture.display();
    
   sf::Sprite scene(_sceneTexture.getTexture());
-  //scene.rotate(180);
   _window.draw(scene);
   //_window.setView(_window.getView());
   //_window.draw(*mSceneLayers[Foreground]);
@@ -168,6 +188,7 @@ void	Game::run()
   while (_window.isOpen())
     {
       clock.restart();
+      sf::Joystick::update();
       sf::Event event;
       while (_window.pollEvent(event))
 	{
