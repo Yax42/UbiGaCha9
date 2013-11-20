@@ -6,7 +6,7 @@ from twisted.internet import reactor
 class Echo(Protocol):
 
     def __init__(self):
-        self.scores =  [("aaa", 4242), ("bbb", 2121), ("ccc", 1212), ("dddd", 100), ("lfd", 42)]
+        self.scores =  [("aaa", 4242), ("bbb", 2121), ("ccc", 1212), ("dddd", 100), ("eeee", 42)]
 
 
     def dataReceived(self, data):
@@ -22,7 +22,7 @@ class Echo(Protocol):
     def formatScores(self):
         res = "SCORE "
         for login, score in self.scores:
-            res += login + "|%d;" % score
+            res += "{0:10s} {1:20d};".format(login, score)
         res += "\n"
         return res
 

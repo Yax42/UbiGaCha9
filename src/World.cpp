@@ -12,6 +12,7 @@
 #include "Wall.hh"
 #include "Exit.hh"
 #include "Game.hh"
+#include "ItemObject.hh"
 
 Hero *World::hero = nullptr;
 std::map<std::string, sftile::SfTilemap*> World::tilemaps;
@@ -237,8 +238,10 @@ void World::getObjects(sftile::priv::SfObjectLayer &objects)
   for (size_t i = 0; i < objects.getSizeObjects(); ++i)
     {
       sftile::SfObject	*object = objects.GetObject(i);
+      sf::Vector2i	tmp = object->GetPosition();
+      sf::Vector2f	objectPos(tmp.x, tmp.y);
 
-      // _gameObjects.push_back(new ???(object->GetPosition(), object->GetDimensions()));
+      _gameObjects.push_back(new ItemObject(objectPos, object->GetId() % 4));
     }
 }
 
@@ -259,9 +262,11 @@ void World::getPlayerSpawn(sftile::priv::SfObjectLayer &playerSpawn)
 
 void World::getExit(sftile::priv::SfObjectLayer &exits)
 {
-  if (exits.getSizeObjects() > 0)
+  if (exits.getSizeObjects() == 0)
+    std::cerr << "No Exit for this map" << std::endl;
+  for (size_t i = 0; i < exits.getSizeObjects(); ++i)
     {
-      sftile::SfObject *exit = exits.GetObject(0);
+      sftile::SfObject *exit = exits.GetObject(i);
       sf::Vector2i	tmpVec = exit->GetPosition();
       sf::Vector2f	exitPos(tmpVec.x, tmpVec.y);
       tmpVec = exit->GetDimensions();
@@ -269,6 +274,4 @@ void World::getExit(sftile::priv::SfObjectLayer &exits)
 
       _gameObjects.push_back(new Exit(exitPos, exitDim, exit->GetName()));
     }
-  else
-    std::cerr << "No Exit for this map" << std::endl;
 }

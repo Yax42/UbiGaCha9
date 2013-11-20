@@ -21,6 +21,10 @@ struct AssetDescriptor
 public:
 	AssetDescriptor() {}
 	AssetDescriptor(const std::string &name);
+  AssetDescriptor(const AssetDescriptor &d)
+    : lines(d.lines),
+      texture(d.texture)
+  {}
 	~AssetDescriptor(){}
 
 	void   addLine(AssetLine &line);
