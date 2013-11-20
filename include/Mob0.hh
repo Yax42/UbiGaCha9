@@ -11,8 +11,6 @@ public:
 
 private:
 	static AssetDescriptor s_assetDesc;
-protected:
-	virtual void	updateSprite();
 public:
 	static void		initAsset();
 };

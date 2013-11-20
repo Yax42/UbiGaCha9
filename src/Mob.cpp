@@ -55,8 +55,7 @@ void			Mob::updateSprite()
 
 void	Mob::Follow()
 {
-	sf::Vector2f		heroPos;
-	sf::Vector2f		vect = getPos() - heroPos;
+	sf::Vector2f		vect = getPos() - World::hero->getPos();
 
 	float	range = sqrt(vect.x * vect.x + vect.y * vect.y);
 	if (range < 100)
@@ -68,7 +67,6 @@ void	Mob::Follow()
 	{
 		_direction.x = vect.x * _maxSpeed / range;
 		_direction.y = vect.y * _maxSpeed / range;
-		
 	}
 }
 
