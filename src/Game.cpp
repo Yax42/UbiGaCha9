@@ -14,7 +14,9 @@ Game::Game(sf::RenderWindow &window)
     _elapsedTime(0.f),
     _world(_camera, _playerLight),
     _time(0.f),
-    _frameCount(0)
+      _frameCount(0),
+    _nbMusic(0),
+    _openInventory(false)
 {
   if (!_tHaloFox.loadFromFile("./ressource/textures/haloFox.png"))
     throw UbiException("Failed to load haloFox.png");
@@ -24,12 +26,27 @@ Game::Game(sf::RenderWindow &window)
   _lightTexture.create(_window.getView().getSize().x, _window.getView().getSize().y);
   _playerLight.setTexture(_tHaloMonk);
   _foxLight.setTexture(_tHaloFox);
-  if (!_imageRain.loadFromFile("./ressource/textures/animation_pluie.jpg"))
-    throw UbiException("Error load Rain");
-  _imageRain.createMaskFromColor(sf::Color(0, 0, 0), 100);
-  _texRain.loadFromImage(_imageRain);
 
   _window.setKeyRepeatEnabled(false);
+  if (!_texRain.loadFromFile("./ressource/textures/pluie.png"))
+    throw UbiException("Error load Rain");
+
+  if (!_musicFade.openFromFile("./ressource/sound/Musique_In_Game_Fade_01.wav"))
+    throw UbiException("Error load music Fade Game");
+  if (!_music.openFromFile("./ressource/sound/Musique_In_Game_01.wav"))
+    throw UbiException("Error load music Game");
+  if (!_ambianceFade.openFromFile("./ressource/sound/Ambiance_Fade_01.wav"))
+    throw UbiException("Error load ambiance Fade Game");
+  if (!_ambiance.openFromFile("./ressource/sound/Ambiance_01.wav"))
+    throw UbiException("Error load ambiance Game");
+
+  _musicFade.setVolume(100);
+  _music.setVolume(100);
+  _music.setLoop(true);
+
+  _musicFade.play();
+  _ambianceFade.play();
+  _ambiance.setLoop(true);
 }
 
 Game::~Game()
@@ -41,6 +58,10 @@ void	Game::update()
 {
   _foxLight.update();
   _world.update(_elapsedTime, _frameCount);
+  if (_musicFade.getStatus() == sf::Music::Stopped && _music.getStatus() != sf::Music::Playing)
+    _music.play();
+  if (_ambianceFade.getStatus() == sf::Music::Stopped && _ambiance.getStatus() != sf::Music::Playing)
+    _ambiance.play();
 }
 
 void Game::drawLights()
@@ -55,6 +76,7 @@ void Game::drawLights()
   _halo.setPosition(_foxLight.position);
   centerOrigin(_halo);
   _halo.setColor(_foxLight.color);
+  //this->progressiveLight(1.1);
   if (lastProgressif && (_foxLight.getNextRatio() != _foxLight.ratio))
     {
       lastProgressif = false;
@@ -64,8 +86,7 @@ void Game::drawLights()
     {
       lastProgressif = true;
       _foxLight.setRatio(_foxLight.ratio - 0.2);
-    }
-  _halo.setScale(sf::Vector2f(_foxLight.ratio, _foxLight.ratio));
+    }  _halo.setScale(sf::Vector2f(_foxLight.ratio, _foxLight.ratio));
   _lightTexture.draw(_halo);
 
   sf::View view = _window.getView();
@@ -91,13 +112,36 @@ void Game::modifLightPlayer(sf::Vector2f position, float radiusRatio)
 void	Game::handleEvent(sf::Event & event)
 {
   _world.handleEvents(event);
+
+  if (_openInventory)
+    _inventory.handleEvent(event);
+  if (event.type == sf::Event::JoystickButtonPressed)
+    {
+      if (event.joystickButton.button == 7)
+	{
+	  if (_openInventory)
+	    _openInventory = false;
+	  else
+	    _openInventory = true;
+	}
+    }
+  else if (event.type == sf::Event::KeyPressed)
+    {
+      if (event.key.code == sf::Keyboard::Return)
+	{
+	  if (_openInventory)
+	    _openInventory = false;
+	  else
+	    _openInventory = true;
+	}
+    }
 }
 
 void	Game::drawRain()
 {
   static int	animRain = 0;
-   sf::Sprite	tmp(_texRain);
-   int		mult = _texRain.getSize().x / 7;
+  sf::Sprite	tmp(_texRain);
+  int		mult = _texRain.getSize().x / 11;
 
    if ((_frameCount % 8) == 0)
      {
@@ -111,12 +155,14 @@ void	Game::drawRain()
    _sceneTexture.display();
 }
 
+
 void Game::draw()
 {
   _window.clear();
   _sceneTexture.clear();
   _sceneTexture.setView(_window.getView());
   _world.render(_sceneTexture);
+  //this->drawRain();
   _sceneTexture.display();
   drawLights();
   _sceneTexture.display();
@@ -124,7 +170,8 @@ void Game::draw()
   sf::Sprite prerendering(_lightTexture.getTexture());
   prerendering.setPosition(_camera.GetPosition());
   _sceneTexture.draw(prerendering, sf::BlendMultiply);
-  // drawRain();
+  if (_openInventory)
+    _inventory.draw(_sceneTexture);
   _sceneTexture.display();
 
   sf::Sprite scene(_sceneTexture.getTexture());
@@ -140,6 +187,7 @@ void	Game::run()
   while (_window.isOpen())
     {
       clock.restart();
+      sf::Joystick::update();
       sf::Event event;
       while (_window.pollEvent(event))
 	{

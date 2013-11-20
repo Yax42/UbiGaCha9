@@ -5,6 +5,8 @@
 #include "Hero.hh"
 
 AssetDescriptor Hero::s_assetDesc("ressource/textures/monk.png");
+std::vector<bool> Hero::_listWeapons;
+std::vector<int> Hero::_listEquip;
 
 void		Hero::initAsset()
 {
@@ -58,6 +60,15 @@ void		Hero::initAsset()
 	s_assetDesc.addLine(32, 24, 4);
 	s_assetDesc.addLine(32, 32, 4);
 	s_assetDesc.addLine(32, 32, 4);
+
+	//FILL LISTWEAPON ALL FALSE IN BEGIN TEST WITH TRUE
+	_listWeapons.push_back(true);
+	_listWeapons.push_back(true);
+	_listWeapons.push_back(true);
+	_listWeapons.push_back(true);
+
+	_listEquip.push_back(0);
+	_listEquip.push_back(0);
 }
 
 Hero::Hero(const sf::Vector2f &pos)
