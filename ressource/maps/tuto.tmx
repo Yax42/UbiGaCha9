@@ -1,119 +1,144 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <map version="1.0" orientation="orthogonal" width="10" height="10" tilewidth="64" tileheight="64">
- <tileset firstgid="1" name="tileset" tilewidth="16" tileheight="16">
-  <image source="../../../../../git/UbiGaCha9/ressource/textures/assest 6.png" width="768" height="212"/>
+ <tileset firstgid="1" name="tiles" tilewidth="64" tileheight="64">
+  <image source="../textures/tiles.png" width="384" height="320"/>
  </tileset>
- <layer name="Background" width="10" height="10">
+ <tileset firstgid="31" name="objects" tilewidth="64" tileheight="64">
+  <image source="../textures/objects.png" width="384" height="192"/>
+ </tileset>
+ <layer name="Calque de Tile 1" width="10" height="10">
   <data>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="310"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="310"/>
-   <tile gid="310"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="310"/>
-   <tile gid="310"/>
-   <tile gid="310"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
-   <tile gid="0"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="19"/>
+   <tile gid="20"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="7"/>
+   <tile gid="25"/>
+   <tile gid="26"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="2"/>
+   <tile gid="7"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="2"/>
+   <tile gid="7"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="1"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
+   <tile gid="7"/>
   </data>
  </layer>
+ <objectgroup name="objects" width="10" height="10">
+  <object gid="34" x="100" y="154">
+   <properties>
+    <property name="id" value="4"/>
+   </properties>
+  </object>
+  <object gid="37" x="223" y="309">
+   <properties>
+    <property name="id" value="7"/>
+   </properties>
+  </object>
+  <object gid="32" x="391" y="512">
+   <properties>
+    <property name="id" value="2"/>
+   </properties>
+  </object>
+  <object gid="38" x="391" y="575">
+   <properties>
+    <property name="id" value="8"/>
+   </properties>
+  </object>
+ </objectgroup>
  <objectgroup name="playerspawn" width="10" height="10">
   <object x="513" y="257">
    <ellipse/>
   </object>
  </objectgroup>
  <objectgroup name="exit" width="10" height="10">
-  <object name="level1" x="609" y="387" width="32" height="125"/>
+  <object x="609" y="387" width="32" height="125"/>
  </objectgroup>
  <objectgroup name="ennemies" width="10" height="10">
   <object x="192" y="320">
@@ -135,31 +160,46 @@
   <object x="60" y="577" width="579" height="64"/>
   <object x="576" y="513" width="64" height="65"/>
  </objectgroup>
- <objectgroup name="objects" width="10" height="10">
-  <object x="475" y="233">
-   <ellipse/>
-  </object>
-  <object x="497" y="195">
+ <objectgroup name="texts" width="10" height="10">
+  <object x="512" y="215">
    <properties>
-    <property name="id" value="1"/>
+    <property name="content" value="Use Arrows to move"/>
    </properties>
    <ellipse/>
   </object>
-  <object x="530" y="186">
+  <object x="479" y="129">
    <properties>
-    <property name="id" value="2"/>
+    <property name="content" value="Use SPACE to shoot slime"/>
    </properties>
    <ellipse/>
   </object>
-  <object x="561" y="229">
+  <object x="256" y="218">
    <properties>
-    <property name="id" value="3"/>
+    <property name="content" value="Prepare to FIGHT !"/>
    </properties>
    <ellipse/>
   </object>
-  <object x="475" y="233">
+  <object x="127" y="150">
    <properties>
-    <property name="id" value="0"/>
+    <property name="content" value="Looks like a key..."/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object x="167" y="513">
+   <properties>
+    <property name="content" value="Tip : ghosts can't die !"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object x="321" y="513">
+   <properties>
+    <property name="content" value="A locked door requires a key"/>
+   </properties>
+   <ellipse/>
+  </object>
+  <object x="538" y="455">
+   <properties>
+    <property name="content" value="GG !"/>
    </properties>
    <ellipse/>
   </object>

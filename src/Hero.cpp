@@ -270,5 +270,11 @@ bool Hero::collides(GameObject &obj)
 {
   if (_collide == false || obj._collide == false || obj._type == 4 || obj._type == 5)
     return (false);
+  if (obj._type == 2 && _box.intersects(obj._box))
+    {
+      giveOrder(DIE);
+      std::cout << "DIE PLAYER" << std::endl;
+      return (false);
+    }
   return (obj._type == 0 && _box.intersects(obj._box));
 }
