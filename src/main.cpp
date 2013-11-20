@@ -13,6 +13,7 @@
 #include "Arrow.hh"
 #include "Kamea.hh"
 #include "SoundManager.hh"
+#include "ItemObject.hh"
 
 int main()
 {
@@ -26,6 +27,7 @@ int main()
   Mob3::initAsset();
   Arrow::initAsset();
   Kamea::initAsset();
+  ItemObject::initAsset();
   window.setView(sf::View(sf::FloatRect(sf::Vector2f(0.f, 0.f), sf::Vector2f(256, 240))));
   window.setFramerateLimit(30);
   window.setKeyRepeatEnabled(false);
