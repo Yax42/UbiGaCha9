@@ -3,7 +3,7 @@
 AssetDescriptor FoxSpirit::s_assetDesc("ressource/textures/fox.png");
 
 FoxSpirit::FoxSpirit(const sf::Vector2f &pos)
-  : GameObject(Asset(s_assetDesc), pos, sf::Vector2f(32, 32))
+  : GameObject(Asset(s_assetDesc), pos, sf::Vector2f(16, 32), 75, false)
 {
 	_type = 1;
 }

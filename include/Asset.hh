@@ -6,8 +6,8 @@
 class Asset
 {
 public:
-	~Asset(){}
 	Asset(const AssetDescriptor &assetDesc);
+	~Asset() {}
 	void	setCurrentLine(int cur);
 	void	resetSprite();
 	bool	update();
@@ -19,6 +19,8 @@ private:
 	int						_curLine;
 	int						_curFrame;
 	sf::Sprite				_sprite;
+public:
+	sf::Vector2f			_size;
 };
 
 #endif

@@ -1,21 +1,38 @@
+#include <memory>
 #include "SfTileEngine/sf_tilemap.h"
 #include "SfTileEngine/sf_tileset.h"
 #include "SfTileEngine/sf_tilemap_loader.h"
 #include "World.hh"
 #include "Hero.hh"
 #include "FoxSpirit.hh"
+#include "Mob0.hh"
+#include "Mob1.hh"
+#include "Mob2.hh"
+#include "Mob3.hh"
+#include "Wall.hh"
+#include "Exit.hh"
+#include "Game.hh"
+
+Hero *World::hero = nullptr;
+std::map<std::string, sftile::SfTilemap*> World::tilemaps;
+GameObjectVector							*World::gameObjects = nullptr;
+World *World::world = nullptr;
 
 World::World(sftile::SfSmartCamera &camera, Light &heroLight)
   : _camera(camera),
-    _heroLight(heroLight)
+    _heroLight(heroLight),
+    _fox(nullptr),
+    _control(nullptr)
 {
-  _hero = new Hero(sf::Vector2f(40, 40));
-  _fox = new FoxSpirit(sf::Vector2f(140, 140));
-  _control = new Controller(*_hero, *_fox);
+  world = this;
+  hero = new Hero;
+  gameObjects = &_gameObjects;
+  _fox = new FoxSpirit;
+  _control = new Controller(*hero, *_fox);
   loadTilemap("tuto", "./ressource/maps/tuto.tmx");
+  loadTilemap("level1", "./ressource/maps/level1.tmx");
+  loadTilemap("level2", "./ressource/maps/level2.tmx");
   setMap("tuto");
-  _gameObjects.push_back(_hero);
-  _gameObjects.push_back(_fox);
   std::cout << "World created" << std::endl;
 }
 
@@ -23,18 +40,18 @@ World::~World()
 {
   clearWorld();
   unloadTileMaps();
+  delete _control;
+  delete _fox;
+  delete hero;
 }
 
-void World::setMap(const std::string &mapName)
+bool World::setMap(std::string mapName)
 {
   if (!mapExists(mapName))
-    {
-      std::cerr << "Error on setMap: " << mapName << " Doesn't exist" << std::endl;
-      return ;
-    }
+    return (false);
   clearWorld();
-  _tilemap = _tilemaps.find(mapName)->second;
-  for (std::vector<sftile::priv::SfObjectLayer>::const_iterator it = _tilemap->getObjectLayers().begin();
+  _tilemap = tilemaps.find(mapName)->second;
+  for (std::vector<sftile::priv::SfObjectLayer>::iterator it = _tilemap->getObjectLayers().begin();
        it != _tilemap->getObjectLayers().end(); ++it)
     {
       std::string name = (*it).GetName();
@@ -50,6 +67,7 @@ void World::setMap(const std::string &mapName)
       else if (name == "exit")
 	getExit(*it);
     }
+  return (true);
 }
 
 void World::handleEvents(sf::Event evt)
@@ -61,28 +79,39 @@ void World::handleEvents(sf::Event evt)
 void World::update(float elapsedTime, size_t frameCount)
 {
   _tilemap->Update();
-  for (GameObjectVector::iterator it = _gameObjects.begin();
-       it != _gameObjects.end(); ++it)
+  GameObjectVector::iterator it = _gameObjects.begin();
+  while (it != _gameObjects.end())
     {
       (*it)->update(elapsedTime, frameCount);
-      _quadTree.insert(*it);
-    }
-  for (GameObjectVector::iterator it = _gameObjects.begin();
-       it != _gameObjects.end(); ++it)
-    {
-      GameObjectVector	returnObjects;
-
-      if (_quadTree.retrieve(returnObjects, *it))
+      if ((*it)->isDead() == false)
 	{
-	  for (GameObjectVector::iterator it2 = returnObjects.begin();
-	       it2 != returnObjects.end(); ++it2)
-	    if ((*it)->collides(**it2))
-	      (*it)->toBackPosition();
+	  _quadTree.insert(*it);
+	  ++it;
+	}
+      else
+	{
+	  delete *it;
+	  it = _gameObjects.erase(it);
 	}
     }
+  hero->update(elapsedTime, frameCount);
+  if (hero->isDead())
+    {
+      Game::_run = false;
+      return ;
+    }
+  _quadTree.insert(hero);
+  _fox->update(elapsedTime, frameCount);
+  _quadTree.insert(_fox);
+  for (GameObjectVector::iterator it = _gameObjects.begin();
+       it != _gameObjects.end(); ++it)
+    if (collideObject(*it))
+      return ;
+  if (collideObject(hero) || collideObject(_fox))
+    return ;
   _quadTree.clear();
-  _heroLight.position = _hero->getPos();
-  sf::Vector2f foxPos = _fox->getPos();
+  _heroLight.position = hero->getPos() + sf::Vector2f(26, 24);
+  sf::Vector2f foxPos = _fox->getCenterPos();
   _camera.SetCenterPosition(foxPos.x, foxPos.y);
 }
 
@@ -95,6 +124,8 @@ void World::render(sf::RenderTexture &window)
   for (GameObjectVector::iterator it = _gameObjects.begin();
        it != _gameObjects.end(); ++it)
     (*it)->draw(window);
+  hero->draw(window);
+  _fox->draw(window);
 }
 
 void World::loadTilemap(const std::string &mapName, const std::string &path)
@@ -108,7 +139,7 @@ void World::loadTilemap(const std::string &mapName, const std::string &path)
   if (_loader.LoadTilemap(path, *tilemap))
     {
       tilemap->RegisterCamera(&_camera);
-      _tilemaps.emplace(mapName, tilemap);
+      tilemaps.emplace(mapName, tilemap);
       std::cout << "Loaded SfTilemap from path: " << path << std::endl;
     }
   else
@@ -128,38 +159,116 @@ void World::clearWorld()
 
 void World::unloadTileMaps()
 {
-  for (std::map<std::string, sftile::SfTilemap*>::iterator it = _tilemaps.begin();
-       it != _tilemaps.end(); ++it)
+  for (std::map<std::string, sftile::SfTilemap*>::iterator it = tilemaps.begin();
+       it != tilemaps.end(); ++it)
     delete it->second;
-  _tilemaps.clear();
+  tilemaps.clear();
 }
 
 bool World::mapExists(const std::string &mapName)
 {
-  return (_tilemaps.find(mapName) != _tilemaps.end());
+  return (tilemaps.find(mapName) != tilemaps.end());
 }
 
-void World::getWalls(const sftile::priv::SfObjectLayer &walls)
+bool World::collideObject(GameObject *obj)
 {
-  std::cout << "getWalls" << std::endl;
+  GameObjectVector	returnObjects;
+
+  if (_quadTree.retrieve(returnObjects, obj))
+    {
+      for (GameObjectVector::iterator it = returnObjects.begin();
+	   it != returnObjects.end(); ++it)
+	if (obj->collides(**it))
+	  {
+	    obj->toBackPosition();
+	    if (obj == hero && (*it)->_type == 3/*EXIT*/)
+	      {
+		Exit *exit = dynamic_cast<Exit*>(*it);
+		if (setMap(exit->getName()) == false)
+		  Game::_run = false;
+		return (true);
+	      }
+	  }
+    }
+  return (false);
 }
 
-void World::getEnnemies(const sftile::priv::SfObjectLayer &ennemies)
+void World::getWalls(sftile::priv::SfObjectLayer &walls)
 {
-  std::cout << "getEnnemies" << std::endl;
+  for (size_t i = 0; i < walls.getSizeObjects(); ++i)
+    {
+      sftile::SfObject	*wall = walls.GetObject(i);
+      sf::Vector2i	tmpVec = wall->GetPosition();
+      sf::Vector2f	wallPos(tmpVec.x, tmpVec.y);
+      tmpVec = wall->GetDimensions();
+      sf::Vector2f	wallDim(tmpVec.x, tmpVec.y);
+
+      _gameObjects.push_back(new Wall(wallPos, wallDim));
+    }
 }
 
-void World::getObjects(const sftile::priv::SfObjectLayer &objects)
+void World::getEnnemies(sftile::priv::SfObjectLayer &ennemies)
 {
-  std::cout << "getObjects" << std::endl;
+  for (size_t i = 0; i < ennemies.getSizeObjects(); ++i)
+    {
+      sftile::SfObject	*ennemy = ennemies.GetObject(i);
+      sf::Vector2i	tmpPos = ennemy->GetPosition();
+      sf::Vector2f	ennemyPos(tmpPos.x, tmpPos.y);
+
+      switch (ennemy->GetId())
+	{
+	case 0:
+	  _gameObjects.push_back(new Mob0(ennemyPos));
+	  break;
+	case 1:
+	  _gameObjects.push_back(new Mob1(ennemyPos));
+	  break;
+	case 2:
+	  _gameObjects.push_back(new Mob2(ennemyPos));
+	  break;
+	default:
+	  _gameObjects.push_back(new Mob3(ennemyPos));
+	}
+    }
 }
 
-void World::getPlayerSpawn(const sftile::priv::SfObjectLayer &playerSpawn)
+void World::getObjects(sftile::priv::SfObjectLayer &objects)
 {
-  std::cout << "getPlayerSpawn" << std::endl;
+  for (size_t i = 0; i < objects.getSizeObjects(); ++i)
+    {
+      sftile::SfObject	*object = objects.GetObject(i);
+
+      // _gameObjects.push_back(new ???(object->GetPosition(), object->GetDimensions()));
+    }
 }
 
-void World::getExit(const sftile::priv::SfObjectLayer &exit)
+void World::getPlayerSpawn(sftile::priv::SfObjectLayer &playerSpawn)
 {
-  std::cout << "getExit" << std::endl;
+  if (playerSpawn.getSizeObjects() > 0)
+    {
+      sftile::SfObject	*spawn = playerSpawn.GetObject(0);
+      sf::Vector2i	tmp = spawn->GetPosition();
+      sf::Vector2f	spawnPos(tmp.x, tmp.y);
+
+      _fox->setPos(spawnPos);
+      hero->setPos(spawnPos);
+    }
+  else
+    std::cerr << "No Player Spawn for this map" << std::endl;
+}
+
+void World::getExit(sftile::priv::SfObjectLayer &exits)
+{
+  if (exits.getSizeObjects() > 0)
+    {
+      sftile::SfObject *exit = exits.GetObject(0);
+      sf::Vector2i	tmpVec = exit->GetPosition();
+      sf::Vector2f	exitPos(tmpVec.x, tmpVec.y);
+      tmpVec = exit->GetDimensions();
+      sf::Vector2f	exitDim(tmpVec.x, tmpVec.y);
+
+      _gameObjects.push_back(new Exit(exitPos, exitDim, exit->GetName()));
+    }
+  else
+    std::cerr << "No Exit for this map" << std::endl;
 }

@@ -17,6 +17,7 @@ GameObject::GameObject(const Asset &asset, const sf::Vector2f &pos,
 	_order(-1),
 	_weapon(0)
 {
+	_asset._size = size;
 	_type = 0;
 }
 
@@ -45,8 +46,8 @@ void			GameObject::updateSprite()
   int		xSign =  (_direction.x > 0) ? 1 : -1;
   int		ySign =  (_direction.y > 0) ? 1 : -1;
 
-  int		xAbs = xSign * _direction.x;
-  int		yAbs = ySign * _direction.y;
+  float		xAbs = xSign * _direction.x;
+  float		yAbs = ySign * _direction.y;
 
   if (xAbs + yAbs > 0)
   {
@@ -59,7 +60,7 @@ void			GameObject::updateSprite()
   _asset.update();
 }
 
-bool GameObject::collides(const GameObject &obj) const
+bool GameObject::collides(GameObject &obj)
 {
   if (_collide == false || obj._collide == false)
     return (false);

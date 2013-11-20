@@ -13,11 +13,13 @@ class Hero : public GameObject
 		ATTACK2,
 		ATTACK3
 	};
-	
+
 public:
-  Hero(const sf::Vector2f &pos);
+  Hero(const sf::Vector2f &pos = sf::Vector2f());
   virtual ~Hero(){}
+
   virtual void		update(float dt, size_t frameCount);
+  virtual bool		collides(GameObject &obj);
 
 private:
 	static AssetDescriptor s_assetDesc;
@@ -30,6 +32,8 @@ public:
 	sf::FloatRect	_attackBox;
 	int				_attackBoxState;
 	int				_oldOrient;
+  static std::vector<bool>	_listWeapons;
+  static std::vector<int>	_listEquip;
 };
 
 #endif

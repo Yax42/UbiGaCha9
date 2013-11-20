@@ -16,7 +16,6 @@ void        Asset::setCurrentLine(int cur)
     {
       _curLine = cur % _assetDesc.lines.size();
       _curFrame = -1;
-      resetSprite();
     }
 }
 
@@ -43,7 +42,7 @@ bool        Asset::update()
 
 void        Asset::draw(const sf::Vector2f &pos, float angle, sf::RenderTexture &window)
 {
-  _sprite.setPosition(pos + sf::Vector2f(_assetDesc.lines[_curLine].width / 2.0, _assetDesc.lines[_curLine].height / 2.0));
+  _sprite.setPosition(pos + sf::Vector2f((_size.x + _assetDesc.lines[_curLine].width) / 2,  (_size.y + _assetDesc.lines[_curLine].height) /2));
   window.draw(_sprite);
 }
 

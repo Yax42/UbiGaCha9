@@ -3,7 +3,7 @@
  <tileset firstgid="1" name="tiles" tilewidth="64" tileheight="64">
   <image source="../textures/tiles.png" width="384" height="320"/>
  </tileset>
- <tileset firstgid="65" name="objects" tilewidth="64" tileheight="64">
+ <tileset firstgid="31" name="objects" tilewidth="64" tileheight="64">
   <image source="../textures/objects.png" width="384" height="192"/>
  </tileset>
  <layer name="tiles" width="50" height="50">
@@ -2511,157 +2511,157 @@
   </data>
  </layer>
  <objectgroup name="objects" width="50" height="50">
-  <object gid="65" x="865" y="1312">
+  <object gid="31" x="865" y="1312">
    <properties>
     <property name="id" value="1"/>
    </properties>
   </object>
-  <object gid="65" x="992" y="1313">
+  <object gid="31" x="992" y="1313">
    <properties>
     <property name="id" value="1"/>
    </properties>
   </object>
-  <object gid="65" x="1120" y="1313">
+  <object gid="31" x="1120" y="1313">
    <properties>
     <property name="id" value="1"/>
    </properties>
   </object>
-  <object gid="65" x="2785" y="609">
+  <object gid="31" x="2785" y="609">
    <properties>
     <property name="id" value="1"/>
    </properties>
   </object>
-  <object gid="65" x="1504" y="2208">
+  <object gid="31" x="1504" y="2208">
    <properties>
     <property name="id" value="1"/>
    </properties>
   </object>
-  <object gid="65" x="2272" y="2785">
+  <object gid="31" x="2272" y="2785">
    <properties>
     <property name="id" value="1"/>
    </properties>
   </object>
-  <object gid="67" x="159" y="224">
+  <object gid="33" x="159" y="224">
    <properties>
     <property name="id" value="3"/>
    </properties>
   </object>
-  <object gid="74" x="1953" y="654">
+  <object gid="40" x="1953" y="654">
    <properties>
     <property name="id" value="10"/>
    </properties>
   </object>
-  <object gid="74" x="1927" y="707">
+  <object gid="40" x="1927" y="707">
    <properties>
     <property name="id" value="10"/>
    </properties>
   </object>
-  <object gid="74" x="1987" y="705">
+  <object gid="40" x="1987" y="705">
    <properties>
     <property name="id" value="10"/>
    </properties>
   </object>
-  <object gid="74" x="1671" y="269">
+  <object gid="40" x="1671" y="269">
    <properties>
     <property name="id" value="10"/>
    </properties>
   </object>
-  <object gid="74" x="1629" y="301">
+  <object gid="40" x="1629" y="301">
    <properties>
     <property name="id" value="10"/>
    </properties>
   </object>
-  <object gid="74" x="1659" y="351">
+  <object gid="40" x="1659" y="351">
    <properties>
     <property name="id" value="10"/>
    </properties>
   </object>
-  <object gid="74" x="1719" y="317">
+  <object gid="40" x="1719" y="317">
    <properties>
     <property name="id" value="10"/>
    </properties>
   </object>
-  <object gid="74" x="1601" y="363">
+  <object gid="40" x="1601" y="363">
    <properties>
     <property name="id" value="10"/>
    </properties>
   </object>
-  <object gid="73" x="1633" y="340">
+  <object gid="39" x="1633" y="340">
    <properties>
     <property name="id" value="9"/>
    </properties>
   </object>
-  <object gid="73" x="1676" y="295">
+  <object gid="39" x="1676" y="295">
    <properties>
     <property name="id" value="9"/>
    </properties>
   </object>
-  <object gid="69" x="1889" y="160">
+  <object gid="35" x="1889" y="160">
    <properties>
     <property name="id" value="5"/>
    </properties>
   </object>
-  <object gid="70" x="1953" y="160">
+  <object gid="36" x="1953" y="160">
    <properties>
     <property name="id" value="6"/>
    </properties>
   </object>
-  <object gid="75" x="1889" y="223">
+  <object gid="41" x="1889" y="223">
    <properties>
     <property name="id" value="11"/>
    </properties>
   </object>
-  <object gid="76" x="1952" y="223">
+  <object gid="42" x="1952" y="223">
    <properties>
     <property name="id" value="12"/>
    </properties>
   </object>
-  <object gid="74" x="326" y="2332">
+  <object gid="40" x="326" y="2332">
    <properties>
     <property name="id" value="10"/>
    </properties>
   </object>
-  <object gid="74" x="525" y="1798">
+  <object gid="40" x="525" y="1798">
    <properties>
     <property name="id" value="10"/>
    </properties>
   </object>
-  <object gid="74" x="525" y="1845">
+  <object gid="40" x="525" y="1845">
    <properties>
     <property name="id" value="10"/>
    </properties>
   </object>
-  <object gid="73" x="533" y="1827">
+  <object gid="39" x="533" y="1827">
    <properties>
     <property name="id" value="9"/>
    </properties>
   </object>
-  <object gid="71" x="765" y="342">
+  <object gid="37" x="765" y="342">
    <properties>
     <property name="id" value="7"/>
    </properties>
   </object>
-  <object gid="71" x="142" y="1453">
+  <object gid="37" x="142" y="1453">
    <properties>
     <property name="id" value="7"/>
    </properties>
   </object>
-  <object gid="71" x="1568" y="1948">
+  <object gid="37" x="1568" y="1948">
    <properties>
     <property name="id" value="7"/>
    </properties>
   </object>
-  <object gid="66" x="2500" y="2881">
+  <object gid="32" x="2500" y="2881">
    <properties>
     <property name="id" value="2"/>
    </properties>
   </object>
-  <object gid="72" x="2500" y="2945">
+  <object gid="38" x="2500" y="2945">
    <properties>
     <property name="id" value="8"/>
    </properties>
   </object>
-  <object gid="68" x="2981" y="612">
+  <object gid="34" x="2981" y="612">
    <properties>
     <property name="id" value="4"/>
    </properties>
@@ -2770,7 +2770,7 @@
   </object>
  </objectgroup>
  <objectgroup name="exit" width="50" height="50">
-  <object x="3157" y="1347" width="41" height="257"/>
+  <object name="level2" x="3157" y="1347" width="41" height="257"/>
  </objectgroup>
  <objectgroup name="ghostspawns" width="50" height="50">
   <object x="128" y="292">

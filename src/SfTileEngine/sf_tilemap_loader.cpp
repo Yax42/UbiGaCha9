@@ -152,7 +152,7 @@ bool SfTilemapLoader::ParseTileset(const XMLElement* _element, SfTileset& _tiles
     return false;
 
   // Load the tileset image
-  string source("./ressource/textures/");
+  string source("./ressource/maps/");
   source += image_element->Attribute("source");
   sf::Texture texture;
   if (!texture.loadFromFile(source))
@@ -304,11 +304,15 @@ bool SfTilemapLoader::ParseObjectLayer(const tinyxml2::XMLElement* _element, SfO
 ////////////////////////////////////////////////////////////
 bool SfTilemapLoader::ParseObject(const tinyxml2::XMLElement* _element, SfObject& _object)
 {
-  // string name = _element->Attribute("name");
-  // _object.name = name;
+  string name;
+  if (_element->Attribute("name"))
+    name = _element->Attribute("name");
+  _object.name = name;
 
-  // string type = _element->Attribute("type");
-  // _object.string_type = type;
+  string type;
+  if (_element->Attribute("type"))
+    type = _element->Attribute("type");
+  _object.string_type = type;
 
   int x = _element->IntAttribute("x");
   int y = _element->IntAttribute("y");
@@ -340,19 +344,19 @@ bool SfTilemapLoader::ParseObject(const tinyxml2::XMLElement* _element, SfObject
 
       if (child_name == "properties")
 	{
-	  const XMLElement *property_element = _element->FirstChildElement("property");
+	  const XMLElement *property_element = child_element->FirstChildElement("property");
 
 	  while (property_element != nullptr)
 	    {
 	      std::string property_name = property_element->Attribute("name");
 
-	      if (property_name == "content")
+	      if (property_name == "id")
 		{
-		  std::string content= property_element->Attribute("value");
-
-		  _object.content = content;
+		  int id = -1;
+		  property_element->QueryIntAttribute("value", &id);
+		  _object.id = id;
 		}
-	      property_element = property_element->NextSiblingElement();
+	      property_element = property_element->NextSiblingElement("property");
 	    }
 	}
       child_element = child_element->NextSiblingElement();
