@@ -31,13 +31,13 @@ Game::Game(sf::RenderWindow &window)
   if (!_texRain.loadFromFile("./ressource/textures/pluie.png"))
     throw UbiException("Error load Rain");
 
-  if (!_musicFade.openFromFile("./ressource/sound/Musique_In_Game_Fade_01.wav"))
+  if (!_musicFade.openFromFile("./ressource/sounds/Musique_In_Game_Fade_01.wav"))
     throw UbiException("Error load music Fade Game");
-  if (!_music.openFromFile("./ressource/sound/Musique_In_Game_01.wav"))
+  if (!_music.openFromFile("./ressource/sounds/Musique_In_Game_01.wav"))
     throw UbiException("Error load music Game");
-  if (!_ambianceFade.openFromFile("./ressource/sound/Ambiance_Fade_01.wav"))
+  if (!_ambianceFade.openFromFile("./ressource/sounds/Ambiance_Fade_01.wav"))
     throw UbiException("Error load ambiance Fade Game");
-  if (!_ambiance.openFromFile("./ressource/sound/Ambiance_01.wav"))
+  if (!_ambiance.openFromFile("./ressource/sounds/Ambiance_01.wav"))
     throw UbiException("Error load ambiance Game");
 
   _musicFade.setVolume(100);

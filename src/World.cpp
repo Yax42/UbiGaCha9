@@ -10,10 +10,12 @@
 #include "Mob2.hh"
 #include "Mob3.hh"
 #include "Wall.hh"
+#include "Exit.hh"
 
 Hero *World::hero = nullptr;
 std::map<std::string, sftile::SfTilemap*> World::tilemaps;
 GameObjectVector							*World::gameObjects = nullptr;
+World *World::world = nullptr;
 
 World::World(sftile::SfSmartCamera &camera, Light &heroLight)
   : _camera(camera),
@@ -21,6 +23,7 @@ World::World(sftile::SfSmartCamera &camera, Light &heroLight)
     _fox(nullptr),
     _control(nullptr)
 {
+  world = this;
   hero = new Hero;
   gameObjects = &_gameObjects;
   _fox = new FoxSpirit;
@@ -39,12 +42,12 @@ World::~World()
   delete hero;
 }
 
-void World::setMap(const std::string &mapName)
+bool World::setMap(const std::string &mapName)
 {
   if (!mapExists(mapName))
     {
       std::cerr << "Error on setMap: " << mapName << " Doesn't exist" << std::endl;
-      return ;
+      return (false);
     }
   clearWorld();
   _tilemap = tilemaps.find(mapName)->second;
@@ -64,6 +67,7 @@ void World::setMap(const std::string &mapName)
       else if (name == "exit")
 	getExit(*it);
     }
+  return (true);
 }
 
 void World::handleEvents(sf::Event evt)
@@ -243,8 +247,12 @@ void World::getExit(sftile::priv::SfObjectLayer &exits)
   if (exits.getSizeObjects() > 0)
     {
       sftile::SfObject *exit = exits.GetObject(0);
+      sf::Vector2i	tmpVec = exit->GetPosition();
+      sf::Vector2f	exitPos(tmpVec.x, tmpVec.y);
+      tmpVec = exit->GetDimensions();
+      sf::Vector2f	exitDim(tmpVec.x, tmpVec.y);
 
-      // _gameObjects.push_back(new Exit(exit->GetPosition(), exit->GetDimensions(), exit->GetName()));
+      _gameObjects.push_back(new Exit(exitPos, exitDim, exit->GetName()));
     }
   else
     std::cerr << "No Exit for this map" << std::endl;

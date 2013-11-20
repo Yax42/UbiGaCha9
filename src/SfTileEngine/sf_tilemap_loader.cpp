@@ -304,11 +304,15 @@ bool SfTilemapLoader::ParseObjectLayer(const tinyxml2::XMLElement* _element, SfO
 ////////////////////////////////////////////////////////////
 bool SfTilemapLoader::ParseObject(const tinyxml2::XMLElement* _element, SfObject& _object)
 {
-  // string name = _element->Attribute("name");
-  // _object.name = name;
+  string name;
+  if (_element->Attribute("name"))
+    name = _element->Attribute("name");
+  _object.name = name;
 
-  // string type = _element->Attribute("type");
-  // _object.string_type = type;
+  string type;
+  if (_element->Attribute("type"))
+    type = _element->Attribute("type");
+  _object.string_type = type;
 
   int x = _element->IntAttribute("x");
   int y = _element->IntAttribute("y");

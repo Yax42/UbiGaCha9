@@ -21,7 +21,7 @@ public:
   World(sftile::SfSmartCamera &camera, Light &heroLight);
   ~World();
 
-  void			setMap(const std::string &mapName);
+  bool			setMap(const std::string &mapName);
   void			handleEvents(sf::Event evt);
   void			update(float elapsedTime, size_t frameCount);
   void			render(sf::RenderTexture &rect);
@@ -29,6 +29,7 @@ public:
   static Hero										*hero;
   static std::map<std::string, sftile::SfTilemap*>	tilemaps;
   static GameObjectVector							*gameObjects;
+  static World		*world;
 
 private:
   void loadTilemap(const std::string &mapName, const std::string &path);
