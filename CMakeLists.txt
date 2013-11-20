@@ -11,7 +11,7 @@ set(
 
 list(APPEND CMAKE_CXX_FLAGS "-std=c++0x ${CMAKE_CXX_FLAGS} -ftest-coverage -fprofile-arcs")
 
-find_package(SFML 2.1 COMPONENTS system window graphics audio REQUIRED)
+find_package(SFML 2.1 COMPONENTS system window graphics audio network REQUIRED)
 
 include_directories(
   include

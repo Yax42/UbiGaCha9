@@ -22,8 +22,6 @@ Game::Game(sf::RenderWindow &window)
     throw UbiException("Failed to load haloMonk.png");
   _sceneTexture.create(_window.getView().getSize().x, _window.getView().getSize().y);
   _lightTexture.create(_window.getView().getSize().x, _window.getView().getSize().y);
-  _camera.SetTrackMode(sftile::SF_TRACK_KEYS_PRESS);
-
   _playerLight.setTexture(_tHaloMonk);
   _foxLight.setTexture(_tHaloFox);
   if (!_imageRain.loadFromFile("./ressource/textures/animation_pluie.jpg"))
@@ -75,7 +73,7 @@ void Game::drawLights()
   _lightTexture.setView(view);
   // Lumiere perso
   _halo.setTexture(_tHaloMonk);
-  _halo.setPosition(_playerLight.position);
+  _halo.setPosition(_playerLight.position.x + 25, _playerLight.position.y + 20);
   centerOrigin(_halo);
   _halo.setColor(_playerLight.color);
   _halo.setScale(_playerLight.ratio, _playerLight.ratio);

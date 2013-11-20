@@ -1,10 +1,8 @@
 #include "Scoring.h"
 
-
 Scoring::Scoring(sf::IpAddress &ip, unsigned short port)
 	: _ip(ip), _port(port)
 {
-	_score = "";
 }
 
 
@@ -17,7 +15,7 @@ std::string	Scoring::getScore() const
 	return _score;
 }
 
-std::list<const std::string> Scoring::getScoreList() const
+std::list<std::string> Scoring::getScoreList() const
 {
 	return _scoreList;
 }
@@ -41,7 +39,7 @@ void Scoring::setScoreList()
 	std::string received = "SCORE ";
 	std::string token;
 	std::string delimiter = ";";
-	
+
 	_socket.connect(_ip, _port);
 	_socket.receive(_packet);
 	_socket.disconnect();

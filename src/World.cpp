@@ -10,7 +10,7 @@ World::World(sftile::SfSmartCamera &camera, Light &heroLight)
     _heroLight(heroLight)
 {
   _hero = new Hero(sf::Vector2f(40, 40));
-  _fox = new FoxSpirit(sf::Vector2f(242, 142));
+  _fox = new FoxSpirit(sf::Vector2f(140, 140));
   _control = new Controller(*_hero, *_fox);
   loadTilemap("tuto", "./ressource/maps/tuto.tmx");
   setMap("tuto");
@@ -82,6 +82,8 @@ void World::update(float elapsedTime, size_t frameCount)
     }
   _quadTree.clear();
   _heroLight.position = _hero->getPos();
+  sf::Vector2f foxPos = _fox->getPos();
+  _camera.SetCenterPosition(foxPos.x, foxPos.y);
 }
 
 void World::render(sf::RenderTexture &window)
