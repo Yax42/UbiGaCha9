@@ -8,7 +8,7 @@ void		Mob0::initAsset()
 }
 
 Mob0::Mob0(const sf::Vector2f &pos)
-  : Mob(pos, s_assetDesc,  60)
+  : Mob(pos, s_assetDesc,  10)
 {
 	_mobType = 0;
 }

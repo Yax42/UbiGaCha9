@@ -24,6 +24,7 @@
     <ClCompile Include="..\src\Game.cpp" />
     <ClCompile Include="..\src\GameObject.cpp" />
     <ClCompile Include="..\src\Hero.cpp" />
+    <ClCompile Include="..\src\ItemObject.cpp" />
     <ClCompile Include="..\src\Kamea.cpp" />
     <ClCompile Include="..\src\main.cpp" />
     <ClCompile Include="..\src\MainMenuLayer.cpp" />
@@ -65,6 +66,7 @@
     <ClInclude Include="..\include\GameObject.hh" />
     <ClInclude Include="..\include\Hero.hh" />
     <ClInclude Include="..\include\ILayer.hh" />
+    <ClInclude Include="..\include\ItemObject.hh" />
     <ClInclude Include="..\include\Kamea.hh" />
     <ClInclude Include="..\include\Light.hh" />
     <ClInclude Include="..\include\MainMenuLayer.hh" />

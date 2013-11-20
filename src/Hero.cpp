@@ -158,7 +158,7 @@ void	Hero::update(float ft, size_t frameCount)
 	      SoundManager::getInstance().getSound("ressource/sounds/staff_vent.wav").play();
 	    }
 	  _attackBoxState = ATTACK0;
-	  _attackBox = sf::FloatRect(_box.left - 15, _box.top - 15, _box.width + 30, _box.height + 30);
+	  _attackBox = sf::FloatRect(_box.left - 30, _box.top - 30, _box.width + 90, _box.height + 90);
 	  if ((frameCount % 4) == 0)
 	    {
 	      updateSprite();
@@ -167,7 +167,8 @@ void	Hero::update(float ft, size_t frameCount)
 	}
       else if (_weapon == 1)
 	{
-	    _attackBox = sf::FloatRect(_box.left + 30 * signX, _box.top + 30 * signY, 30, 30);
+	  _attackBox = sf::FloatRect(_box.left - 30, _box.top - 30, _box.width + 90, _box.height + 90);
+	    //_attackBox = sf::FloatRect(_box.left + 5 * signX, _box.top + 5 signY, signY * , 60);
 	  if (!_sound)
 	    {
 	      _sound = true;
@@ -242,7 +243,7 @@ void	Hero::update(float ft, size_t frameCount)
 	  _direction.y = 0;
 	  _direction.x = 0;
 	  _attackBoxState = NO_ATTACK;
-	  int	framing = 6;
+	  int	framing = 3;
 
 	  if ((frameCount % framing) == 0)
 	    {
