@@ -44,7 +44,7 @@ public:
 	void			dirY(float y) { _direction.y = y; }
 
 	virtual void		update(float dt, size_t frameCount);
-	void			draw(sf::RenderTexture &window);
+	virtual void		draw(sf::RenderTexture &window);
 	void			toBackPosition();
 	bool			collides(const GameObject &obj) const;
 	virtual bool			isDead();
