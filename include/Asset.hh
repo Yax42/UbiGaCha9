@@ -6,8 +6,8 @@
 class Asset
 {
 public:
-	~Asset(){}
 	Asset(const AssetDescriptor &assetDesc);
+	~Asset() {}
 	void	setCurrentLine(int cur);
 	void	resetSprite();
 	bool	update();

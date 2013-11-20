@@ -9,6 +9,7 @@
 #include "Mob1.hh"
 #include "Mob2.hh"
 #include "Mob3.hh"
+#include "Wall.hh"
 
 Hero *World::hero = nullptr;
 std::map<std::string, sftile::SfTilemap*> World::tilemaps;
@@ -170,8 +171,12 @@ void World::getWalls(sftile::priv::SfObjectLayer &walls)
   for (size_t i = 0; i < walls.getSizeObjects(); ++i)
     {
       sftile::SfObject	*wall = walls.GetObject(i);
+      sf::Vector2i	tmpVec = wall->GetPosition();
+      sf::Vector2f	wallPos(tmpVec.x, tmpVec.y);
+      tmpVec = wall->GetDimensions();
+      sf::Vector2f	wallDim(tmpVec.x, tmpVec.y);
 
-      // _gameObjects.push_back(new Wall(wall->GetPosition(), wall->GetDimensions()));
+      _gameObjects.push_back(new Wall(wallPos, wallDim));
     }
 }
 
