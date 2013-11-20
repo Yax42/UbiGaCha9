@@ -61,8 +61,8 @@ void			Hero::updateSprite()
   int		xSign =  (_direction.x > 0) ? 1 : -1;
   int		ySign =  (_direction.y > 0) ? 1 : -1;
 
-  int		xAbs = xSign * _direction.x;
-  int		yAbs = ySign * _direction.y;
+  float		xAbs = xSign * _direction.x;
+  float		yAbs = ySign * _direction.y;
 
   if (_stateCount == 0)
   {
