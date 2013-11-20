@@ -234,6 +234,11 @@ void	Hero::update(float ft, size_t frameCount)
 	}
       else if (_weapon == 3)
 	{
+	  if (!_sound)
+	    {
+	      _sound = true;
+	      SoundManager::getInstance().getSound("ressource/sounds/AOE.wav").play();
+	    }
 	  _direction.y = 0;
 	  _direction.x = 0;
 	  _attackBoxState = NO_ATTACK;
