@@ -5,6 +5,8 @@
 #include "Utils.hh"
 #include <iostream>
 
+bool Game::_run = false;
+
 Game::Game(sf::RenderWindow &window)
   : _window(window),
     _foxLight(_window.getView().getCenter(), 1),
@@ -18,6 +20,7 @@ Game::Game(sf::RenderWindow &window)
     _nbMusic(0),
     _openInventory(false)
 {
+  _run = true;
   if (!_tHaloFox.loadFromFile("./ressource/textures/haloFox.png"))
     throw UbiException("Failed to load haloFox.png");
   if (!_tHaloMonk.loadFromFile("./ressource/textures/haloMonk.png"))
@@ -184,7 +187,7 @@ void	Game::run()
 {
   sf::Clock	clock;
 
-  while (_window.isOpen())
+  while (_window.isOpen() && _run)
     {
       clock.restart();
       sf::Joystick::update();
