@@ -26,6 +26,11 @@ Mob::Mob(const sf::Vector2f &pos, AssetDescriptor &assetDesc, float speed)
 	_type = 2;
 }
 
+Mob::~Mob()
+{
+  World::hero->_score += 100 * _mobType;
+}
+
 void			Mob::updateSprite()
 {
   int		xSign =  (_direction.x > 0) ? 1 : -1;
