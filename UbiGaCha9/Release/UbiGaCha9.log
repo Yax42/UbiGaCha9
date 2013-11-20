@@ -1,10 +1,14 @@
-﻿Build started 20/11/2013 10:41:24.
+﻿Build started 20/11/2013 11:11:18.
      1>Project "C:\Users\DANEEL\Documents\UbiGaCha9\UbiGaCha9\UbiGaCha9.vcxproj" on node 2 (Build target(s)).
      1>InitializeBuildStatus:
-         Creating "Release\UbiGaCha9.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
+         Touching "Release\UbiGaCha9.tlog\unsuccessfulbuild".
        ClCompile:
-         F:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"../SFML-2.1/include" /I../include /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\FoxSpirit.cpp
-         FoxSpirit.cpp
+         F:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\CL.exe /c /I"../SFML-2.1/include" /I../include /Zi /nologo /W3 /WX- /O2 /Oi /Oy- /GL /D WIN32 /D NDEBUG /D _CONSOLE /D _UNICODE /D UNICODE /Gm- /EHsc /MD /GS /Gy /fp:precise /Zc:wchar_t /Zc:forScope /Fo"Release\\" /Fd"Release\vc120.pdb" /Gd /TP /analyze- /errorReport:prompt ..\src\Credits.cpp
+         Credits.cpp
+     1>c:\users\daneel\documents\ubigacha9\include\Light.hh(26): warning C4244: '=' : conversion from 'int' to 'float', possible loss of data
+     1>c:\users\daneel\documents\ubigacha9\include\Light.hh(36): warning C4244: '-=' : conversion from 'double' to 'float', possible loss of data
+     1>c:\users\daneel\documents\ubigacha9\include\Light.hh(41): warning C4244: '+=' : conversion from 'double' to 'float', possible loss of data
+     1>..\src\Credits.cpp(51): warning C4305: 'argument' : truncation from 'double' to 'float'
        Link:
          F:\Program Files (x86)\Microsoft Visual Studio 12.0\VC\bin\link.exe /ERRORREPORT:PROMPT /OUT:"C:\Users\DANEEL\Documents\UbiGaCha9\Release\UbiGaCha9.exe" /INCREMENTAL:NO /NOLOGO /LIBPATH:"../SFML-2.1/lib" "sfml-graphics.lib" "sfml-window.lib" "sfml-system.lib" "sfml-audio.lib" "sfml-network.lib" kernel32.lib user32.lib gdi32.lib winspool.lib comdlg32.lib advapi32.lib shell32.lib ole32.lib oleaut32.lib uuid.lib odbc32.lib odbccp32.lib /MANIFEST /MANIFESTUAC:"level='asInvoker' uiAccess='false'" /manifest:embed /DEBUG /PDB:"C:\Users\DANEEL\Documents\UbiGaCha9\Release\UbiGaCha9.pdb" /SUBSYSTEM:CONSOLE /OPT:REF /OPT:ICF /LTCG /TLBID:1 /DYNAMICBASE /NXCOMPAT /IMPLIB:"C:\Users\DANEEL\Documents\UbiGaCha9\Release\UbiGaCha9.lib" /MACHINE:X86 /SAFESEH Release\Arrow.obj
          Release\Asset.obj
@@ -13,6 +17,7 @@
          Release\Audios.obj
          Release\Box.obj
          Release\Controller.obj
+         Release\Credits.obj
          Release\EventPlayer.obj
          Release\FoxSpirit.obj
          Release\Game.obj
@@ -28,6 +33,7 @@
          Release\Mob3.obj
          Release\PlayerInventory.obj
          Release\QuadTree.obj
+         Release\Scoring.obj
          Release\sf_camera.obj
          Release\sf_object.obj
          Release\sf_object_layer.obj
@@ -51,4 +57,4 @@
 
 Build succeeded.
 
-Time Elapsed 00:00:03.58
+Time Elapsed 00:00:04.08
