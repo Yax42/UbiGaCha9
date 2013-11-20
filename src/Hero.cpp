@@ -139,7 +139,7 @@ void	Hero::update(float ft, size_t frameCount)
 	  if (_weapon == 0)
 	  {
 		  _attackBoxState = ATTACK0;
-		  _attackBox = sf::FloatRect(0, 0, 64, 64);
+		  _attackBox = sf::FloatRect(_box.left - 15, _box.top - 15, _box.width + 30, _box.height + 30);
 		  if ((frameCount % 4) == 0)
 			updateSprite();
 	  }
@@ -165,7 +165,7 @@ void	Hero::update(float ft, size_t frameCount)
 		  else if (_stateCount == 1)
 		  {
 			  _attackBoxState = ATTACK1;
-			  _attackBox = sf::FloatRect(signX * 32, signY * 32, 32, 32);
+			  _attackBox = sf::FloatRect(_box.left + 30 * signX, _box.top + 30 * signY, 30, 30);
 			  _direction.x = 0.4 * signX;
 			  _direction.y = 0.4 * signY;
 			if ((frameCount % 8) == 0)
@@ -222,4 +222,13 @@ void	Hero::update(float ft, size_t frameCount)
   _backPos = sf::Vector2f(_box.left, _box.top);
   _box.left += _direction.x * ft * _maxSpeed;
   _box.top += _direction.y * ft * _maxSpeed;
+}
+
+bool Hero::collides(GameObject &obj)
+{
+  if (_collide == false || obj._collide == false || obj._type == 4 || obj._type == 5)
+    return (false);
+  if (obj._type == 2 && _attackBox.intersects(obj._box))
+    obj.giveOrder(DIE);
+  return (_box.intersects(obj._box));
 }

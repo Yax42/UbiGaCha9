@@ -21,7 +21,7 @@ public:
   World(sftile::SfSmartCamera &camera, Light &heroLight);
   ~World();
 
-  bool			setMap(const std::string &mapName);
+  bool			setMap(std::string mapName);
   void			handleEvents(sf::Event evt);
   void			update(float elapsedTime, size_t frameCount);
   void			render(sf::RenderTexture &rect);
@@ -36,7 +36,7 @@ private:
   void clearWorld();
   void unloadTileMaps();
   bool mapExists(const std::string &mapName);
-  void collideObject(GameObject *obj);
+  bool collideObject(GameObject *obj);
 
   void getWalls(sftile::priv::SfObjectLayer &walls);
   void getEnnemies(sftile::priv::SfObjectLayer &ennemies);

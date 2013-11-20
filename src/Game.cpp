@@ -5,6 +5,8 @@
 #include "Utils.hh"
 #include <iostream>
 
+bool Game::_run = false;
+
 Game::Game(sf::RenderWindow &window)
   : _window(window),
     _foxLight(_window.getView().getCenter(), 1),
@@ -18,6 +20,7 @@ Game::Game(sf::RenderWindow &window)
     _nbMusic(0),
     _openInventory(false)
 {
+  _run = true;
   if (!_tHaloFox.loadFromFile("./ressource/textures/haloFox.png"))
     throw UbiException("Failed to load haloFox.png");
   if (!_tHaloMonk.loadFromFile("./ressource/textures/haloMonk.png"))
@@ -117,7 +120,7 @@ void	Game::handleEvent(sf::Event & event)
     _inventory.handleEvent(event);
   if (event.type == sf::Event::JoystickButtonPressed)
     {
-      if (event.joystickButton.button == 7)
+      if (event.joystickButton.button == 2)
 	{
 	  if (_openInventory)
 	    _openInventory = false;
@@ -171,7 +174,11 @@ void Game::draw()
   prerendering.setPosition(_camera.GetPosition());
   _sceneTexture.draw(prerendering, sf::BlendMultiply);
   if (_openInventory)
-    _inventory.draw(_sceneTexture);
+    {
+      sf::View view = _window.getView();
+      _sceneTexture.setView(view);
+      _inventory.draw(_sceneTexture);
+    }
   _sceneTexture.display();
 
   sf::Sprite scene(_sceneTexture.getTexture());
@@ -184,7 +191,7 @@ void	Game::run()
 {
   sf::Clock	clock;
 
-  while (_window.isOpen())
+  while (_window.isOpen() && _run)
     {
       clock.restart();
       sf::Joystick::update();

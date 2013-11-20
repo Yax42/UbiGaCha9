@@ -27,7 +27,7 @@ public:
   bool	progressiveLight(float);
   void	drawRain();
 
-  static bool _run;
+  static bool run;
 
 private:
   sf::RenderWindow	&_window;

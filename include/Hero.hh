@@ -17,7 +17,9 @@ class Hero : public GameObject
 public:
   Hero(const sf::Vector2f &pos = sf::Vector2f());
   virtual ~Hero(){}
+
   virtual void		update(float dt, size_t frameCount);
+  virtual bool		collides(GameObject &obj);
 
 private:
 	static AssetDescriptor s_assetDesc;
