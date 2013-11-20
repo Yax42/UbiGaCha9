@@ -16,7 +16,6 @@ void        Asset::setCurrentLine(int cur)
     {
       _curLine = cur % _assetDesc.lines.size();
       _curFrame = -1;
-      resetSprite();
     }
 }
 

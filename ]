@@ -114,6 +114,7 @@ void	Hero::update(float ft, size_t frameCount)
 		  if (_stateCount == 3)
 		  {
 			  _attackBoxState = NO_ATTACK;
+			  _attackBox = sf::FloatRect(signX * 32, signY * 32, 32, 32);
 			  _direction.x = 0;
 			  _direction.y = 0;
 			if ((frameCount % 4) == 0)
@@ -121,34 +122,28 @@ void	Hero::update(float ft, size_t frameCount)
 		  }
 		  else if (_stateCount == 2)
 		  {
+
 			  _attackBoxState = NO_ATTACK;
+			  _attackBox = sf::FloatRect(signX * 32, signY * 32, 32, 32);
 			  _direction.x = -0.4 * signX;
 			  _direction.y = -0.4 * signY;
-			if ((frameCount % 4) == 0)
-					updateSprite();
 
-		  }
-		  else if (_stateCount == 1)
-		  {
 			  _attackBoxState = ATTACK1;
 			  _attackBox = sf::FloatRect(signX * 32, signY * 32, 32, 32);
 			  _direction.x = 0.4 * signX;
 			  _direction.y = 0.4 * signY;
-			if ((frameCount % 8) == 0)
-					updateSprite();
 		  }
-		  else
+		  else if (_stateCount == 1)
 		  {
 			  _attackBoxState = ATTACK1;
 			  _direction.x = 2 * signX;
 			  _direction.y = 2 * signY;
-			if ((frameCount % 8) == 0)
-			  {
-					updateSprite();
-					_attackBoxState = NO_ATTACK;
-				  _direction.x = 0;
-				  _direction.y = 0;
-			  }
+		  }
+		  else
+		  {
+			  _attackBoxState = NO_ATTACK;
+			  _direction.x = 0;
+			  _direction.y = 0;
 		  }
 	  }
   }
