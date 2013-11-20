@@ -79,13 +79,27 @@ void World::handleEvents(sf::Event evt)
 void World::update(float elapsedTime, size_t frameCount)
 {
   _tilemap->Update();
-  for (GameObjectVector::iterator it = _gameObjects.begin();
-       it != _gameObjects.end(); ++it)
+  GameObjectVector::iterator it = _gameObjects.begin();
+  while (it != _gameObjects.end())
     {
       (*it)->update(elapsedTime, frameCount);
-      _quadTree.insert(*it);
+      if ((*it)->isDead() == false)
+	{
+	  _quadTree.insert(*it);
+	  ++it;
+	}
+      else
+	{
+	  delete *it;
+	  it = _gameObjects.erase(it);
+	}
     }
   hero->update(elapsedTime, frameCount);
+  if (hero->isDead())
+    {
+      Game::_run = false;
+      return ;
+    }
   _quadTree.insert(hero);
   _fox->update(elapsedTime, frameCount);
   _quadTree.insert(_fox);

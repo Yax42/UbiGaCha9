@@ -60,7 +60,7 @@ void			GameObject::updateSprite()
   _asset.update();
 }
 
-bool GameObject::collides(const GameObject &obj) const
+bool GameObject::collides(GameObject &obj)
 {
   if (_collide == false || obj._collide == false)
     return (false);

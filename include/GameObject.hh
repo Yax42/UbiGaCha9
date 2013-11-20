@@ -45,18 +45,16 @@ public:
 	virtual void update(float ft, size_t frameCount);
 	virtual void  draw(sf::RenderTexture &window);
 	virtual void toBackPosition();
-	virtual bool collides(const GameObject &obj) const;
+	virtual bool collides(GameObject &obj);
 
 protected:
 	virtual void	updateSprite();
 
 	Asset			_asset;
-	sf::FloatRect	_box;
 	sf::Vector2f	_backPos;
 	sf::Vector2f	_direction;
 	int				_orientation;
 	float			_angle;
-	bool			_collide;
 	float			_maxSpeed;
 	int				_state;
 	int				_stateCount;
@@ -64,6 +62,8 @@ protected:
 	int				_weapon;
 public:
 
+	sf::FloatRect	_box;
+	bool			_collide;
 	int				_type;//0mur 1gentil 2mechant 3exit
 	int				_mobType;
 };
