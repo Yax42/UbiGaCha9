@@ -136,7 +136,6 @@ void			Hero::updateSprite()
   {
 	_order = -1;
 	_stateCount--;
-	std::cout << _stateCount << std::endl;
   }
   _asset.setCurrentLine(calculateCurLine());
   _asset.update();
@@ -168,6 +167,7 @@ void	Hero::update(float ft, size_t frameCount)
 	}
       else if (_weapon == 1)
 	{
+	    _attackBox = sf::FloatRect(_box.left + 30 * signX, _box.top + 30 * signY, 30, 30);
 	  if (!_sound)
 	    {
 	      _sound = true;
@@ -179,7 +179,7 @@ void	Hero::update(float ft, size_t frameCount)
 	      _direction.x = 0;
 	      _direction.y = 0;
 	      if ((frameCount % 4) == 0)
-		updateSprite();
+		  updateSprite();
 	    }
 	  else if (_stateCount == 2)
 	    {
@@ -193,11 +193,10 @@ void	Hero::update(float ft, size_t frameCount)
 	  else if (_stateCount == 1)
 	    {
 	      _attackBoxState = ATTACK1;
-	      _attackBox = sf::FloatRect(_box.left + 30 * signX, _box.top + 30 * signY, 30, 30);
 	      _direction.x = 0.4 * signX;
 	      _direction.y = 0.4 * signY;
 	      if ((frameCount % 8) == 0)
-		updateSprite();
+  			 updateSprite();
 	    }
 	  else
 	    {
@@ -266,7 +265,5 @@ bool Hero::collides(GameObject &obj)
 {
   if (_collide == false || obj._collide == false || obj._type == 4 || obj._type == 5)
     return (false);
-  if (obj._type == 2 && _attackBox.intersects(obj._box))
-    obj.giveOrder(DIE);
-  return (_box.intersects(obj._box));
+  return (obj._type == 0 && _box.intersects(obj._box));
 }

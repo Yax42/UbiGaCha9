@@ -55,18 +55,23 @@ void			Mob::updateSprite()
 
 void	Mob::Follow()
 {
-	sf::Vector2f		vect = getPos() - World::hero->getPos();
+	sf::Vector2f		vect = World::hero->getPos() - getPos();
 
 	float	range = sqrt(vect.x * vect.x + vect.y * vect.y);
 	if (range < 100)
-		_isMad == true;
+		_isMad = true;
 	else
-		_isMad == false;
+		_isMad = false;
 
 	if (_isMad)
 	{
-		_direction.x = vect.x * _maxSpeed / range;
-		_direction.y = vect.y * _maxSpeed / range;
+		_direction.x = vect.x / range;
+		_direction.y = vect.y / range;
+	}
+	else
+	{
+		_direction.x = 0;
+		_direction.y = 0;
 	}
 }
 
@@ -75,8 +80,36 @@ void	Mob::update(float ft, size_t frameCount)
   _backPos = sf::Vector2f(_box.left, _box.top);
   _box.left += _direction.x * ft * _maxSpeed;
   _box.top += _direction.y * ft * _maxSpeed;
-  if (frameCount % (8 * _mobType) == 0)
+  if (frameCount % (16 * _mobType) == 0)
 	Follow();
   if ((frameCount % 8) == 0)
     updateSprite();
+}
+
+bool Mob::collides(GameObject &obj)
+{
+	if (obj._type == 2)
+	    return (false);
+
+	bool actualResult = _box.intersects(obj._box);
+
+	if (!actualResult)
+		return (false);
+
+	if (obj._type == 1)
+	{
+		if (obj._state == ATTACK && obj._weapon <= 1)
+		{
+			bool hbResult = _box.intersects((dynamic_cast<Hero *>(&obj))->_attackBox);
+			if (hbResult && obj._weapon == 0 && _mobType == 0)
+				giveOrder(DIE);
+			else if (hbResult && obj._weapon == 1 && _mobType == 1)
+				giveOrder(DIE);
+		}
+	}
+	else if (obj._type == 4 && _mobType == 2)
+		giveOrder(DIE);
+	else if (obj._type == 5 && _mobType == 3)
+		giveOrder(DIE);
+	return (obj._type == 0);
 }

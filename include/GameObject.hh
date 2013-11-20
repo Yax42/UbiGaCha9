@@ -57,11 +57,11 @@ protected:
 	int				_orientation;
 	float			_angle;
 	float			_maxSpeed;
+public:
 	int				_state;
 	int				_stateCount;
 	int				_order;
 	int				_weapon;
-public:
 
 	sf::FloatRect	_box;
 	bool			_collide;

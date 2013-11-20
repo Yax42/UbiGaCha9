@@ -91,6 +91,7 @@
     <ClInclude Include="..\include\TinyXML\tinyxml2.h" />
     <ClInclude Include="..\include\UbiException.hh" />
     <ClInclude Include="..\include\Utils.hh" />
+    <ClInclude Include="..\include\Wall.hh" />
     <ClInclude Include="..\include\World.hh" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

@@ -14,6 +14,7 @@ public:
 	void	Follow();
 	static void setAssetDesc(AssetDescriptor &assetDesc);
 	virtual void	update(float dt, size_t frameCount);
+	virtual bool collides(GameObject &obj);
 protected:
 	virtual void	updateSprite();
 public:
