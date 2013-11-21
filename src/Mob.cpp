@@ -85,7 +85,7 @@ void	Mob::update(float ft, size_t frameCount)
   _backPos = sf::Vector2f(_box.left, _box.top);
   _box.left += _direction.x * ft * _maxSpeed;
   _box.top += _direction.y * ft * _maxSpeed;
-  if (frameCount % (16 * _mobType) == 0)
+  if (frameCount % (16 * (_mobType + 1)) == 0)
 	Follow();
   if ((frameCount % 8) == 0)
     updateSprite();

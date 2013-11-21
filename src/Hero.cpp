@@ -280,7 +280,7 @@ bool Hero::collides(GameObject &obj)
       _die = true;
       return (false);
     }
-  return (obj._type == 0 && _box.intersects(obj._box));
+  return ((obj._type == 0 || obj._type == 3) && _box.intersects(obj._box));
 }
 
 bool	Hero::isDead()

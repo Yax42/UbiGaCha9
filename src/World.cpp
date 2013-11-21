@@ -272,6 +272,7 @@ void World::getExit(sftile::priv::SfObjectLayer &exits)
       tmpVec = exit->GetDimensions();
       sf::Vector2f	exitDim(tmpVec.x, tmpVec.y);
 
+      std::cout << "Exit pos: " << exit->GetName() << std::endl;
       _gameObjects.push_back(new Exit(exitPos, exitDim, exit->GetName()));
     }
 }
