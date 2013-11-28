@@ -1,17 +1,17 @@
-﻿Build started 20/11/2013 14:46:28.
-     1>Project "C:\Users\DANEEL\Documents\UbiGaCha9\UbiGaCha9\UbiGaCha9.vcxproj" on node 2 (Build target(s)).
+﻿Build started 27/11/2013 23:18:04.
+     1>Project "C:\Users\DANEEL\Documents\GitHub\UbiGaCha9\UbiGaCha9\UbiGaCha9.vcxproj" on node 2 (Build target(s)).
      1>InitializeBuildStatus:
          Creating "Release\UbiGaCha9.tlog\unsuccessfulbuild" because "AlwaysCreate" was specified.
        ClCompile:
          All outputs are up-to-date.
        Link:
          All outputs are up-to-date.
-         UbiGaCha9.vcxproj -> C:\Users\DANEEL\Documents\UbiGaCha9\Release\UbiGaCha9.exe
+         UbiGaCha9.vcxproj -> C:\Users\DANEEL\Documents\GitHub\UbiGaCha9\Release\UbiGaCha9.exe
        FinalizeBuildStatus:
          Deleting file "Release\UbiGaCha9.tlog\unsuccessfulbuild".
          Touching "Release\UbiGaCha9.tlog\UbiGaCha9.lastbuildstate".
-     1>Done Building Project "C:\Users\DANEEL\Documents\UbiGaCha9\UbiGaCha9\UbiGaCha9.vcxproj" (Build target(s)).
+     1>Done Building Project "C:\Users\DANEEL\Documents\GitHub\UbiGaCha9\UbiGaCha9\UbiGaCha9.vcxproj" (Build target(s)).
 
 Build succeeded.
 
-Time Elapsed 00:00:00.13
+Time Elapsed 00:00:02.40
